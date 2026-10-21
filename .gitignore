@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Secrets
+.env
+
+# Local datasets (keep only the dataset instructions tracked)
+data/*
+!data/README.md
+
+# Model artifacts and generated outputs
+experiments/checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.onnx
+
+# Notebook and operating-system files
+.ipynb_checkpoints/
+.DS_Store
