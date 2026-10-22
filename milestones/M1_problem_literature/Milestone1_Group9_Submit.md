@@ -86,7 +86,7 @@ A transcript is usually the first step before analysis, reporting or a decision,
 
 - **Public-interest data collection.** Surveys in markets, villages and streets produce a lot of noisy audio, and there is seldom money to transcribe it.
 
-- **Trust in ASR output.** Koenecke et al. \[13\] studied Whisper-style systems in 2023 and found that about 1% of transcriptions contained whole phrases that nobody had spoken. Without some signal of uncertainty, errors like these go unnoticed.
+- **Trust in ASR output.** Koenecke et al. studied Whisper-style systems in 2023 and found that about 1% of transcriptions contained whole phrases that nobody had spoken. Without some signal of uncertainty, errors like these go unnoticed.
 
 There are several reasons why the task is hard.
 
@@ -145,15 +145,15 @@ Word-level confidence in speech recognition has been studied for a long time. Ji
 
 | **Dataset**                               | **What it is**                                                                                    | **Role in our project**                                                      |
 |-------------------------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
-| LibriSpeech \[7\]                         | About 1,000 hours of read English audiobooks with transcripts; standard clean and other test sets | Clean speech with ground truth for training, validation and testing          |
-| Environmental sound clips (ESC-50 \[12\]) | 2,000 five-second environmental recordings in 50 classes                                          | Real noise, split 80% for training and 20% for testing                       |
+| LibriSpeech                         | About 1,000 hours of read English audiobooks with transcripts; standard clean and other test sets | Clean speech with ground truth for training, validation and testing          |
+| Environmental sound clips (ESC-50 ) | 2,000 five-second environmental recordings in 50 classes                                          | Real noise, split 80% for training and 20% for testing                       |
 | Synthetic noise                           | White, pink and brown noise generated at a target SNR                                             | White and pink for training, brown for testing (controlled stationary noise) |
-| MUSAN \[26\], DEMAND \[27\]               | Music, speech and noise corpora; recordings of real environments                                  | Possible future noise and babble sources (not used)                          |
-| CHiME-6 \[28\]                            | Real, noisy, multi-speaker dinner-party conversations                                             | Reference for how hard real conditions are (not used directly)               |
+| MUSAN , DEMAND                | Music, speech and noise corpora; recordings of real environments                                  | Possible future noise and babble sources (not used)                          |
+| CHiME-6                            | Real, noisy, multi-speaker dinner-party conversations                                             | Reference for how hard real conditions are (not used directly)               |
 
 ## 3.8 Common practice and gaps in reporting
 
-Many studies report one WER on a clean benchmark, or on a single noise type. Likhomanenko et al. \[8\] argue that testing on a single dataset overstates robustness. Papers on enhancement report perceptual scores more often than recognition accuracy, and papers on confidence estimation rarely check **how much human review effort** the scores actually save. That last question is the one a user of a transcription tool cares about most.
+Many studies report one WER on a clean benchmark, or on a single noise type. Likhomanenko et al. argue that testing on a single dataset overstates robustness. Papers on enhancement report perceptual scores more often than recognition accuracy, and papers on confidence estimation rarely check **how much human review effort** the scores actually save. That last question is the one a user of a transcription tool cares about most.
 
 # 4. Metrics and How Success Is Defined
 
@@ -163,24 +163,24 @@ Many studies report one WER on a clean benchmark, or on a single noise type. Lik
 | Robustness           | WER versus SNR curve per noise type; breakdown SNR                         | SNR levels: clean, 20, 10, 5, 0 dB                                                                            |
 | Training benefit     | Relative WER reduction (noise-trained vs clean-trained)                    | (WER_clean_trained - WER_noise_trained) / WER_clean_trained                                                   |
 | Error detection      | AUROC, precision, recall, F1; positive class = incorrectly recognized word | Word labels come from aligning the hypothesis to the reference                                                |
-| Calibration          | Expected Calibration Error, Brier score, reliability diagram \[22\]        | Calibrate on validation data, report on test data                                                             |
+| Calibration          | Expected Calibration Error, Brier score, reliability diagram         | Calibrate on validation data, report on test data                                                             |
 | Review efficiency    | **Error recall versus fraction of words reviewed**                         | The metric that matches the product goal                                                                      |
 | Timestamp usefulness | Replay-window hit rate on a sample of flags                                | Manual check of 50 flags                                                                                      |
 | Efficiency           | Real-time factor (processing time / audio duration)                        | Reported on CPU and on a free GPU                                                                             |
 
 WER counts every error the same, so "a" for "the" costs as much as "fifty" for "fifteen". To make up for this we also report which kinds of errors the flags catch, such as numbers and names, in an error-analysis section.
 
-**Reference points.** Published wav2vec 2.0 Base results use far more fine-tuning than a student project can afford, and often a language model \[2\]\[4\]. Whisper large-v2 reaches about 2.7% WER on test-clean \[5\]. Our own WER will be higher because we use a small fine-tuning set, a base-size model and greedy decoding without a language model. The point of our experiments is the **relative comparison** between clean-trained and noise-trained models and the **shape of the degradation as SNR drops**. We are not trying to match published absolute numbers.
+**Reference points.** Published wav2vec 2.0 Base results use far more fine-tuning than a student project can afford, and often a language model. Whisper large-v2 reaches about 2.7% WER on test-clean. Our own WER will be higher because we use a small fine-tuning set, a base-size model and greedy decoding without a language model. The point of our experiments is the **relative comparison** between clean-trained and noise-trained models and the **shape of the degradation as SNR drops**. We are not trying to match published absolute numbers.
 
 # 5. Where Current Solutions Fall Short, and the Opportunity
 
 1.  **No visible uncertainty.** Fluent recognizers hide their mistakes, and commercial tools give little or no reliable sign of where a transcript is likely to be wrong. Users end up listening to everything.
 
-2.  **Confidence is rarely calibrated or tested on noise.** Raw scores are overconfident \[22\], and few papers measure how much review effort they save.
+2.  **Confidence is rarely calibrated or tested on noise.** Raw scores are overconfident, and few papers measure how much review effort they save.
 
-3.  **Robustness is under-reported.** Results are usually a single number on clean data. Practitioners have no per-noise, per-SNR picture on **held-out** noise for a small model they can train themselves \[8\].
+3.  **Robustness is under-reported.** Results are usually a single number on clean data. Practitioners have no per-noise, per-SNR picture on **held-out** noise for a small model they can train themselves.
 
-4.  **Enhancement is applied by default,** even though its artifacts can hurt recognition \[10\]. We rely on noise-augmented training instead of a denoising front end.
+4.  **Enhancement is applied by default,** even though its artifacts can hurt recognition. We rely on noise-augmented training instead of a denoising front end.
 
 5.  **Cost and privacy.** The strongest tools are either closed and paid, or large models that need a GPU. Cloud services also require uploading sensitive interviews.
 
@@ -234,63 +234,63 @@ Our contribution is mostly about robustness evaluation and workflow, and we do n
 
 # References
 
-7.  Graves, A., Fernández, S., Gomez, F., Schmidhuber, J. Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks. ICML, 2006.
+1.  Graves, A., Fernández, S., Gomez, F., Schmidhuber, J. Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks. ICML, 2006.
 
-8.  Baevski, A., Zhou, H., Mohamed, A., Auli, M. wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations. NeurIPS, 2020. arXiv:2006.11477.
+2.  Baevski, A., Zhou, H., Mohamed, A., Auli, M. wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations. NeurIPS, 2020. arXiv:2006.11477.
 
-9.  Hsu, W.-N., Bolte, B., Tsai, Y.-H. H., Lakhotia, K., Salakhutdinov, R., Mohamed, A. HuBERT: Self-Supervised Speech Representation Learning by Masked Prediction of Hidden Units. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 2021. arXiv:2106.07447.
+3.  Hsu, W.-N., Bolte, B., Tsai, Y.-H. H., Lakhotia, K., Salakhutdinov, R., Mohamed, A. HuBERT: Self-Supervised Speech Representation Learning by Masked Prediction of Hidden Units. IEEE/ACM Transactions on Audio, Speech, and Language Processing, 2021. arXiv:2106.07447.
 
-10. Chen, S. et al. WavLM: Large-Scale Self-Supervised Pre-Training for Full Stack Speech Processing. IEEE Journal of Selected Topics in Signal Processing, 16(6), 2022. arXiv:2110.13900.
+4. Chen, S. et al. WavLM: Large-Scale Self-Supervised Pre-Training for Full Stack Speech Processing. IEEE Journal of Selected Topics in Signal Processing, 16(6), 2022. arXiv:2110.13900.
 
-11. Radford, A., Kim, J. W., Xu, T., Brockman, G., McLeavey, C., Sutskever, I. Robust Speech Recognition via Large-Scale Weak Supervision. ICML, 2023. arXiv:2212.04356.
+5. Radford, A., Kim, J. W., Xu, T., Brockman, G., McLeavey, C., Sutskever, I. Robust Speech Recognition via Large-Scale Weak Supervision. ICML, 2023. arXiv:2212.04356.
 
-12. Bain, M., Huh, J., Han, T., Zisserman, A. WhisperX: Time-Accurate Speech Transcription of Long-Form Audio. Interspeech, 2023. arXiv:2303.00747.
+6. Bain, M., Huh, J., Han, T., Zisserman, A. WhisperX: Time-Accurate Speech Transcription of Long-Form Audio. Interspeech, 2023. arXiv:2303.00747.
 
-13. Panayotov, V., Chen, G., Povey, D., Khudanpur, S. Librispeech: An ASR Corpus Based on Public Domain Audio Books. ICASSP, 2015.
+6. Panayotov, V., Chen, G., Povey, D., Khudanpur, S. Librispeech: An ASR Corpus Based on Public Domain Audio Books. ICASSP, 2015.
 
-14. Likhomanenko, T., Xu, Q., Pratap, V., Tomasello, P., Kahn, J., Avidov, G., Collobert, R., Synnaeve, G. Rethinking Evaluation in ASR: Are Our Models Robust Enough? Interspeech, 2021. arXiv:2010.11745.
+7. Likhomanenko, T., Xu, Q., Pratap, V., Tomasello, P., Kahn, J., Avidov, G., Collobert, R., Synnaeve, G. Rethinking Evaluation in ASR: Are Our Models Robust Enough? Interspeech, 2021. arXiv:2010.11745.
 
-15. Shah, M. A. et al. Speech Robust Bench: A Robustness Benchmark For Speech Recognition. arXiv:2403.07937, 2024.
+8. Shah, M. A. et al. Speech Robust Bench: A Robustness Benchmark For Speech Recognition. arXiv:2403.07937, 2024.
 
-16. Iwamoto, K., Ochiai, T., Delcroix, M., Ikeshita, R., Sato, H., Araki, S., Katagiri, S. How Bad Are Artifacts?: Analyzing the Impact of Speech Enhancement Errors on ASR. Interspeech, 2022. arXiv:2201.06685.
+9. Iwamoto, K., Ochiai, T., Delcroix, M., Ikeshita, R., Sato, H., Araki, S., Katagiri, S. How Bad Are Artifacts?: Analyzing the Impact of Speech Enhancement Errors on ASR. Interspeech, 2022. arXiv:2201.06685.
 
-17. Boll, S. F. Suppression of Acoustic Noise in Speech Using Spectral Subtraction. IEEE Transactions on Acoustics, Speech, and Signal Processing, 27(2), 1979.
+10. Boll, S. F. Suppression of Acoustic Noise in Speech Using Spectral Subtraction. IEEE Transactions on Acoustics, Speech, and Signal Processing, 27(2), 1979.
 
-18. Piczak, K. J. ESC: Dataset for Environmental Sound Classification. ACM Multimedia, 2015.
+11. Piczak, K. J. ESC: Dataset for Environmental Sound Classification. ACM Multimedia, 2015.
 
-19. Koenecke, A., Choi, A. S. G., Mei, K., Schellmann, H., Sloane, M. Careless Whisper: Speech-to-Text Hallucination Harms. ACM FAccT, 2024. DOI: 10.1145/3630106.3658996. arXiv:2402.08021.
+12. Koenecke, A., Choi, A. S. G., Mei, K., Schellmann, H., Sloane, M. Careless Whisper: Speech-to-Text Hallucination Harms. ACM FAccT, 2024. DOI: 10.1145/3630106.3658996. arXiv:2402.08021.
 
-20. Hirsch, H.-G., Pearce, D. The Aurora Experimental Framework for the Performance Evaluation of Speech Recognition Systems under Noisy Conditions. ISCA ITRW ASR2000, 2000.
+13. Hirsch, H.-G., Pearce, D. The Aurora Experimental Framework for the Performance Evaluation of Speech Recognition Systems under Noisy Conditions. ISCA ITRW ASR2000, 2000.
 
-21. Park, D. S. et al. SpecAugment: A Simple Data Augmentation Method for Automatic Speech Recognition. Interspeech, 2019. arXiv:1904.08779.
+14. Park, D. S. et al. SpecAugment: A Simple Data Augmentation Method for Automatic Speech Recognition. Interspeech, 2019. arXiv:1904.08779.
 
-22. Valin, J.-M. A Hybrid DSP/Deep Learning Approach to Real-Time Full-Band Speech Enhancement. IEEE MMSP, 2018. arXiv:1709.08243.
+15. Valin, J.-M. A Hybrid DSP/Deep Learning Approach to Real-Time Full-Band Speech Enhancement. IEEE MMSP, 2018. arXiv:1709.08243.
 
-23. Schröter, H., Escalante-B., A. N., Rosenkranz, T., Maier, A. DeepFilterNet: A Low Complexity Speech Enhancement Framework for Full-Band Audio Based on Deep Filtering. ICASSP, 2022. arXiv:2110.05588.
+16. Schröter, H., Escalante-B., A. N., Rosenkranz, T., Maier, A. DeepFilterNet: A Low Complexity Speech Enhancement Framework for Full-Band Audio Based on Deep Filtering. ICASSP, 2022. arXiv:2110.05588.
 
-24. Défossez, A., Synnaeve, G., Adi, Y. Real Time Speech Enhancement in the Waveform Domain. Interspeech, 2020. arXiv:2006.12847.
+17. Défossez, A., Synnaeve, G., Adi, Y. Real Time Speech Enhancement in the Waveform Domain. Interspeech, 2020. arXiv:2006.12847.
 
-25. Sainburg, T. noisereduce: Noise reduction in Python using spectral gating. Software, https://github.com/timsainb/noisereduce.
+18. Sainburg, T. noisereduce: Noise reduction in Python using spectral gating. Software, https://github.com/timsainb/noisereduce.
 
-26. Wolf, T. et al. Transformers: State-of-the-Art Natural Language Processing. EMNLP (System Demonstrations), 2020.
+19. Wolf, T. et al. Transformers: State-of-the-Art Natural Language Processing. EMNLP (System Demonstrations), 2020.
 
-27. Jiang, H. Confidence Measures for Speech Recognition: A Survey. Speech Communication, 45(4), 2005.
+20. Jiang, H. Confidence Measures for Speech Recognition: A Survey. Speech Communication, 45(4), 2005.
 
-28. Guo, C., Pleiss, G., Sun, Y., Weinberger, K. Q. On Calibration of Modern Neural Networks. ICML, 2017. arXiv:1706.04599.
+21. Guo, C., Pleiss, G., Sun, Y., Weinberger, K. Q. On Calibration of Modern Neural Networks. ICML, 2017. arXiv:1706.04599.
 
-29. Li, Q. et al. Confidence Estimation for Attention-Based Sequence-to-Sequence Models for Speech Recognition. ICASSP, 2021. arXiv:2010.11428.
+22. Li, Q. et al. Confidence Estimation for Attention-Based Sequence-to-Sequence Models for Speech Recognition. ICASSP, 2021. arXiv:2010.11428.
 
-30. Fiscus, J. G. A Post-Processing System to Yield Reduced Word Error Rates: Recognizer Output Voting Error Reduction (ROVER). IEEE ASRU Workshop, 1997.
+23. Fiscus, J. G. A Post-Processing System to Yield Reduced Word Error Rates: Recognizer Output Voting Error Reduction (ROVER). IEEE ASRU Workshop, 1997.
 
-31. McAuliffe, M., Socolof, M., Mihuc, S., Wagner, M., Sonderegger, M. Montreal Forced Aligner: Trainable Text-Speech Alignment Using Kaldi. Interspeech, 2017.
+24. McAuliffe, M., Socolof, M., Mihuc, S., Wagner, M., Sonderegger, M. Montreal Forced Aligner: Trainable Text-Speech Alignment Using Kaldi. Interspeech, 2017.
 
-32. Snyder, D., Chen, G., Povey, D. MUSAN: A Music, Speech, and Noise Corpus. arXiv:1510.08484, 2015.
+25. Snyder, D., Chen, G., Povey, D. MUSAN: A Music, Speech, and Noise Corpus. arXiv:1510.08484, 2015.
 
-33. Thiemann, J., Ito, N., Vincent, E. The Diverse Environments Multi-channel Acoustic Noise Database (DEMAND). Proceedings of Meetings on Acoustics, 2013.
+26. Thiemann, J., Ito, N., Vincent, E. The Diverse Environments Multi-channel Acoustic Noise Database (DEMAND). Proceedings of Meetings on Acoustics, 2013.
 
-34. Watanabe, S. et al. CHiME-6 Challenge: Tackling Multispeaker Speech Recognition for Unsegmented Recordings. CHiME Workshop, 2020. arXiv:2004.09249.
+27. Watanabe, S. et al. CHiME-6 Challenge: Tackling Multispeaker Speech Recognition for Unsegmented Recordings. CHiME Workshop, 2020. arXiv:2004.09249.
 
-35. Abid, A., Abdalla, A., Abid, A., Khan, D., Alfozan, A., Zou, J. Gradio: Hassle-Free Sharing and Testing of ML Models in the Wild. arXiv:1906.02569, 2019.
+28. Abid, A., Abdalla, A., Abid, A., Khan, D., Alfozan, A., Zou, J. Gradio: Hassle-Free Sharing and Testing of ML Models in the Wild. arXiv:1906.02569, 2019.
 
 **Tools used:** Hugging Face Transformers and Datasets, evaluate and JiWER (WER and CER), librosa, PyTorch, Gradio \[29\], and a free cloud GPU (Kaggle or Colab).
 
