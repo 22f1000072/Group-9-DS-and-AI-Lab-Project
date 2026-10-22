@@ -5,8 +5,11 @@ Automatic Speech Recognition (ASR) loses accuracy on noisy recordings such as st
 ## Team
 
 Gulshan Kumar 22f1000072
+
 Parashmani Datta 21f2000987
+
 Subhajit Saha 21f1003945
+
 Dabgar Milav JayeshKumar 21f1005510
 
 ## Project
