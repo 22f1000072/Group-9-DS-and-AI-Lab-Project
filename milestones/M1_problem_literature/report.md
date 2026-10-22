@@ -6,9 +6,7 @@ An Intelligent Audio Transcription and Verification Assistant
 Automatic Speech Recognition (ASR) loses accuracy on noisy recordings such as street interviews, markets, vehicles and field surveys. Modern recognizers also produce fluent text even when they are wrong, so errors are silent: a wrong number or name looks as confident as a correct one. Users therefore re-listen to the whole recording to verify it, which removes most of the time ASR was meant to save. This project studies how noise type and level affect a pretrained recognizer, trains a noise-robust version, and builds, a transcription assistant that flags the words most likely to be wrong, links each flag to its exact position in the original audio, and lets users replay and correct only those parts.
 
 
-## Proposed direction
 
-TODO
 
 ## References
 [1] Graves, A., Fernández, S., Gomez, F., Schmidhuber, J. Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks. ICML, 2006.
