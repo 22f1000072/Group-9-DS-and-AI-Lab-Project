@@ -26,8 +26,8 @@ As Likhomanenko et al. (2021) report, "wav2vec 2.0 base trained on 100 hours of 
 
 | **Attribute** | **Details** |
 |--------------|------------|
-| **Source (HuggingFace)** | <https://huggingface.co/datasets/librispeech_asr> |
-| **Source (Official)** | <https://github.com/LibriSpeech/librispeech-lm-data> |
+| **Source (HuggingFace)** | <https://huggingface.co/datasets/openslr/librispeech_asr> |
+| **Source (Official)** | <https://www.openslr.org/resources/12> |
 | **Version** | 0.9.1 (2015 release) |
 | **Access Date** | October 2026 |
 | **License** | CC-BY-4.0 for language model data; audiobooks in public domain |
@@ -41,8 +41,8 @@ As Likhomanenko et al. (2021) report, "wav2vec 2.0 base trained on 100 hours of 
 
 | **Dataset** | **Source (Public URL)** | **License** | **Size** | **Usage** |
 |-------------|------------------------|-------------|----------|-----------|
-| **MUSAN** | <https://github.com/keithito/musan> | CC-0 (public domain) | ~20h total (~33k files): music (~7h), speech (~7h), noise (~6h) | Noise augmentation for training (music, speech, environmental noise) |
-| **ESC-50** | <https://github.com/karolp/esc50> | CC-BY 4.0 | 2,000 five-second environmental recordings in 50 classes | Held-out test noise evaluation (real-world noise, never seen in training) |
+| **MUSAN** | <https://www.openslr.org/17/> | CC-BY-4.0 | ~20h total (~33k files): music (~7h), speech (~7h), noise (~6h) | Noise augmentation for training (music, speech, environmental noise) |
+| **ESC-50** | <https://github.com/karolpiczak/ESC-50> | CC-BY-4.0 | 2,000 five-second environmental recordings in 50 classes | Held-out test noise evaluation (real-world noise, never seen in training) |
 
 ### 2.3 Synthetic Noise
 
@@ -59,7 +59,10 @@ As Likhomanenko et al. (2021) report, "wav2vec 2.0 base trained on 100 hours of 
 - **ESC-50:** CC-BY 4.0 — requires attribution, but free for academic research
 - **No personal data:** None of the datasets contain personally identifiable information
 - **No cloud uploads:** All processing done locally; no external services required
-- **Public dataset URLs:** All dataset sources are publicly accessible via the URLs listed in Sections 2.1–2.2
+- **Public dataset URLs:** All dataset sources are publicly accessible via the URLs listed in Sections 2.1–2.2:
+  - LibriSpeech: https://huggingface.co/datasets/openslr/librispeech_asr
+  - MUSAN: https://www.openslr.org/17/
+  - ESC-50: https://github.com/karolpiczak/ESC-50
 
 ### 2.5 Dataset Quality Assessment
 
@@ -561,21 +564,17 @@ Full details in `WORKLOG.md` with digital acknowledgement from all 3 members.
 # Download LibriSpeech (via HuggingFace datasets)
 python -c "
 from datasets import load_dataset
-ds = load_dataset('librispeech', 'clean', split=['train', 'test', 'validation'])
+ds = load_dataset('openslr/librispeech_asr', 'all', split=['train.clean.100', 'test.clean', 'validation.clean'])
 # Saves to ~/.cache/huggingface/datasets/librispeech...
 "
 
-# Download MUSAN
-wget -P data/raw/musan/ https://github.com/keithito/musan/releases/download/v1.0/music.tar.gz
-wget -P data/raw/musan/ https://github.com/keithito/musan/releases/download/v1.0/speech.tar.gz
-wget -P data/raw/musan/ https://github.com/keithito/musan/releases/download/v1.0/noise.tar.gz
-tar -xzf data/raw/musan/music.tar.gz -C data/raw/musan/
-tar -xzf data/raw/musan/speech.tar.gz -C data/raw/musan/
-tar -xzf data/raw/musan/noise.tar.gz -C data/raw/musan/
+# Download MUSAN (via OpenSLR SLR17)
+wget -P data/raw/musan/ https://www.openslr.org/resources/17/musan.tar.gz
+tar -xzf data/raw/musan/musan.tar.gz -C data/raw/musan/
 
 # Download ESC-50
-wget -P data/raw/ https://github.com/karolp/esc50/releases/download/v1.0.0/esc50.zip
-unzip data/raw/esc50.zip -d data/raw/esc50/
+wget -P data/raw/ https://github.com/karolpiczak/ESC-50/archive/refs/heads/master.zip
+unzip data/raw/master.zip -d data/raw/esc50/
 ```
 
 ### B. Preprocessing Pipeline Pseudocode
