@@ -102,8 +102,16 @@ def load_audio_from_tensor(audio_array: np.ndarray, sample_rate: int, target_sr:
 
     # Resample to target if needed
     if orig_sr != target_sr:
-        resampler = torchaudio.transforms.Resample(orig_sr, target_sr)
-        waveform = resampler(waveform)
+        try:
+            resampler = torchaudio.transforms.Resample(orig_sr, target_sr)
+            waveform = resampler(waveform)
+        except Exception as e:
+            raise RuntimeError(
+                f"torchaudio.transforms.Resample failed on this platform. "
+                f"Error: {e}\n"
+                f"On Windows, this may be due to missing torchcodec DLLs. "
+                f"Try installing: pip install torchcodec"
+            ) from e
 
     # Convert to mono (average channels if stereo)
     if waveform.shape[0] > 1:
@@ -124,7 +132,14 @@ def load_audio_from_file(audio_path: Path, target_sr: int = 16000) -> Tuple[torc
         original_sample_rate: original sample rate before resampling
     """
     # Load audio using soundfile (works on Windows without torchcodec dependency)
-    waveform_np, orig_sr = sf.read(str(audio_path))
+    try:
+        import soundfile as sf
+        waveform_np, orig_sr = sf.read(str(audio_path))
+    except ImportError:
+        raise ImportError(
+            "soundfile is required for audio loading on Windows. "
+            "Install with: pip install soundfile"
+        )
 
     # Convert to tensor [1, seq_len]
     if waveform_np.ndim == 1:
@@ -134,8 +149,16 @@ def load_audio_from_file(audio_path: Path, target_sr: int = 16000) -> Tuple[torc
 
     # Resample to target if needed
     if orig_sr != target_sr:
-        resampler = torchaudio.transforms.Resample(orig_sr, target_sr)
-        waveform = resampler(waveform)
+        try:
+            resampler = torchaudio.transforms.Resample(orig_sr, target_sr)
+            waveform = resampler(waveform)
+        except Exception as e:
+            raise RuntimeError(
+                f"torchaudio.transforms.Resample failed on this platform. "
+                f"Error: {e}\n"
+                f"On Windows, this may be due to missing torchcodec DLLs. "
+                f"Try installing: pip install torchcodec"
+            ) from e
 
     # Convert to mono (average channels if stereo)
     if waveform.shape[0] > 1:
