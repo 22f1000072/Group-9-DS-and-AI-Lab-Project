@@ -3,18 +3,19 @@
 ## Source and license
 
 - **Primary dataset: LibriSpeech**
-  - **Source:** https://github.com/LibriSpeech/librispeech-lm-data
+  - **Source:** https://huggingface.co/datasets/openslr/librispeech_asr
+  - **Official source:** https://www.openslr.org/resources/12
   - **Version:** 0.9.1 (train-clean-100, train-clean-360, train-other-500, dev-clean, dev-other, test-clean, test-other)
   - **Access date:** October 2026
-  - **License:** CC-BY-4.0 (MIT License for language model data; audiobooks are public domain)
+  - **License:** CC-BY-4.0 for language model data; audiobooks are public domain
   - **Citation:** Panayotov et al., "LibriSpeech: An ASR Corpus Based on Public Domain Audio Books," ICASSP 2015.
 
 - **Noise augmentation datasets:**
-  - **MUSAN:** https://github.com/keithito/musan
-    - **License:** CC-0 (public domain)
+  - **MUSAN:** https://www.openslr.org/17/
+    - **License:** CC-BY-4.0
     - **Contents:** Music (~7 hours), Speech (~7 hours), Noise (~6 hours)
     - **Use:** Noise augmentation for training (music, speech, environmental noise)
-  - **ESC-50:** https://github.com/karolp/esc50
+  - **ESC-50:** https://github.com/karolpiczak/ESC-50
     - **License:** CC-BY 4.0
     - **Contents:** 2,000 five-second environmental recordings in 50 classes
     - **Use:** Held-out test noise evaluation (brown noise variants)
