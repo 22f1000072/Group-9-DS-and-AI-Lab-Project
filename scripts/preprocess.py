@@ -49,6 +49,7 @@ if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
 
 import numpy as np
+import soundfile as sf
 import torch
 import torchaudio
 
@@ -122,7 +123,14 @@ def load_audio_from_file(audio_path: Path, target_sr: int = 16000) -> Tuple[torc
         waveform: tensor [1, seq_len] at target sample rate
         original_sample_rate: original sample rate before resampling
     """
-    waveform, orig_sr = torchaudio.load(str(audio_path))
+    # Load audio using soundfile (works on Windows without torchcodec dependency)
+    waveform_np, orig_sr = sf.read(str(audio_path))
+
+    # Convert to tensor [1, seq_len]
+    if waveform_np.ndim == 1:
+        waveform = torch.from_numpy(waveform_np).float().unsqueeze(0)
+    else:
+        waveform = torch.from_numpy(waveform_np).float().t()
 
     # Resample to target if needed
     if orig_sr != target_sr:
