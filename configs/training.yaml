@@ -1,0 +1,52 @@
+# Training configuration for DSAI Lab Project
+
+training:
+  # Optimization
+  optimizer: "AdamW"
+  learning_rate: 3e-5
+  weight_decay: 0.005
+  beta1: 0.9
+  beta2: 0.999
+
+  # LR schedule
+  lr_scheduler: "linear_warmup"
+  warmup_steps: 200
+  total_steps: 5000
+
+  # Batch configuration
+  batch_size: 16  # CPU: 16, GPU: 32
+  gradient_accumulation_steps: 2
+  max_steps: 5000
+  max_epochs: 10
+
+  # Hardware
+  device: "auto"  # "cpu", "cuda", "auto"
+  fp16: true  # Set false if no GPU
+
+  # Early stopping
+  early_stopping: true
+  patience_steps: 3
+  monitor_metric: "wer"
+  minimize_metric: true
+
+  # Data loading
+  num_workers: 4
+  pin_memory: false  # Set true if GPU
+
+  # Seed & reproducibility
+  seed: 42
+  deterministic: true
+
+# Noise augmentation configuration
+noise_augmentation:
+  enabled: true
+  train_snr_levels: ["clean", "20", "10", "5", "0"]  # dB
+  test_snr_levels: ["clean", "0"]  # Held-out noise only
+  train_noise_types: ["white", "pink"]  # MUSAN categories
+  test_noise_types: ["brown", "esc50"]  # Held-out noise
+
+# Data loading
+dataloader:
+  num_workers: 4
+  prefetch_factor: 2
+  persistent_workers: false

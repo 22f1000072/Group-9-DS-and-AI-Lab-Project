@@ -1,0 +1,51 @@
+# Data configuration for DSAI Lab Project
+project_name: dsai_lab_project
+
+data:
+  # Dataset paths
+  raw_dir: data/raw
+  processed_dir: data/processed
+  splits_dir: data/splits
+
+  # Primary dataset: LibriSpeech
+  librispeech:
+    train_subsets: [train-clean-100, train-clean-360, train-other-500]  # 960h total
+    dev_subsets: [dev-clean, dev-other]
+    test_subsets: [test-clean, test-other]
+
+  # Noise augmentation datasets
+  musan:
+    path: data/raw/musan
+    music: ~7h
+    speech: ~7h
+    noise: ~6h
+
+  esc50:
+    path: data/raw/esc50
+    samples: 2000
+    classes: 50
+
+  # Audio processing parameters
+  sample_rate: 16000
+  max_duration: 30.0  # seconds
+  noise_augmentation:
+    enabled: true
+    snrs: [0, 5, 10, 20]  # dB levels (clean is separate)
+    train_noise_types: [white, pink]  # MUSAN categories
+    test_noise_types: [brown, esc50]  # Held-out noise
+
+  # Data splits
+  train_ratio: 0.9
+  valid_ratio: 0.05
+  test_ratio: 0.05
+  seed: 42
+
+# Schema definition
+schema:
+  - audio_id: string
+  - audio_path: string
+  - text: string
+  - duration: float
+  - original_sample_rate: int
+  - noise_type: string
+  - snr_db: float
