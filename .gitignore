@@ -34,3 +34,5 @@ research/
 
 # Checkpoints and logs
 experiments/runs/*
+# Data directories (large, git-ignored)
+# Environment files
