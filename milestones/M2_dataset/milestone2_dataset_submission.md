@@ -151,21 +151,30 @@ LibriSpeech contains read English speech from audiobooks, which means it skews t
 
 ## 5. Exploratory Data Analysis (EDA)
 
-Since LibriSpeech is 960 hours (~100 GB+), we didn’t download everything for initial analysis. Instead, we took a representative subset of 500 training samples plus the full validation and test splits. This subset preserves the same speaker demographics and recording conditions as the full corpus, so our findings generalize.
+Since LibriSpeech is 960 hours (~100 GB+), we didn’t download everything for initial analysis. Instead, we used the flexible EDA pipeline that supports streaming and downloading subsets of any size.
 
-### EDA Results
+### How to Run EDA
 
-| Field | Value |
-|-------|-------|
-| Files analyzed | 500 train + ~7,500 val + ~2,500 test |
-| Sample rates | All 16 kHz |
-| Channels | All mono |
-| Audio format | All .flac |
-| Duration range | ~1.5s to ~25s per utterance |
-| Average duration | ~5–7 seconds |
-| Transcript language | English |
-| Missing transcripts | 0 |
-| Corrupted files | 0 |
+Our EDA script (`scripts/eda_analysis.py`) supports four modes for each dataset:
+
+| Mode | Command | Best For |
+|------|---------|----------|
+| **stream-complete** | `python scripts/eda_analysis.py --mode stream-complete --sample-size 100` | Quick inspection of full dataset without downloading |
+| **stream-subset** | `python scripts/eda_analysis.py --mode stream-subset --sample-size 50` | Fast analysis of small sample (no local storage) |
+| **download-subset** | `python scripts/eda_analysis.py --mode download-subset --sample-size 500` | Local analysis of representative subset (~2-5 GB) |
+| **download-full** | `python scripts/eda_analysis.py --mode download-full` | Complete analysis (50-100 GB, Milestone 3+) |
+
+The same mode options work for MUSAN and ESC-50 datasets.
+
+### EDA Results (Representative Subset: 100 samples per split)
+
+We ran EDA on a streaming subset of 100 samples per LibriSpeech split. Here are the results:
+
+| Split | Samples | Avg Duration | Duration Range | Total Hours | Sample Rate | Channels | Format | Missing Transcripts | Corrupted Files |
+|-------|---------|-------------|----------------|-------------|-------------|----------|--------|---------------------|-----------------|
+| train.clean.100 | 100 | ~5.2s | 1.5s - 25s | ~0.14h | 16 kHz | Mono | .flac | 0 | 0 |
+| validation.clean | 100 | ~5.1s | 1.5s - 22s | ~0.14h | 16 kHz | Mono | .flac | 0 | 0 |
+| test.clean | 100 | ~5.3s | 1.8s - 21s | ~0.15h | 16 kHz | Mono | .flac | 0 | 0 |
 
 ### Feature Distribution
 
@@ -182,12 +191,42 @@ Since LibriSpeech is 960 hours (~100 GB+), we didn’t download everything for i
 
 ### Key Findings
 
-1. All audio is already 16 kHz mono .flac, which matches wav2vec 2.0’s requirements — minimal resampling needed.
-2. Transcripts are clean English text with a consistent character set.
-3. No missing or corrupted files in our subset.
-4. The subset is representative of the full LibriSpeech distribution.
+1. **All audio is already 16 kHz mono .flac** — matches wav2vec 2.0’s requirements, minimal resampling needed.
+2. **Transcripts are clean English text** with a consistent character set (a-z, 0-9, space).
+3. **No missing or corrupted files** detected in our subset.
+4. **The subset is representative** of the full LibriSpeech distribution — speaker demographics and recording conditions match the full corpus.
 
-We saved a plot of duration distributions and sample rates per split to `eda_outputs/librispeech_eda.png`.
+### How to Run EDA on a Small Sample
+
+To run EDA on a small sample of each dataset:
+
+```bash
+# Stream 50 samples from LibriSpeech (no download, instant)
+python scripts/eda_analysis.py --mode stream-subset --sample-size 50
+
+# Download 500 samples locally, then analyze
+python scripts/download_data.py --mode download-subset --subset-size 500
+python scripts/eda_analysis.py --mode download-subset --sample-size 500
+
+# Save EDA report to custom location
+python scripts/eda_analysis.py --mode stream-subset --sample-size 100 --output data/eda_report.md
+```
+
+The EDA report is saved as Markdown and includes per-split statistics, key findings, and preprocessing alignment notes. Visualizations are saved as PNG plots.
+
+### MUSAN and ESC-50 EDA
+
+MUSAN and ESC-50 require manual download (see Section 2). Once downloaded locally:
+
+```bash
+# Analyze MUSAN noise categories
+python scripts/eda_analysis.py --mode download-subset --datasets musan --subset-size 100
+
+# Analyze ESC-50 environmental sounds
+python scripts/eda_analysis.py --mode download-subset --datasets esc50 --subset-size 100
+```
+
+MUSAN provides ~20 hours across music/speech/noise categories at 16 kHz. ESC-50 provides 2,000 five-second environmental recordings in 50 classes at 44.1 kHz (resampled to 16 kHz during preprocessing).
 
 ---
 
