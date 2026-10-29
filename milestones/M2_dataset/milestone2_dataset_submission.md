@@ -42,7 +42,7 @@ As Likhomanenko et al. (2021) report, "wav2vec 2.0 base trained on 100 hours of 
 | **Dataset** | **Source (Public URL)** | **License** | **Size** | **Usage** |
 |-------------|------------------------|-------------|----------|-----------|
 | **MUSAN** | <https://github.com/keithito/musan> | CC-0 (public domain) | ~20h total (~33k files): music (~7h), speech (~7h), noise (~6h) | Noise augmentation for training (music, speech, environmental noise) |
-| **ESC-50** | <https://github.com/karolp/esc50> | CC-BY 4.0 | 2,000 five-second environmental recordings in 50 classes | Held-out test noise evaluation (real-world noise, never seen in training) |
+| **ESC-50** | <https://github.com/karolpiczak/esc-50> | CC-BY 4.0 | 2,000 five-second environmental recordings in 50 classes | Held-out test noise evaluation (real-world noise, never seen in training) |
 
 ### 2.3 Synthetic Noise
 
