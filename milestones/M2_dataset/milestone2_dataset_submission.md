@@ -41,6 +41,7 @@ As Likhomanenko et al. (2021) report, "wav2vec 2.0 base trained on 100 hours of 
 
 | **Dataset** | **Source (Public URL)** | **License** | **Size** | **Usage** |
 |-------------|------------------------|-------------|----------|-----------|
+<<<<<<< HEAD
 | **MUSAN** | <https://www.openslr.org/17/> | CC-BY-4.0 | ~20h total (~33k files): music (~7h), speech (~7h), noise (~6h) | Noise augmentation for training (music, speech, environmental noise) |
 | **ESC-50** | <https://github.com/karolpiczak/ESC-50> | CC-BY-4.0 | 2,000 five-second environmental recordings in 50 classes | Held-out test noise evaluation (real-world noise, never seen in training) |
 
