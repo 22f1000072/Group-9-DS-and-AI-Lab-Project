@@ -1,0 +1,21 @@
+{
+  "model": "B2_lr1e-4_lm4",
+  "set": "dev",
+  "rows": 4000,
+  "decode_sec": 1.5219218730926514,
+  "decoder": "lm",
+  "lm": "4gram",
+  "alpha": 0.8,
+  "beta": 2.0,
+  "beam": 50,
+  "wer_validation.clean_clean": 0.035794856369378854,
+  "wer_validation.other_clean": 0.08777891040887983,
+  "wer_clean_pooled": 0.06020476000531844,
+  "wer_noisy_pooled": 0.12437175907459115,
+  "wer_white_0_5dB": 0.20486183253687928,
+  "wer_musan_music_0_5dB": 0.17776444711057787,
+  "wer_musan_noise_0_5dB": 0.12119856887298748,
+  "wer_pink_0_5dB": 0.1648991474318985,
+  "word_auroc_conf_mean": 0.843258071212279,
+  "word_auroc_conf_min": 0.8004392383089762
+}

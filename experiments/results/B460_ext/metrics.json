@@ -1,0 +1,13 @@
+{
+  "model": "B460_ext",
+  "model_path": "experiments/runs/B460/best",
+  "rows": 38913,
+  "audio_hours": 75.21509955555557,
+  "inference_sec": 95.47311186790466,
+  "wer_reverb+esc50_0_5dB": 0.37811073304167975,
+  "wer_esc50_m5dB": 0.32905384153489836,
+  "wer_white_m5dB": 0.5524261573213622,
+  "wer_pink_m5dB": 0.49570621145836313,
+  "word_auroc_conf_min": 0.9092496548830532,
+  "word_auroc_conf_mean": 0.9260571153236055
+}

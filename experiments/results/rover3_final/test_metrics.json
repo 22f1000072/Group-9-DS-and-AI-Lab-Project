@@ -1,0 +1,22 @@
+{
+  "model": "rover3_final",
+  "set": "test",
+  "runs": [
+    "B960_rev_s2_lm4",
+    "B960_rev_lm4",
+    "B460_lm4"
+  ],
+  "lam": 0.5,
+  "wer_clean_pooled": 0.04899970453397383,
+  "B960_rev_s2_lm4_wer_clean_pooled": 0.050067194693048926,
+  "B960_rev_lm4_wer_clean_pooled": 0.04986704028822234,
+  "B460_lm4_wer_clean_pooled": 0.05265967079365987,
+  "wer_noisy_pooled": 0.08944697814504522,
+  "B960_rev_s2_lm4_wer_noisy_pooled": 0.0922270990001811,
+  "B960_rev_lm4_wer_noisy_pooled": 0.09155515206969186,
+  "B460_lm4_wer_noisy_pooled": 0.09847418008177737,
+  "wer_white_0_5dB": 0.1796624062371925,
+  "wer_pink_0_5dB": 0.1363242120111705,
+  "wer_brown_0_5dB": 0.0502959425842793,
+  "wer_esc50_0_5dB": 0.11417855679142958
+}

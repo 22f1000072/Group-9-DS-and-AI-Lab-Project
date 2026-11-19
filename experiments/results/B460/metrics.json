@@ -1,0 +1,15 @@
+{
+  "model": "B460",
+  "model_path": "experiments/runs/B460/best",
+  "rows": 94503,
+  "audio_hours": 182.6652417777778,
+  "inference_sec": 220.71603536605835,
+  "wer_test.clean_clean": 0.046998630553864884,
+  "wer_test.other_clean": 0.11094129109909634,
+  "wer_white_0_5dB": 0.2484249754572575,
+  "wer_pink_0_5dB": 0.19439281731621535,
+  "wer_brown_0_5dB": 0.08223963247838809,
+  "wer_esc50_0_5dB": 0.16655705830211878,
+  "word_auroc_conf_min": 0.8619339896076286,
+  "word_auroc_conf_mean": 0.8935710640050393
+}

@@ -1,0 +1,8 @@
+run,change,steps,epochs,dev_wer_clean,dev_wer_noisy,dev_wer_avg,dev_cer_clean,dev_cer_noisy,final_train_loss,max_grad_norm,delta_avg_vs_base_pts
+hp_base,"reference: lr 5e-5, 640 s/batch, strong masking, p_clean 0.2, SNR 0-20 dB",8000,13.3,0.1229,0.2198,0.1713,0.0396,0.0903,0.5691,9.6369,0.0
+hp_lr1e-4,learning rate 5e-5 -> 1e-4,8000,13.3,0.1083,0.1995,0.1539,0.0363,0.0838,0.5131,12.4567,-1.7431
+hp_lr2e-5,learning rate 5e-5 -> 2e-5,8000,13.3,0.1909,0.2943,0.2426,0.0571,0.1163,0.7227,14.1606,7.1227
+hp_mask_light,"masking time 0.4 -> 0.05, feature 0.1 -> 0, layerdrop 0.1 -> 0.05",8000,13.3,0.1013,0.1951,0.1482,0.0338,0.0823,0.1585,12.6576,-2.3149
+hp_bs320,batch 640 -> 320 padded seconds,8000,7.0,0.1369,0.237,0.187,0.0436,0.0979,0.6061,19.9371,1.5623
+hp_pclean0.5,clean fraction 0.2 -> 0.5,8000,13.3,0.119,0.2235,0.1712,0.0386,0.0935,0.4922,10.15,-0.012
+hp_snr-5,SNR range 0-20 -> -5-20 dB,8000,13.3,0.1275,0.2201,0.1738,0.0408,0.0893,0.6741,9.8472,0.2473

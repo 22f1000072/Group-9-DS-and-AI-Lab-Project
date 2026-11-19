@@ -1,0 +1,15 @@
+{
+  "model": "B_noisy",
+  "model_path": "experiments/runs/B_noisy/best",
+  "rows": 94503,
+  "audio_hours": 182.6652417777778,
+  "inference_sec": 220.06577014923096,
+  "wer_test.clean_clean": 0.0618723371880706,
+  "wer_test.other_clean": 0.13077202300212062,
+  "wer_white_0_5dB": 0.2909148962533002,
+  "wer_pink_0_5dB": 0.2320218454236125,
+  "wer_brown_0_5dB": 0.10022016984530924,
+  "wer_esc50_0_5dB": 0.2012361917288575,
+  "word_auroc_conf_min": 0.8363033493964945,
+  "word_auroc_conf_mean": 0.8790309376190855
+}

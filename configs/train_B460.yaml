@@ -1,0 +1,22 @@
+# Model B-460: Model B noise recipe on 460 h (train-clean-100 + train-clean-360), M5.
+# lr is set after the B2 (lr 1e-4) vs B (lr 5e-5) comparison; 80k steps x 640 s ~ 31 epochs of 464 h.
+name: B460
+init_model: facebook/wav2vec2-base
+train_manifest: train_460.csv
+augment: true
+p_clean: 0.2
+snr_min: 0.0
+snr_max: 20.0
+max_steps: 80000
+lr: 1.0e-4
+warmup_ratio: 0.05
+max_batch_seconds: 640
+eval_every: 4000
+save_every: 4000
+seed: 42
+mask_time_prob: 0.4
+mask_time_length: 10
+mask_feature_prob: 0.1
+mask_feature_length: 64
+layerdrop: 0.1
+num_workers: 28

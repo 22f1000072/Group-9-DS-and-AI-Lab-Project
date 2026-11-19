@@ -1,0 +1,13 @@
+{
+  "model": "B_noisy_ext",
+  "model_path": "experiments/runs/B_noisy/best",
+  "rows": 38913,
+  "audio_hours": 75.21509955555557,
+  "inference_sec": 95.68848538398743,
+  "wer_reverb+esc50_0_5dB": 0.41932824369275346,
+  "wer_esc50_m5dB": 0.3820661653275384,
+  "wer_white_m5dB": 0.607344713540922,
+  "wer_pink_m5dB": 0.553169587967861,
+  "word_auroc_conf_min": 0.8911022705751507,
+  "word_auroc_conf_mean": 0.9189348919099185
+}

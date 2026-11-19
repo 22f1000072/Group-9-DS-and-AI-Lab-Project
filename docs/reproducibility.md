@@ -2,23 +2,26 @@
 
 ## Environment
 
-- **Python version:** 3.10.x (tested with 3.10.12)
-- **PyTorch version:** 2.3.0+cu121 (PyTorch 2.3 with CUDA 12.1)
-- **Transformers version:** 4.41.0
-- **datasets version:** 2.18.0
-- **torchaudio version:** 2.3.0
-- **librosa version:** 0.10.1
-- **Gradio version:** 5.0.0
-- **evaluate (JiWER) version:** 1.3.0
-- **Key dependencies** (from `requirements.txt`):
-  - `torch>=2.3.0`
-  - `transformers>=4.41.0`
-  - `torchaudio>=2.3.0`
-  - `librosa>=0.10.1`
-  - `gradio>=5.0.0`
-  - `jiwer>=1.3.0`
-  - `numpy>=1.24.0`
-  - `soundfile>=0.12.0`
+All versions are pinned in `requirements.txt` (the exact environment used for every M4/M5 run). Main ones:
+
+- **Python:** 3.14.4
+- **PyTorch:** 2.14.1+cu130 (CUDA 13.0), 1x NVIDIA L40S
+- **transformers:** 5.23.0 (tokenizers 0.23.3, accelerate 1.16.0)
+- **numpy / pandas / pyarrow:** 2.5.5 / 3.1.1 / 26.0.1
+- **soundfile / librosa:** 0.14.0 / 1.0.1
+- **jiwer / scikit-learn / scipy:** 4.0.0 / 1.9.1 / 1.18.1
+- **pyctcdecode / kenlm:** 0.5.0 / 0.3.0 (beam search with a 4-gram LM)
+
+Install:
+
+```bash
+python -m pip install -r requirements.txt
+python -m pip install --no-deps pyctcdecode==0.5.0
+```
+
+`pyctcdecode` declares `numpy<2` but works with numpy 2.5.5, so it must be installed with `--no-deps`; otherwise pip refuses to resolve (or downgrades numpy and breaks torch/pandas). `kenlm` is built from source (C++ compiler, CMake, Boost; on Python 3.14 regenerate `python/kenlm.cpp` with Cython first).
+
+The conda file below is the original Milestone 1 plan and is kept for reference only; use `requirements.txt`.
 
 ### Conda environment file (`environment.yml`)
 
@@ -158,7 +161,7 @@ Seed is set in:
 ### Reproducibility checklist (for final submission)
 
 - [ ] All random seeds documented and set at script startup
-- [ ] Environment captured via `environment.yml` or `requirements.txt` with pinned versions
+- [x] Environment captured in `requirements.txt` with pinned versions
 - [ ] Dataset versions and download dates recorded in `data/README.md`
 - [ ] Preprocessing parameters (sample rate, SNR levels, augmentation config) documented
 - [ ] Train/valid/test split strategy documented (no data leakage across splits)

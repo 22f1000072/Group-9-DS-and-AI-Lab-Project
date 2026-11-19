@@ -1,0 +1,18 @@
+# Model A: wav2vec2-base + new CTC head, fine-tuned on CLEAN train-clean-100 (baseline for O2)
+name: A_clean
+init_model: facebook/wav2vec2-base
+augment: false
+max_steps: 36000          # ~64 epochs of 100 h at 640 s/step (smoke test: ~1.9k audio-s/s alone)
+lr: 5.0e-5
+warmup_ratio: 0.08
+max_batch_seconds: 640    # padded audio seconds per optimizer step
+eval_every: 2000
+save_every: 2000
+seed: 42
+# regularisation (close to the fairseq wav2vec2 base 100h recipe, slightly milder)
+mask_time_prob: 0.4
+mask_time_length: 10
+mask_feature_prob: 0.1
+mask_feature_length: 64
+layerdrop: 0.1
+num_workers: 28

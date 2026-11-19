@@ -1,0 +1,21 @@
+{
+  "model": "B460_lm4",
+  "set": "dev",
+  "rows": 4000,
+  "decode_sec": 1.4576234817504883,
+  "decoder": "lm",
+  "lm": "4gram",
+  "alpha": 0.8,
+  "beta": 2.0,
+  "beam": 50,
+  "wer_validation.clean_clean": 0.027422670075700605,
+  "wer_validation.other_clean": 0.0746970211802016,
+  "wer_clean_pooled": 0.049621061029118466,
+  "wer_noisy_pooled": 0.1030448078712937,
+  "wer_white_0_5dB": 0.17951381674631206,
+  "wer_musan_music_0_5dB": 0.14297140571885622,
+  "wer_musan_noise_0_5dB": 0.10174418604651163,
+  "wer_pink_0_5dB": 0.13953004782699105,
+  "word_auroc_conf_mean": 0.8641786519299046,
+  "word_auroc_conf_min": 0.8284605993006718
+}

@@ -1,0 +1,6 @@
+# Store text files with Unix line endings (avoids whole-file diffs when edited on Windows)
+* text=auto eol=lf
+*.png binary
+*.pdf binary
+*.docx binary
+*.joblib binary

@@ -1,0 +1,21 @@
+{
+  "model": "B_noisy_lm4",
+  "set": "test",
+  "rows": 94503,
+  "decode_sec": 27.28185224533081,
+  "decoder": "lm",
+  "lm": "4gram",
+  "alpha": 0.8,
+  "beta": 2.0,
+  "beam": 50,
+  "wer_test.clean_clean": 0.03703210590383445,
+  "wer_test.other_clean": 0.08845499875819116,
+  "wer_clean_pooled": 0.0626864533592581,
+  "wer_noisy_pooled": 0.11615746432962572,
+  "wer_white_0_5dB": 0.2278757898950619,
+  "wer_pink_0_5dB": 0.17629314042261174,
+  "wer_brown_0_5dB": 0.06548384944576292,
+  "wer_esc50_0_5dB": 0.1509307179824436,
+  "word_auroc_conf_mean": 0.848756260410628,
+  "word_auroc_conf_min": 0.8014684957338893
+}

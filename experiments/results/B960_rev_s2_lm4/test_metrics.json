@@ -1,0 +1,21 @@
+{
+  "model": "B960_rev_s2_lm4",
+  "set": "test",
+  "rows": 94503,
+  "decode_sec": 23.97353506088257,
+  "decoder": "lm",
+  "lm": "4gram",
+  "alpha": 0.8,
+  "beta": 2.0,
+  "beam": 50,
+  "wer_test.clean_clean": 0.029652312842361535,
+  "wer_test.other_clean": 0.07057295149303631,
+  "wer_clean_pooled": 0.050067194693048926,
+  "wer_noisy_pooled": 0.0922270990001811,
+  "wer_white_0_5dB": 0.18621984578579667,
+  "wer_pink_0_5dB": 0.1407037810120188,
+  "wer_brown_0_5dB": 0.051315776932681405,
+  "wer_esc50_0_5dB": 0.1181339890772882,
+  "word_auroc_conf_mean": 0.8650202801764799,
+  "word_auroc_conf_min": 0.8318233721043267
+}

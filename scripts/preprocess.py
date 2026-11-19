@@ -1,734 +1,295 @@
-"""Preprocess pipeline for Noise-Robust Speech Recognition project.
+"""Milestone 3/4 preprocessing for the noise-robust ASR project.
 
-Prepares raw audio + transcripts into model-ready format for wav2vec 2.0 finetuning.
-Supports flexible input modes: local files, streaming subset, streaming complete,
-download subset, download full.
+What it does (one parallel pass, CPU only):
+  1. LibriSpeech (all 7 splits, 960 h): decode every utterance from the local HF arrow
+     shards, normalise transcript, compute duration + signal-quality stats -> full manifest.
+  2. Model-ready split manifests in the M2 schema (metadata.csv + per-split CSVs):
+       train = train-clean-100 (filtered), valid = dev-clean + dev-other, test = test-clean + test-other.
+     Audio is NOT duplicated: `audio_path` points to "<arrow shard>#<row>" (16 kHz FLAC inside).
+  3. Noise banks at 16 kHz: MUSAN noise/music split by file 90/10 (train/val), ESC-50 (test only).
+  4. Fixed, seeded validation and test corruption manifests so every model hears identical audio.
 
-Key transformations:
-1. Audio: resample to 16kHz -> mono -> optional silence trim -> optional normalization
-2. Transcript: lowercase -> remove non-alphanumeric -> CTC label conversion
-3. Noise augmentation config: on-the-fly mixing at SNRs {clean, 20, 10, 5, 0} dB
-4. Word-level error detection prep: CTC frame positions for timestamps
-
-Usage:
-    # Local files - subset
-    python scripts/preprocess.py --input-source local --data-dir data/raw --subset-size 500
-
-    # Streaming subset (no download)
-    python scripts/preprocess.py --input-source stream-subset --subset-size 100
-
-    # Streaming complete
-    python scripts/preprocess.py --input-source stream-complete --subset-size 1000
-
-    # Download subset then preprocess
-    python scripts/preprocess.py --input-source download-subset --subset-size 500
-
-    # All parameters
-    python scripts/preprocess.py \
-        --input-source download-subset \
-        --subset-size 500 \
-        --output-dir data/processed \
-        --sample-rate 16000 \
-        --max-duration 30 \
-        --snrs "clean" "20" "10" "5" "0" \
-        --seed 42
+Usage:  python scripts/preprocess.py [--workers 120]
 """
-
 import argparse
-import csv
 import json
 import os
-import random
-import re
 import sys
+import time
+from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
-
-# Fix Unicode encoding on Windows
-if sys.platform == "win32":
-    sys.stdout.reconfigure(encoding="utf-8")
 
 import numpy as np
+import pandas as pd
 import soundfile as sf
-import torch
-import torchaudio
 
-# Add project root to path
-project_root = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(project_root))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from group9_ds_ai_lab.data.audio import decode_flac_bytes, frame_stats, open_arrow, to_mono_16k  # noqa: E402
+from group9_ds_ai_lab.data.noise import TEST_NOISE_TYPES, TEST_SNRS, TRAIN_NOISE_TYPES, stable_seed  # noqa: E402
+from group9_ds_ai_lab.utils.paths import (ESC50_ROOT, LS_SPLITS, MANIFESTS, MUSAN_ROOT, NOISE_DIR, PROCESSED,  # noqa: E402
+                       SAMPLE_RATE, absp, librispeech_shards, rel)
+from group9_ds_ai_lab.data.text import encode, normalize_text  # noqa: E402
 
-# Correct HuggingFace dataset identifiers
-LIBRISPEECH_REPO = "openslr/librispeech_asr"
-LIBRISPEECH_CONFIG = "all"
-
-# Valid split names for openslr/librispeech_asr
-LIBRISPEECH_SPLITS = {
-    "train.clean.100": "train.clean.100",
-    "train.clean.360": "train.clean.360",
-    "train.other.500": "train.other.500",
-    "validation.clean": "validation.clean",
-    "validation.other": "validation.other",
-    "test.clean": "test.clean",
-    "test.other": "test.other",
+SPLIT_ROLE = {
+    "train.clean.100": "train", "train.clean.360": "unused", "train.other.500": "unused",
+    "validation.clean": "valid", "validation.other": "valid",
+    "test.clean": "test", "test.other": "test",
 }
 
-# Default SNR levels for noise augmentation
-DEFAULT_SNRS = ["clean", "20", "10", "5", "0"]
+
+def ctc_frames(n_samples: int) -> int:
+    """Output frames of the wav2vec2 conv stack (kernels 10,3,3,3,3,2,2 / strides 5,2,2,2,2,2,2)."""
+    L = n_samples
+    for k, s in zip((10, 3, 3, 3, 3, 2, 2), (5, 2, 2, 2, 2, 2, 2)):
+        L = (L - k) // s + 1
+    return max(L, 0)
 
 
-def set_seed(seed: int = 42) -> None:
-    """Set random seeds for reproducibility."""
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(seed)
+def ctc_min_frames(ids: list[int]) -> int:
+    """Minimum CTC frames for a label sequence: length + number of adjacent repeats."""
+    return len(ids) + sum(1 for a, b in zip(ids, ids[1:]) if a == b)
 
 
-def load_audio_from_tensor(audio_array: np.ndarray, sample_rate: int, target_sr: int = 16000) -> Tuple[torch.Tensor, int]:
-    """Load and preprocess audio from numpy array (from streaming dataset).
-
-    Args:
-        audio_array: numpy array of audio samples
-        sample_rate: original sample rate
-        target_sr: target sample rate (default 16000)
-
-    Returns:
-        waveform: tensor [1, seq_len] at target sample rate
-        original_sample_rate: original sample rate before resampling
-    """
-    waveform = torch.from_numpy(audio_array).float().unsqueeze(0)  # [1, seq_len]
-    orig_sr = sample_rate
-
-    # Resample to target if needed
-    if orig_sr != target_sr:
+def process_shard(args):
+    split, shard = args
+    t = open_arrow(shard)
+    texts = t.column("text").to_pylist()
+    ids = t.column("id").to_pylist()
+    spk = t.column("speaker_id").to_pylist()
+    chap = t.column("chapter_id").to_pylist()
+    audio = t.column("audio").combine_chunks().field("bytes")
+    rows = []
+    for i in range(t.num_rows):
+        rec = {"audio_id": ids[i], "ls_split": split, "shard": rel(shard), "row": i,
+               "speaker_id": spk[i], "chapter_id": chap[i], "raw_text": texts[i]}
         try:
-            resampler = torchaudio.transforms.Resample(orig_sr, target_sr)
-            waveform = resampler(waveform)
-        except Exception as e:
-            raise RuntimeError(
-                f"torchaudio.transforms.Resample failed on this platform. "
-                f"Error: {e}\n"
-                f"On Windows, this may be due to missing torchcodec DLLs. "
-                f"Try installing: pip install torchcodec"
-            ) from e
-
-    # Convert to mono (average channels if stereo)
-    if waveform.shape[0] > 1:
-        waveform = torch.mean(waveform, dim=0, keepdim=True)
-
-    return waveform, orig_sr
-
-
-def load_audio_from_file(audio_path: Path, target_sr: int = 16000) -> Tuple[torch.Tensor, int]:
-    """Load and preprocess audio from file.
-
-    Args:
-        audio_path: path to audio file
-        target_sr: target sample rate (default 16000)
-
-    Returns:
-        waveform: tensor [1, seq_len] at target sample rate
-        original_sample_rate: original sample rate before resampling
-    """
-    # Load audio using soundfile (works on Windows without torchcodec dependency)
-    try:
-        import soundfile as sf
-        waveform_np, orig_sr = sf.read(str(audio_path))
-    except ImportError:
-        raise ImportError(
-            "soundfile is required for audio loading on Windows. "
-            "Install with: pip install soundfile"
-        )
-
-    # Convert to tensor [1, seq_len]
-    if waveform_np.ndim == 1:
-        waveform = torch.from_numpy(waveform_np).float().unsqueeze(0)
-    else:
-        waveform = torch.from_numpy(waveform_np).float().t()
-
-    # Resample to target if needed
-    if orig_sr != target_sr:
-        try:
-            resampler = torchaudio.transforms.Resample(orig_sr, target_sr)
-            waveform = resampler(waveform)
-        except Exception as e:
-            raise RuntimeError(
-                f"torchaudio.transforms.Resample failed on this platform. "
-                f"Error: {e}\n"
-                f"On Windows, this may be due to missing torchcodec DLLs. "
-                f"Try installing: pip install torchcodec"
-            ) from e
-
-    # Convert to mono (average channels if stereo)
-    if waveform.shape[0] > 1:
-        waveform = torch.mean(waveform, dim=0, keepdim=True)
-
-    return waveform, orig_sr
-
-
-def preprocess_transcript(text: str) -> str:
-    """Normalize transcript for CTC training.
-
-    Steps:
-    1. Lowercase
-    2. Remove non-alphanumeric characters (keep spaces)
-    3. Strip extra whitespace
-    """
-    text = text.lower()
-    text = re.sub(r'[^a-z0-9\s]', '', text)
-    text = re.sub(r'\s+', ' ', text).strip()
-    return text
-
-
-def add_noise_augmentation(clean: np.ndarray, noise: np.ndarray, snr_db: float) -> np.ndarray:
-    """Mix clean speech with noise at target SNR (in dB).
-
-    Args:
-        clean: clean audio waveform [1, N] or [N]
-        noise: noise waveform [1, N] or [N]
-        snr_db: signal-to-noise ratio in dB
-
-    Returns:
-        mixed: clean + noise at target SNR [1, N]
-    """
-    clean = clean.flatten()
-    noise = noise.flatten()
-
-    # Trim/pad noise to match clean length
-    if len(noise) < len(clean):
-        reps = int(np.ceil(len(clean) / len(noise)))
-        noise = np.tile(noise, reps)[:len(clean)]
-    else:
-        noise = noise[:len(clean)]
-
-    # Calculate powers
-    signal_power = np.mean(clean ** 2)
-    noise_power = np.mean(noise ** 2)
-
-    # Desired noise power for target SNR
-    desired_noise_power = signal_power / (10 ** (snr_db / 10))
-
-    # Scale noise
-    if noise_power > 0:
-        noise_scaled = noise * np.sqrt(desired_noise_power / noise_power)
-    else:
-        noise_scaled = noise
-
-    # Mix: clean + noise_scaled
-    mixed = clean + noise_scaled
-
-    # Clip to [-1, 1] to prevent overflow
-    mixed = np.clip(mixed, -1.0, 1.0)
-
-    # Reshape to [1, N]
-    return mixed.reshape(1, -1)
-
-
-def create_directory_structure(output_dir: Path, noise_augmentation: bool, snrs: list) -> None:
-    """Create output directory structure."""
-    train_dir = output_dir / "train"
-    valid_dir = output_dir / "valid"
-    test_dir = output_dir / "test"
-
-    train_dir.mkdir(parents=True, exist_ok=True)
-    valid_dir.mkdir(parents=True, exist_ok=True)
-    test_dir.mkdir(parents=True, exist_ok=True)
-
-    if noise_augmentation:
-        augment_dir = output_dir / "augmentation"
-        augment_dir.mkdir(parents=True, exist_ok=True)
-
-        params = {
-            "snr_levels": snrs,
-            "noise_types": ["white", "pink", "brown"],
-            "sample_rate": 16000,
-        }
-
-        with open(augment_dir / "noise_params.json", "w") as f:
-            json.dump(params, f, indent=2)
-
-
-def save_processed_sample(
-    output_dir: Path,
-    split_name: str,
-    audio_id: str,
-    waveform: torch.Tensor,
-    text: str,
-    duration: float,
-    original_sample_rate: int,
-    noise_type: str = "clean",
-    snr_db: float = 0.0,
-) -> None:
-    """Save processed audio tensor, transcript, and update metadata.
-
-    Args:
-        output_dir: base output directory
-        split_name: train/valid/test
-        audio_id: unique identifier
-        waveform: processed audio tensor [1, seq_len]
-        text: normalized transcript
-        duration: audio duration in seconds
-        original_sample_rate: original sample rate before resampling
-        noise_type: 'clean', 'train_noise', 'test_noise'
-        snr_db: SNR in dB (if augmented)
-    """
-    split_dir = output_dir / split_name
-    split_dir.mkdir(parents=True, exist_ok=True)
-
-    # Save audio tensor
-    audio_output_path = split_dir / f"{audio_id}.pt"
-    torch.save(waveform, audio_output_path)
-
-    # Save normalized transcript
-    text_output_path = split_dir / f"{audio_id}.txt"
-    with open(text_output_path, "w", encoding="utf-8") as f:
-        f.write(text)
-
-    # Append to metadata CSV
-    metadata_path = output_dir / "metadata.csv"
-    file_exists = metadata_path.exists()
-
-    with open(metadata_path, "a", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        if not file_exists:
-            writer.writerow(
-                [
-                    "audio_id",
-                    "audio_path",
-                    "text",
-                    "duration",
-                    "original_sample_rate",
-                    "noise_type",
-                    "snr_db",
-                    "split",
-                ]
-            )
-        writer.writerow(
-            [
-                audio_id,
-                str(audio_output_path),
-                text,
-                round(duration, 4),
-                original_sample_rate,
-                noise_type,
-                snr_db,
-                split_name,
-            ]
-        )
-
-
-def get_librispeech_streaming_dataset(split: str, streaming: bool = True):
-    """Get LibriSpeech streaming dataset for a split.
-
-    Args:
-        split: split name (e.g., 'train.clean.100')
-        streaming: whether to use streaming mode
-
-    Returns:
-        HuggingFace dataset iterable
-    """
-    from datasets import load_dataset
-
-    return load_dataset(
-        LIBRISPEECH_REPO,
-        LIBRISPEECH_CONFIG,
-        split=split,
-        streaming=streaming,
-    )
-
-
-def process_streaming_subset(
-    output_dir: Path,
-    subset_size: int,
-    splits: List[str],
-    sample_rate: int,
-    max_duration: float,
-    seed: int,
-) -> Dict[str, int]:
-    """Process a streaming subset of LibriSpeech.
-
-    Args:
-        output_dir: output directory
-        subset_size: number of samples per split
-        splits: list of splits to process
-        sample_rate: target sample rate
-        max_duration: max duration in seconds
-        seed: random seed
-
-    Returns:
-        dict with counts per split
-    """
-    from datasets import load_dataset
-
-    results = {}
-    max_samples = int(max_duration * sample_rate)
-
-    for split in splits:
-        print(f"\n  Processing streaming split: {split} (first {subset_size} samples)")
-        ds = load_dataset(
-            LIBRISPEECH_REPO,
-            LIBRISPEECH_CONFIG,
-            split=split,
-            streaming=True,
-        ).take(subset_size)
-
-        split_dir = output_dir / split
-        split_dir.mkdir(parents=True, exist_ok=True)
-
-        count = 0
-        skipped = 0
-
-        for i, sample in enumerate(ds):
-            try:
-                audio = sample["audio"]
-                text = sample.get("text", "")
-
-                if text is None or text.strip() == "":
-                    skipped += 1
-                    continue
-
-                # Load and preprocess audio
-                waveform, orig_sr = load_audio_from_tensor(
-                    audio["array"], audio["sampling_rate"], sample_rate
-                )
-
-                # Trim to max duration
-                if waveform.shape[1] > max_samples:
-                    waveform = waveform[:, :max_samples]
-
-                duration = waveform.shape[1] / sample_rate
-
-                # Preprocess transcript
-                normalized_text = preprocess_transcript(text)
-
-                # Audio ID
-                audio_id = f"{split}_{i}"
-
-                # Save
-                save_processed_sample(
-                    output_dir,
-                    split,
-                    audio_id,
-                    waveform,
-                    normalized_text,
-                    duration,
-                    orig_sr,
-                    noise_type="clean",
-                    snr_db=0.0,
-                )
-
-                count += 1
-
-                if (i + 1) % 50 == 0:
-                    print(f"    Processed {i + 1}/{subset_size} ({split})")
-
-            except Exception as e:
-                print(f"    [CROSS] Error processing sample {i}: {e}")
-                skipped += 1
-
-        results[split] = {"processed": count, "skipped": skipped}
-        print(f"    [CHECK] {split} complete: {count} processed, {skipped} skipped")
-
-    return results
-
-
-def process_local_files(
-    output_dir: Path,
-    data_dir: Path,
-    limit: Optional[int],
-    sample_rate: int,
-    max_duration: float,
-    seed: int,
-    train_ratio: float = 0.9,
-    valid_ratio: float = 0.05,
-) -> Dict[str, int]:
-    """Process local audio files.
-
-    Args:
-        output_dir: output directory
-        data_dir: input data directory
-        limit: max number of files (None = all)
-        sample_rate: target sample rate
-        max_duration: max duration in seconds
-        seed: random seed
-        train_ratio: train split ratio
-        valid_ratio: valid split ratio
-
-    Returns:
-        dict with counts per split
-    """
-    audio_extensions = {".wav", ".flac", ".mp3"}
-    all_audio_files = []
-
-    for root, dirs, files in os.walk(data_dir):
-        for f in files:
-            if Path(f).suffix.lower() in audio_extensions:
-                all_audio_files.append(Path(root) / f)
-
-    print(f"  Found {len(all_audio_files)} audio files in {data_dir}")
-
-    if len(all_audio_files) == 0:
-        print("  [CROSS] No audio files found.")
-        return {}
-
-    # Limit if specified
-    if limit is not None:
-        all_audio_files = all_audio_files[:limit]
-        print(f"  Limited to {len(all_audio_files)} files")
-
-    # Shuffle for random split
-    random.seed(seed)
-    random.shuffle(all_audio_files)
-
-    # Split
-    total = len(all_audio_files)
-    train_end = int(total * train_ratio)
-    valid_end = int(total * (train_ratio + valid_ratio))
-
-    train_files = all_audio_files[:train_end]
-    valid_files = all_audio_files[train_end:valid_end]
-    test_files = all_audio_files[valid_end:]
-
-    splits = {
-        "train": train_files,
-        "valid": valid_files,
-        "test": test_files,
-    }
-
-    max_samples = int(max_duration * sample_rate)
-    results = {}
-
-    for split_name, files in splits.items():
-        print(f"\n  Processing {split_name} split ({len(files)} files)...")
-        split_dir = output_dir / split_name
-        split_dir.mkdir(parents=True, exist_ok=True)
-
-        count = 0
-        skipped = 0
-
-        for i, audio_path in enumerate(files):
-            try:
-                waveform, orig_sr = load_audio_from_file(audio_path, sample_rate)
-
-                # Trim to max duration
-                if waveform.shape[1] > max_samples:
-                    waveform = waveform[:, :max_samples]
-
-                duration = waveform.shape[1] / sample_rate
-
-                # Preprocess transcript
-                transcript_path = audio_path.with_suffix(".txt")
-                if transcript_path.exists():
-                    with open(transcript_path, "r", encoding="utf-8") as f:
-                        raw_text = f.read()
-                    normalized_text = preprocess_transcript(raw_text)
-                else:
-                    normalized_text = audio_path.stem.replace("-", " ")
-                    print(f"    [WARNING]   No transcript for {audio_path.stem}, using filename")
-
-                audio_id = audio_path.stem
-
-                # Save
-                save_processed_sample(
-                    output_dir,
-                    split_name,
-                    audio_id,
-                    waveform,
-                    normalized_text,
-                    duration,
-                    orig_sr,
-                    noise_type="clean",
-                    snr_db=0.0,
-                )
-
-                count += 1
-
-                if (i + 1) % 50 == 0:
-                    print(f"    Processed {i + 1}/{len(files)} ({split_name})")
-
-            except Exception as e:
-                print(f"    [CROSS] Error processing {audio_path.name}: {e}")
-                skipped += 1
-
-        results[split_name] = {"processed": count, "skipped": skipped}
-        print(f"    [CHECK] {split_name} complete: {count} processed, {skipped} skipped")
-
-    return results
+            x, sr, ch = decode_flac_bytes(audio[i].as_py())
+            n16 = len(x) if sr == SAMPLE_RATE else int(round(len(x) * SAMPLE_RATE / sr))
+            rec.update(original_sample_rate=sr, channels=ch, duration=n16 / SAMPLE_RATE,
+                       n_samples_16k=n16, decode_ok=True, **frame_stats(x, sr))
+        except Exception as e:  # corrupted audio -> recorded, filtered later
+            rec.update(decode_ok=False, error=str(e)[:200])
+            n16 = 0
+        text = normalize_text(texts[i] or "")
+        lab = encode(text)
+        rec.update(text=text, n_chars=len(text), n_words=len(text.split()) if text else 0,
+                   ctc_frames=ctc_frames(n16), ctc_min_frames=ctc_min_frames(lab),
+                   text_changed=(text != (texts[i] or "").strip()))
+        rows.append(rec)
+    return rows
+
+
+def build_librispeech(workers: int) -> pd.DataFrame:
+    jobs = [(s, f) for s in LS_SPLITS for f in librispeech_shards(s)]
+    print(f"[librispeech] {len(jobs)} shards, {workers} workers")
+    t0, rows = time.time(), []
+    with ProcessPoolExecutor(workers) as ex:
+        for k, r in enumerate(ex.map(process_shard, jobs, chunksize=1), 1):
+            rows.extend(r)
+            if k % 10 == 0 or k == len(jobs):
+                print(f"  {k}/{len(jobs)} shards, {len(rows)} utts, {time.time() - t0:.0f}s", flush=True)
+    df = pd.DataFrame(rows)
+    df["role"] = df["ls_split"].map(SPLIT_ROLE)
+    df["chars_per_sec"] = df["n_chars"] / df["duration"].replace(0, np.nan)
+    df["ctc_feasible"] = df["ctc_frames"] >= df["ctc_min_frames"]
+    return df
+
+
+def m2_schema(df: pd.DataFrame, split_name: str) -> pd.DataFrame:
+    """Rows in the schema promised in Milestone 2 (+ extra columns needed by the loaders)."""
+    out = pd.DataFrame({
+        "audio_id": df["audio_id"],
+        "audio_path": df["shard"] + "#" + df["row"].astype(str),
+        "text": df["text"],
+        "duration": df["duration"].round(4),
+        "original_sample_rate": df["original_sample_rate"],
+        "noise_type": "clean",
+        "snr_db": np.nan,
+        "split": split_name,
+        "ls_split": df["ls_split"],
+        "shard": df["shard"],
+        "row": df["row"],
+        "speaker_id": df["speaker_id"],
+        "chapter_id": df["chapter_id"],
+    })
+    return out.reset_index(drop=True)
+
+
+# ----------------------------------------------------------------------------- noise
+def _load_noise_file(path):
+    x, sr = sf.read(path, dtype="float32", always_2d=True)
+    ch = x.shape[1]
+    y = to_mono_16k(x.mean(axis=1), sr)
+    return path, sr, ch, y
+
+
+def build_noise(workers: int, seed: int, val_frac: float) -> pd.DataFrame:
+    NOISE_DIR.mkdir(parents=True, exist_ok=True)
+    musan = sorted(str(p) for p in MUSAN_ROOT.glob("*/*/*.wav"))
+    esc = sorted(str(p) for p in (ESC50_ROOT / "audio").glob("*.wav"))
+    esc_meta = pd.read_csv(ESC50_ROOT / "meta" / "esc50.csv").set_index("filename")
+    print(f"[noise] MUSAN {len(musan)} files, ESC-50 {len(esc)} files")
+    loaded = {}
+    with ProcessPoolExecutor(workers) as ex:
+        for path, sr, ch, y in ex.map(_load_noise_file, musan + esc, chunksize=4):
+            loaded[path] = (sr, ch, y)
+
+    recs = []
+    rng = np.random.default_rng(seed)
+    for path in musan + esc:
+        sr, ch, y = loaded[path]
+        p = Path(path)
+        if path in esc:
+            corpus, category = "esc50", esc_meta.loc[p.name, "category"]
+            sub = "esc50"
+        else:
+            corpus, category, sub = "musan", p.parts[-3], p.parts[-2]
+        recs.append({"corpus": corpus, "category": category, "subset": sub, "file": rel(path),
+                     "original_sample_rate": sr, "channels": ch, "duration": len(y) / SAMPLE_RATE,
+                     **frame_stats(y)})
+    meta = pd.DataFrame(recs)
+
+    # MUSAN file-level train/val split (per category, seeded). MUSAN speech is NOT used
+    # (babble is out of scope) but is profiled for EDA.
+    meta["role"] = "unused"
+    for cat in ("noise", "music"):
+        idx = meta.index[(meta.corpus == "musan") & (meta.category == cat)].to_numpy()
+        idx = idx[rng.permutation(len(idx))]
+        n_val = int(round(len(idx) * val_frac))
+        meta.loc[idx[:n_val], "role"] = "val"
+        meta.loc[idx[n_val:], "role"] = "train"
+    meta.loc[meta.corpus == "esc50", "role"] = "test"
+    silent = meta["rms_dbfs"] < -70  # digital-silence clips cannot set an SNR
+    meta.loc[silent & (meta.role != "unused"), "role"] = "excluded_silent"
+
+    def write_bank(name, sel):
+        files = meta.loc[sel, "file"].tolist()
+        arrs = [loaded[absp(f)][2] for f in files]
+        lengths = [len(a) for a in arrs]
+        starts = np.concatenate([[0], np.cumsum(lengths)[:-1]]).tolist()
+        np.save(NOISE_DIR / f"{name}.npy", np.concatenate(arrs).astype(np.float16))
+        with open(NOISE_DIR / f"{name}.index.json", "w") as f:
+            json.dump({"files": files, "starts": [int(s) for s in starts], "lengths": lengths}, f)
+        print(f"  bank {name}: {len(files)} clips, {sum(lengths) / SAMPLE_RATE / 3600:.2f} h")
+
+    for cat in ("noise", "music"):
+        for part in ("train", "val"):
+            write_bank(f"musan_{cat}_{part}", (meta.corpus == "musan") & (meta.category == cat) & (meta.role == part))
+    write_bank("esc50_test", (meta.corpus == "esc50") & (meta.role == "test"))
+    return meta
+
+
+# ----------------------------------------------------------------------------- fixed conditions
+def build_valid_eval(valid: pd.DataFrame, per_split: int, seed: int) -> pd.DataFrame:
+    """Dev subset used for checkpoint selection: each utt once clean, once with held-out MUSAN/synthetic
+    training-type noise (never brown / ESC-50, so test noise stays unseen during model selection)."""
+    rng = np.random.default_rng(seed)
+    parts = []
+    for s, g in valid.groupby("ls_split"):
+        parts.append(g.sample(n=min(per_split, len(g)), random_state=seed))
+    base = pd.concat(parts).reset_index(drop=True)
+    clean = base.assign(noise_type="clean", snr_db=np.nan, cond_seed=0)
+    noisy = base.copy()
+    noisy["noise_type"] = rng.choice(list(TRAIN_NOISE_TYPES), size=len(noisy))
+    noisy["snr_db"] = rng.choice([0.0, 5.0, 10.0, 20.0], size=len(noisy))
+    noisy["cond_seed"] = [stable_seed(a, n, s, "val") for a, n, s in zip(noisy.audio_id, noisy.noise_type, noisy.snr_db)]
+    out = pd.concat([clean, noisy]).reset_index(drop=True)
+    out["noise_part"] = "val"
+    return out
+
+
+def build_test_conditions(test: pd.DataFrame) -> pd.DataFrame:
+    conds = [("clean", np.nan)] + [(n, float(s)) for n in TEST_NOISE_TYPES for s in TEST_SNRS]
+    parts = []
+    for n, s in conds:
+        d = test.copy()
+        d["noise_type"], d["snr_db"] = n, s
+        d["cond_seed"] = [0 if n == "clean" else stable_seed(a, n, s, "test") for a in d.audio_id]
+        parts.append(d)
+    out = pd.concat(parts).reset_index(drop=True)
+    out["noise_part"] = "test"
+    return out
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Preprocess raw audio and transcripts for wav2vec 2.0 finetuning"
-    )
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--workers", type=int, default=min(120, os.cpu_count() or 8))
+    ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--min-dur", type=float, default=1.0)
+    ap.add_argument("--max-train-dur", type=float, default=20.0)
+    ap.add_argument("--musan-val-frac", type=float, default=0.10)
+    ap.add_argument("--valid-eval-per-split", type=int, default=1000)
+    ap.add_argument("--skip-librispeech", action="store_true", help="reuse existing full manifest")
+    ap.add_argument("--skip-noise", action="store_true")
+    args = ap.parse_args()
 
-    parser.add_argument(
-        "--input-source",
-        type=str,
-        choices=["local", "stream-subset", "stream-complete", "download-subset", "download-full"],
-        default="local",
-        help="""Input source:
-          local          : Process local files in --data-dir
-          stream-subset  : Stream small subset from HuggingFace (no download)
-          stream-complete: Stream complete dataset, sample first N samples
-          download-subset: Download small subset then process
-          download-full  : Download complete dataset then process""",
-    )
-    parser.add_argument(
-        "--data-dir",
-        type=str,
-        default="data/raw",
-        help="Path to raw dataset directory (for local mode)",
-    )
-    parser.add_argument(
-        "--output-dir",
-        type=str,
-        default="data/processed",
-        help="Path to output processed directory",
-    )
-    parser.add_argument(
-        "--sample-rate",
-        type=int,
-        default=16000,
-        help="Target sample rate (default: 16000 for wav2vec 2.0 base)",
-    )
-    parser.add_argument(
-        "--max-duration",
-        type=float,
-        default=30.0,
-        help="Maximum audio duration in seconds (default: 30.0)",
-    )
-    parser.add_argument(
-        "--subset-size",
-        type=int,
-        default=100,
-        help="Number of samples for stream-subset/download-subset modes",
-    )
-    parser.add_argument(
-        "--limit",
-        type=int,
-        default=None,
-        help="Limit number of files for local mode",
-    )
-    parser.add_argument(
-        "--snrs",
-        nargs="+",
-        default=DEFAULT_SNRS,
-        help="SNR levels in dB for noise augmentation config",
-    )
-    parser.add_argument(
-        "--seed",
-        type=int,
-        default=42,
-        help="Random seed for reproducibility",
-    )
-    parser.add_argument(
-        "--train-ratio",
-        type=float,
-        default=0.9,
-        help="Train split ratio for local mode",
-    )
-    parser.add_argument(
-        "--valid-ratio",
-        type=float,
-        default=0.05,
-        help="Validation split ratio for local mode",
-    )
-
-    args = parser.parse_args()
-
-    # Set seed
-    set_seed(args.seed)
-
-    output_dir = Path(args.output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    print("=" * 60)
-    print("[TOOL] DSAI Lab Project - Data Preprocessor")
-    print("=" * 60)
-    print(f"  Input source: {args.input_source}")
-    print(f"  Output: {output_dir}")
-    print(f"  Sample rate: {args.sample_rate} Hz")
-    print(f"  Max duration: {args.max_duration}s")
-    print(f"  SNR levels: {args.snrs}")
-    print(f"  Seed: {args.seed}")
-    print("=" * 60)
-
-    # Create directory structure
-    create_directory_structure(output_dir, True, args.snrs)
-
-    if args.input_source == "local":
-        data_dir = Path(args.data_dir)
-        if not data_dir.exists():
-            print(f"[CROSS] Data directory not found: {data_dir}")
-            return
-        results = process_local_files(
-            output_dir,
-            data_dir,
-            args.limit,
-            args.sample_rate,
-            args.max_duration,
-            args.seed,
-            args.train_ratio,
-            args.valid_ratio,
-        )
-
-    elif args.input_source == "stream-subset":
-        results = process_streaming_subset(
-            output_dir,
-            args.subset_size,
-            ["train.clean.100", "validation.clean", "test.clean"],
-            args.sample_rate,
-            args.max_duration,
-            args.seed,
-        )
-
-    elif args.input_source == "stream-complete":
-        print("\n[WARNING] Streaming complete dataset - this will process ALL samples")
-        print("   This may take a very long time. Consider using --subset-size to limit.")
-        results = process_streaming_subset(
-            output_dir,
-            args.subset_size,
-            ["train.clean.100", "train.clean.360", "train.other.500",
-             "validation.clean", "validation.other", "test.clean", "test.other"],
-            args.sample_rate,
-            args.max_duration,
-            args.seed,
-        )
-
-    elif args.input_source == "download-subset":
-        print("\n[DOWNLOAD] Download-subset mode requires running download first:")
-        print("   python scripts/download_data.py --mode download-subset --subset-size", args.subset_size)
-        print("   Then run: python scripts/preprocess.py --input-source local --data-dir data/raw/librispeech")
-        return
-
-    elif args.input_source == "download-full":
-        print("\n[DOWNLOAD] Download-full mode requires running download first:")
-        print("   python scripts/download_data.py --mode download-full")
-        print("   Then run: python scripts/preprocess.py --input-source local --data-dir data/raw/librispeech")
-        return
-
+    MANIFESTS.mkdir(parents=True, exist_ok=True)
+    full_path = MANIFESTS / "librispeech_all.parquet"
+    t0 = time.time()
+    if args.skip_librispeech and full_path.exists():
+        full = pd.read_parquet(full_path)
     else:
-        print(f"[CROSS] Unknown input source: {args.input_source}")
-        return
+        full = build_librispeech(args.workers)
+        full.to_parquet(full_path, index=False)
+    print(f"[librispeech] {len(full)} utterances, {full.duration.sum() / 3600:.1f} h ({time.time() - t0:.0f}s)")
 
-    # Summary
-    print("\n" + "=" * 60)
-    print("[CHECK] Preprocessing Complete!")
-    print("=" * 60)
+    # ---- QC + filtering
+    qc = {"total_utts": int(len(full)), "decode_failed": int((~full.decode_ok).sum()),
+          "empty_text": int((full.n_chars == 0).sum()), "text_changed_by_norm": int(full.text_changed.sum()),
+          "non_16k": int((full.original_sample_rate != SAMPLE_RATE).sum()),
+          "multi_channel": int((full.channels > 1).sum()), "ctc_infeasible": int((~full.ctc_feasible).sum()),
+          "duplicate_ids": int(full.audio_id.duplicated().sum())}
+    ok = full.decode_ok & (full.n_chars > 0) & full.ctc_feasible
+    train_mask = ok & (full.role == "train") & full.duration.between(args.min_dur, args.max_train_dur)
+    qc["train_before_filter"] = int((full.role == "train").sum())
+    qc["train_after_filter"] = int(train_mask.sum())
+    qc["train_dropped_too_long"] = int(((full.role == "train") & (full.duration > args.max_train_dur)).sum())
+    qc["train_dropped_too_short"] = int(((full.role == "train") & (full.duration < args.min_dur)).sum())
+    qc["train_hours"] = float(full.loc[train_mask, "duration"].sum() / 3600)
 
-    total_processed = sum(r.get("processed", 0) for r in results.values())
-    total_skipped = sum(r.get("skipped", 0) for r in results.values())
+    train = m2_schema(full[train_mask], "train")
+    valid = m2_schema(full[ok & (full.role == "valid")], "valid")
+    test = m2_schema(full[ok & (full.role == "test")], "test")
+    # leakage checks: utterance ids and speakers must be disjoint across splits
+    for a, b, na, nb in [(train, valid, "train", "valid"), (train, test, "train", "test"), (valid, test, "valid", "test")]:
+        assert not set(a.audio_id) & set(b.audio_id), f"utterance leakage {na}/{nb}"
+        qc[f"shared_speakers_{na}_{nb}"] = len(set(a.speaker_id) & set(b.speaker_id))
+    for name, d in (("train", train), ("valid", valid), ("test", test)):
+        d.to_csv(MANIFESTS / f"{name}.csv", index=False)
+        qc[f"{name}_utts"], qc[f"{name}_hours"] = int(len(d)), float(d.duration.sum() / 3600)
+    pd.concat([train, valid, test]).to_csv(PROCESSED / "metadata.csv", index=False)
 
-    print(f"  Total processed: {total_processed} audio files")
-    print(f"  Total skipped: {total_skipped} audio files")
-    print(f"  Output location: {output_dir}/")
-    print()
-    print("  Next steps:")
-    print("   1. Review processed data: ls data/processed/train/ | head -5")
-    print("   2. Inspect a sample: python -c \"import torch; a = torch.load('data/processed/train/.*pt'); print(a.shape)\"")
-    print("   3. Start training: python scripts/train.py --train_data data/processed/train")
-    print("=" * 60)
+    # ---- noise
+    if not args.skip_noise:
+        nmeta = build_noise(args.workers, args.seed, args.musan_val_frac)
+        nmeta.to_csv(MANIFESTS / "noise_files.csv", index=False)
+        qc["noise_roles"] = nmeta.groupby(["corpus", "category", "role"]).size().reset_index().astype(str).values.tolist()
+
+    # ---- fixed evaluation conditions
+    valid_eval = build_valid_eval(valid, args.valid_eval_per_split, args.seed)
+    valid_eval.to_csv(MANIFESTS / "valid_eval.csv", index=False)
+    test_cond = build_test_conditions(test)
+    test_cond.to_csv(MANIFESTS / "test_conditions.csv", index=False)
+    qc["valid_eval_rows"], qc["test_condition_rows"] = int(len(valid_eval)), int(len(test_cond))
+
+    params = {
+        "sample_rate": SAMPLE_RATE,
+        "train_noise": {"types": list(TRAIN_NOISE_TYPES), "p_clean": 0.2, "snr_db_uniform": [0, 20],
+                        "musan_files": f"90% of MUSAN noise+music (file-level split, seed {args.seed})"},
+        "valid_noise": {"types": list(TRAIN_NOISE_TYPES), "snr_db": [0, 5, 10, 20], "musan_files": "held-out 10%"},
+        "test_noise": {"types": list(TEST_NOISE_TYPES), "snr_db": list(TEST_SNRS) + ["clean"],
+                       "held_out_types": ["brown", "esc50"], "seen_reference_types": ["white", "pink"]},
+        "mixing": "noise scaled to P_speech / 10^(SNR/10) over the whole utterance, no clipping",
+        "text_normalisation": "upper-case, keep A-Z and apostrophe, collapse whitespace (32-char wav2vec2 vocab)",
+        "seed": args.seed,
+    }
+    (PROCESSED / "augmentation").mkdir(exist_ok=True)
+    with open(PROCESSED / "augmentation" / "noise_params.json", "w") as f:
+        json.dump(params, f, indent=2)
+    with open(MANIFESTS / "qc_summary.json", "w") as f:
+        json.dump(qc, f, indent=2, default=str)
+    print(json.dumps(qc, indent=2, default=str))
+    print(f"[done] {time.time() - t0:.0f}s -> {PROCESSED}")
 
 
 if __name__ == "__main__":

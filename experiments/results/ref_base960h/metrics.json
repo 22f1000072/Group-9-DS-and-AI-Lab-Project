@@ -1,0 +1,15 @@
+{
+  "model": "ref_base960h",
+  "model_path": "facebook/wav2vec2-base-960h",
+  "rows": 94503,
+  "audio_hours": 182.6652417777778,
+  "inference_sec": 224.95073127746582,
+  "wer_test.clean_clean": 0.034274193548387094,
+  "wer_test.other_clean": 0.08591406682842023,
+  "wer_white_0_5dB": 0.8068414681802152,
+  "wer_pink_0_5dB": 0.6554818479017147,
+  "wer_brown_0_5dB": 0.06545525595935912,
+  "wer_esc50_0_5dB": 0.34674844403778154,
+  "word_auroc_conf_min": 0.9036094119396963,
+  "word_auroc_conf_mean": 0.9337586031259499
+}

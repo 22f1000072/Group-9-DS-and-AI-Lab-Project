@@ -4,35 +4,27 @@ __pycache__/
 *.egg-info/
 .venv/
 venv/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
 
 # Secrets
 .env
 
-# Local datasets (track only README, keep raw/processed/git-ignored)
-data/raw/*
+# Data (LibriSpeech, MUSAN, ESC-50, RIRs, Hugging Face cache) - downloaded/rebuilt by scripts, never committed
+data/*
 !data/README.md
-data/processed/*/*
-data/splits/*
 
-# Model artifacts and generated outputs
+# Model weights and checkpoints - published on Hugging Face instead (see README)
 experiments/checkpoints/
+experiments/runs/*/best/
+experiments/runs/*/last/
 *.ckpt
 *.pth
 *.onnx
+*.safetensors
+*.bin
 
-# Notebook and operating-system files
-.ipynb_checkpoints/
-.DS_Store
-clearscribe_noisy_asr.ipynb
-
-# Temporary outputs
-data/augmentation/
-runs/
-
-# Research and analysis documents (internal only - do not push to GitHub)
-research/
-
-# Checkpoints and logs
-experiments/runs/*
-# Data directories (large, git-ignored)
-# Environment files
+# Large generated outputs (per-utterance predictions, logs); summaries/metrics CSV+JSON are kept
+experiments/logs/
+experiments/results/**/*.parquet

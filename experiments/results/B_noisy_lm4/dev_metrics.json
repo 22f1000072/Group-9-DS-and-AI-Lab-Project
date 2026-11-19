@@ -1,0 +1,21 @@
+{
+  "model": "B_noisy_lm4",
+  "set": "dev",
+  "rows": 4000,
+  "decode_sec": 1.5901780128479004,
+  "decoder": "lm",
+  "lm": "4gram",
+  "alpha": 0.8,
+  "beta": 2.0,
+  "beam": 50,
+  "wer_validation.clean_clean": 0.036095653481726574,
+  "wer_validation.other_clean": 0.08494733265375468,
+  "wer_clean_pooled": 0.059034702832070206,
+  "wer_noisy_pooled": 0.12503656428666401,
+  "wer_white_0_5dB": 0.20569291502181591,
+  "wer_musan_music_0_5dB": 0.18056388722255548,
+  "wer_musan_noise_0_5dB": 0.12343470483005367,
+  "wer_pink_0_5dB": 0.17092950717404864,
+  "word_auroc_conf_mean": 0.8488016829177749,
+  "word_auroc_conf_min": 0.7997713915663087
+}

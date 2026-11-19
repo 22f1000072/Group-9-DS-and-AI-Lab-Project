@@ -1,0 +1,13 @@
+{
+  "model": "A_clean_ext",
+  "model_path": "experiments/runs/A_clean/best",
+  "rows": 38913,
+  "audio_hours": 75.21509955555557,
+  "inference_sec": 93.66529250144958,
+  "wer_reverb+esc50_0_5dB": 0.5902744021578551,
+  "wer_esc50_m5dB": 0.6164850980280026,
+  "wer_white_m5dB": 0.9926419428320895,
+  "wer_pink_m5dB": 0.981147361297763,
+  "word_auroc_conf_min": 0.873903639325994,
+  "word_auroc_conf_mean": 0.9212642295396705
+}

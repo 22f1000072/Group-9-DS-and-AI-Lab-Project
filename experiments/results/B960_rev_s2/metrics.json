@@ -1,0 +1,15 @@
+{
+  "model": "B960_rev_s2",
+  "model_path": "experiments/runs/B960_rev_s2/best",
+  "rows": 94503,
+  "audio_hours": 182.6652417777778,
+  "inference_sec": 220.4824664592743,
+  "wer_test.clean_clean": 0.046370967741935484,
+  "wer_test.other_clean": 0.10070114437460596,
+  "wer_white_0_5dB": 0.2350432238202804,
+  "wer_pink_0_5dB": 0.18269331579599501,
+  "wer_brown_0_5dB": 0.07572508315938963,
+  "wer_esc50_0_5dB": 0.15522927210514778,
+  "word_auroc_conf_min": 0.8680855934670704,
+  "word_auroc_conf_mean": 0.897845294949697
+}

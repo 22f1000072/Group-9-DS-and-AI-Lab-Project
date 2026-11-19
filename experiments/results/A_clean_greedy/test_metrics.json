@@ -1,0 +1,21 @@
+{
+  "model": "A_clean_greedy",
+  "set": "test",
+  "rows": 94503,
+  "decode_sec": 2.8413748741149902,
+  "decoder": "greedy",
+  "lm": null,
+  "alpha": 0.5,
+  "beta": 1.0,
+  "beam": 50,
+  "wer_test.clean_clean": 0.05839166159464394,
+  "wer_test.other_clean": 0.13025619471562577,
+  "wer_clean_pooled": 0.09424413118691562,
+  "wer_noisy_pooled": 0.29885733279958826,
+  "wer_white_0_5dB": 0.7160380865238899,
+  "wer_pink_0_5dB": 0.5612806069444047,
+  "wer_brown_0_5dB": 0.1026839752571031,
+  "wer_esc50_0_5dB": 0.383109827581277,
+  "word_auroc_conf_mean": 0.9082000972181311,
+  "word_auroc_conf_min": 0.8616540042553752
+}

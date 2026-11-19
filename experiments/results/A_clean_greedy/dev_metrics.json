@@ -1,0 +1,21 @@
+{
+  "model": "A_clean_greedy",
+  "set": "dev",
+  "rows": 4000,
+  "decode_sec": 0.3724191188812256,
+  "decoder": "greedy",
+  "lm": null,
+  "alpha": 0.5,
+  "beta": 1.0,
+  "beam": 50,
+  "wer_validation.clean_clean": 0.05790344412693638,
+  "wer_validation.other_clean": 0.13149847094801223,
+  "wer_clean_pooled": 0.09246110889509374,
+  "wer_noisy_pooled": 0.34998005584363784,
+  "wer_white_0_5dB": 0.725535009349678,
+  "wer_musan_music_0_5dB": 0.503499300139972,
+  "wer_musan_noise_0_5dB": 0.32535778175313057,
+  "wer_pink_0_5dB": 0.5531295487627366,
+  "word_auroc_conf_mean": 0.9071237848109333,
+  "word_auroc_conf_min": 0.8553586183093108
+}

@@ -1,0 +1,15 @@
+{
+  "model": "B2_lr1e-4",
+  "model_path": "experiments/runs/B2_lr1e-4/best",
+  "rows": 94503,
+  "audio_hours": 182.6652417777778,
+  "inference_sec": 219.3582365512848,
+  "wer_test.clean_clean": 0.05892422398052343,
+  "wer_test.other_clean": 0.1311350132778022,
+  "wer_white_0_5dB": 0.2855536175525882,
+  "wer_pink_0_5dB": 0.22810453778629228,
+  "wer_brown_0_5dB": 0.09988657917059827,
+  "wer_esc50_0_5dB": 0.19559850932624215,
+  "word_auroc_conf_min": 0.8397531423575324,
+  "word_auroc_conf_mean": 0.877843903627326
+}

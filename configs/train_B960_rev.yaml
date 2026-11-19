@@ -1,0 +1,29 @@
+# B960_rev (M5): continue fine-tuning from B460 (already a working recogniser) on ALL 960 h of LibriSpeech
+# (adds train-other-500: 1,166 harder speakers) with the full augmentation set:
+#   noise (as B) + simulated room reverb (train rooms only) + speed 0.9x/1.1x + telephone band-limit.
+# Lower peak lr (5e-5) and short warm-up because training starts from a fine-tuned model, not from scratch.
+name: B960_rev
+init_from: experiments/runs/B460/best
+init_model: facebook/wav2vec2-base
+train_manifest: train_960.csv
+augment: true
+p_clean: 0.2
+snr_min: 0.0
+snr_max: 20.0
+p_speed: 0.3
+speeds: [0.9, 1.1]
+p_reverb: 0.3
+p_bandlimit: 0.1
+max_steps: 40000
+lr: 5.0e-5
+warmup_ratio: 0.05
+max_batch_seconds: 640
+eval_every: 2000
+save_every: 4000
+seed: 42
+mask_time_prob: 0.4
+mask_time_length: 10
+mask_feature_prob: 0.1
+mask_feature_length: 64
+layerdrop: 0.1
+num_workers: 28

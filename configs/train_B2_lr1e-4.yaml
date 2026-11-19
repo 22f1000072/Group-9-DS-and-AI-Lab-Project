@@ -1,0 +1,21 @@
+# Model B2: Model B recipe with peak lr 1e-4 (winner of the 8k-step M4 sweep), full 36k steps
+name: B2_lr1e-4
+init_model: facebook/wav2vec2-base
+augment: true
+p_clean: 0.2
+snr_min: 0.0
+snr_max: 20.0
+max_steps: 36000          # ~64 epochs of 100 h at 640 s/step (smoke test: ~1.9k audio-s/s alone)
+lr: 1.0e-4
+warmup_ratio: 0.08
+max_batch_seconds: 640    # padded audio seconds per optimizer step
+eval_every: 2000
+save_every: 2000
+seed: 42
+# regularisation (close to the fairseq wav2vec2 base 100h recipe, slightly milder)
+mask_time_prob: 0.4
+mask_time_length: 10
+mask_feature_prob: 0.1
+mask_feature_length: 64
+layerdrop: 0.1
+num_workers: 28
