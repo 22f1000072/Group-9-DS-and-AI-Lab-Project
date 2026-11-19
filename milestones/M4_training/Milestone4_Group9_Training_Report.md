@@ -186,7 +186,7 @@ A full 36k-step run takes about 4 h, so 8k-step runs let us compare seven settin
 | **Model selection on mean (clean + noisy) dev WER** | avoids choosing a checkpoint that is good only on clean audio | Best checkpoint at step 34k for both models; improvements after 30k are < 0.1 points |
 | **Speaker-disjoint splits** | no speaker leakage | 0 shared speakers between train, dev and test |
 | **More labelled data** (464 h, then 960 h; Section 5) | more speakers, accents and words | B460: −14 to −20 % WER in every condition vs B |
-| **Reverb, speed 0.9/1.1 and telephone-band augmentation** (B960_rev) | robustness to rooms, speaking rate and channel | Real-room reverb (test-only rooms): 20.6 % → 12.9 % WER; test-other 7.58 % → 7.01 % (with LM) |
+| **Reverb, speed 0.9/1.1 and telephone-band augmentation** (B960_rev) | robustness to rooms, speaking rate and channel | Real-room reverb (test-only rooms): 20.2 % → 12.6 % WER; test-other 7.58 % → 7.01 % (with LM) |
 | **Continued fine-tuning** from B460 (lr 5e-5, 5 % warm-up) | add new data and distortions without starting over | Dev WER 10.71 % → 9.87 % in 40k steps; no forgetting on clean dev (4.96 % → 4.47 % with LM) |
 
 ![Training loss and dev WER, Model A vs Model B](figures/fig1_training_curves_A_vs_B.png)
@@ -370,11 +370,11 @@ On dev, ROVER only helped when the systems were of similar quality: B960_rev + B
 
 | Condition | Model B | B460 | B960_rev |
 | :---- | ----: | ----: | ----: |
-| real-room reverb, no noise | 20.64 | 18.31 | **12.85** |
-| real-room reverb + ESC-50 at 5 dB | 36.93 | 33.17 | **26.08** |
-| real-room reverb + ESC-50 at 0 dB | 48.03 | 43.53 | **36.15** |
-| ESC-50 at −5 dB | 38.74 | 33.41 | **31.47** |
-| white at −5 dB | 61.43 | 55.97 | **53.96** |
+| real-room reverb, no noise | 20.18 | 17.89 | **12.56** |
+| real-room reverb + ESC-50 at 5 dB | 36.36 | 32.61 | **25.62** |
+| real-room reverb + ESC-50 at 0 dB | 47.51 | 43.01 | **35.70** |
+| ESC-50 at −5 dB | 38.21 | 32.91 | **31.01** |
+| white at −5 dB | 60.73 | 55.24 | **53.30** |
 
 **Greedy decoding (no LM), test-clean / test-other:** B 6.19 / 13.08 → B460 4.70 / 11.09 → B960_rev **4.63 / 9.95**.
 
@@ -389,7 +389,7 @@ On dev, ROVER only helped when the systems were of similar quality: B960_rev + B
 ### 5.4 Observations
 
 1. **The error rate fell by 21–24 % relative in every condition** compared with Model B, including both held-out noise types. The final system reaches 2.89 % on test-clean, below the published wav2vec 2.0 BASE 100 h result with an LM (3.4 %) and close to the BASE 960 h result (2.6 %), which was measured on clean speech only.
-2. **Data quantity mattered most.** B460 alone cut WER by 14–20 % relative to B in every condition. B960_rev added another 6–8 % on test-other and in every noise condition (test-clean unchanged); its extra data and distortions helped most where they target a weakness: real-room reverberation fell from 20.6 % to 12.9 % (−38 %), and test-other from 7.58 % to 7.01 %.
+2. **Data quantity mattered most.** B460 alone cut WER by 14–20 % relative to B in every condition. B960_rev added another 6–8 % on test-other and in every noise condition (test-clean unchanged); its extra data and distortions helped most where they target a weakness: real-room reverberation fell from 20.2 % to 12.6 % (−38 %), and test-other from 7.58 % to 7.01 %.
 3. **Continued fine-tuning is efficient:** B960_rev beats B460 after only 40k steps (≈ 4 GPU-hours) because it starts from B460's weights instead of from wav2vec2-base.
 4. **ROVER gives a small but consistent extra gain** (−0.1 to −0.5 points in every condition). The two seeds make very similar errors, which limits it; it needs systems of similar quality.
 5. **Error detection is unaffected by the stronger models** (AUROC ≈ 0.89, ECE < 0.01); O3 remains met.
@@ -480,7 +480,7 @@ python scripts/rover.py --runs B960_rev_s2_lm4 B960_rev_lm4 B460_lm4 --set test 
   * a full run takes under 4 hours.
 * **Raw CTC confidence is a usable error detector** (word AUROC 0.88–0.93) before any calibration; a trained detector raises this to AUROC 0.89 with ECE 0.006 *after* LM decoding (O3 met).
 * **More data, then continued fine-tuning, then system combination** lowered WER by a further 21–24 % in every condition (Section 5): 2.89 % test-clean, 11.42 % on held-out ESC-50 at 0–5 dB.
-* **Targeted augmentation works on its target:** simulated-room reverb in training cut WER on *real* measured rooms from 20.6 % to 12.9 %.
+* **Targeted augmentation works on its target:** simulated-room reverb in training cut WER on *real* measured rooms from 20.2 % to 12.6 %.
 
 ### What did not work, or remains open
 

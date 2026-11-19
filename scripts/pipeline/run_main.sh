@@ -3,6 +3,7 @@
 #   1. reference eval of facebook/wav2vec2-base-960h on the test grid
 #   2. train + eval Model B (noise-augmented)   <- main result first
 #   3. train + eval Model A (clean baseline)
+#   4. train + eval Model B2 (Model B recipe with peak lr 1e-4, the winner of the hyperparameter sweep)
 # Long-running: start it inside tmux/screen
 set -uo pipefail
 cd "$(dirname "$0")/../.."
@@ -34,4 +35,5 @@ train() {  # config name
 evaluate ref_base960h facebook/wav2vec2-base-960h
 train B_noisy && evaluate B_noisy "$RUNS/B_noisy/best"
 train A_clean && evaluate A_clean "$RUNS/A_clean/best"
+train B2_lr1e-4 && evaluate B2_lr1e-4 "$RUNS/B2_lr1e-4/best"
 stamp "PIPELINE DONE"
