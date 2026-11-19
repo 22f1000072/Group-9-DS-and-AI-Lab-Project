@@ -78,6 +78,6 @@ All AI-generated fixes, configurations and recommendations incorporated into the
 
 | Name | Roll No. | Initials |
 |---|---|---|
-| Gulshan Kumar | 22f1000072 | |
-| Parashmani Datta | 21f2000987 | |
-| Subhajit Saha | 21f1003945 | |
+| Gulshan Kumar | 22f1000072 | G.K|
+| Parashmani Datta | 21f2000987 | P.D|
+| Subhajit Saha | 21f1003945 | S.S|
