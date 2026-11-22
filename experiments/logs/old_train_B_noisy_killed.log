@@ -1,0 +1,55 @@
+{
+  "name": "B_noisy",
+  "init_model": "facebook/wav2vec2-base",
+  "augment": true,
+  "p_clean": 0.2,
+  "snr_min": 0.0,
+  "snr_max": 20.0,
+  "max_steps": 36000,
+  "lr": 5e-05,
+  "warmup_ratio": 0.08,
+  "weight_decay": 0.005,
+  "max_grad_norm": 1.0,
+  "max_batch_seconds": 640,
+  "grad_accum": 1,
+  "eval_every": 2000,
+  "save_every": 2000,
+  "log_every": 50,
+  "num_workers": 28,
+  "seed": 42,
+  "mask_time_prob": 0.4,
+  "mask_time_length": 10,
+  "mask_feature_prob": 0.1,
+  "mask_feature_length": 64,
+  "layerdrop": 0.1,
+  "attention_dropout": 0.1,
+  "hidden_dropout": 0.1,
+  "feat_proj_dropout": 0.0,
+  "final_dropout": 0.0,
+  "freeze_feature_encoder": true,
+  "eval_max_seconds": 600.0,
+  "max_train_utts": null
+}
+train utts 28538 (100.6 h), 609 batches/epoch, ~59.1 epochs; dev rows 4000
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]Loading weights: 100%|██████████| 211/211 [00:00<00:00, 38285.09it/s]
+[transformers] [1mWav2Vec2ForCTC LOAD REPORT[0m from: facebook/wav2vec2-base
+Key                          | Status     | 
+-----------------------------+------------+-
+project_q.weight             | UNEXPECTED | 
+quantizer.weight_proj.weight | UNEXPECTED | 
+quantizer.codevectors        | UNEXPECTED | 
+quantizer.weight_proj.bias   | UNEXPECTED | 
+project_hid.weight           | UNEXPECTED | 
+project_q.bias               | UNEXPECTED | 
+project_hid.bias             | UNEXPECTED | 
+lm_head.bias                 | MISSING    | 
+lm_head.weight               | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+step      1 ep 0 loss 9.2264 lr 1.74e-08 gn 4.39 16.501s/step 38 audio-s/s mem 10.0GB
+[W1117 11:56:33.980130327 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 4190109696 bytes (free: 3446603776, total: 47667740672).
+[W1117 11:56:36.779318763 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 4194304000 bytes (free: 3318677504, total: 47667740672).
+step     50 ep 0 loss 9.0791 lr 8.68e-07 gn 7.15 0.829s/step 713 audio-s/s mem 10.9GB
+step    100 ep 0 loss 8.7611 lr 1.74e-06 gn 11.50 0.815s/step 711 audio-s/s mem 10.9GB

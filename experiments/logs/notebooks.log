@@ -1,0 +1,18 @@
+waiting for PIPELINE DONE in ai_work/logs/pipeline.log ...
+wrote 01_eda_complete_data
+wrote 02_preprocessing_and_noise
+wrote 03_training
+wrote 04_evaluation
+[20:08:55] executing ai_work/notebooks/01_eda_complete_data.ipynb
+[NbConvertApp] Converting notebook ai_work/notebooks/01_eda_complete_data.ipynb to notebook
+[NbConvertApp] Writing 4337013 bytes to ai_work/notebooks/01_eda_complete_data.ipynb
+[20:09:11] executing ai_work/notebooks/02_preprocessing_and_noise.ipynb
+[NbConvertApp] Converting notebook ai_work/notebooks/02_preprocessing_and_noise.ipynb to notebook
+[NbConvertApp] Writing 90669 bytes to ai_work/notebooks/02_preprocessing_and_noise.ipynb
+[20:09:17] executing ai_work/notebooks/03_training.ipynb
+[NbConvertApp] Converting notebook ai_work/notebooks/03_training.ipynb to notebook
+[NbConvertApp] Writing 223616 bytes to ai_work/notebooks/03_training.ipynb
+[20:09:20] executing ai_work/notebooks/04_evaluation.ipynb
+[NbConvertApp] Converting notebook ai_work/notebooks/04_evaluation.ipynb to notebook
+[NbConvertApp] Writing 292580 bytes to ai_work/notebooks/04_evaluation.ipynb
+[20:09:43] NOTEBOOKS REFRESHED

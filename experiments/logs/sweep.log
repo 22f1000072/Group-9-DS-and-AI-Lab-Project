@@ -1,0 +1,15 @@
+[2026-11-17 20:40:38] hp_base start  
+[2026-11-17 21:32:43] hp_base exit 0
+[2026-11-17 21:32:43] hp_lr1e-4 start lr=1.0e-4 
+[2026-11-17 22:24:47] hp_lr1e-4 exit 0
+[2026-11-17 22:24:47] hp_lr2e-5 start lr=2.0e-5 
+[2026-11-17 23:16:50] hp_lr2e-5 exit 0
+[2026-11-17 23:16:50] hp_mask_light start mask_time_prob=0.05 mask_feature_prob=0.0 layerdrop=0.05 
+[2026-11-18 00:10:34] hp_mask_light exit 0
+[2026-11-18 00:10:34] hp_bs320 start max_batch_seconds=320 
+[2026-11-18 00:36:49] hp_bs320 exit 0
+[2026-11-18 00:36:49] hp_pclean0.5 start p_clean=0.5 
+[2026-11-18 01:28:52] hp_pclean0.5 exit 0
+[2026-11-18 01:28:52] hp_snr-5 start snr_min=-5.0 
+[2026-11-18 02:20:55] hp_snr-5 exit 0
+[2026-11-18 02:20:55] SWEEP DONE

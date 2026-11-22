@@ -1,0 +1,31 @@
+94503 rows, 182.7 h audio
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 12631.12it/s]
+[W1118 21:47:33.022087213 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5240782848 bytes (free: 4785963008, total: 47667740672).
+inference 219s (2998x real time)
+snr_db                      0      10      20       5   clean
+ls_split   noise_type                                        
+test.clean brown       0.0606  0.0592  0.0583  0.0603     NaN
+           clean          NaN     NaN     NaN     NaN  0.0589
+           esc50       0.1491  0.0734  0.0618  0.0918     NaN
+           pink        0.1759  0.0725  0.0614  0.0968     NaN
+           white       0.2269  0.0846  0.0640  0.1256     NaN
+test.other brown       0.1421  0.1345  0.1322  0.1369     NaN
+           clean          NaN     NaN     NaN     NaN  0.1311
+           esc50       0.3142  0.1802  0.1430  0.2280     NaN
+           pink        0.3914  0.1853  0.1435  0.2491     NaN
+           white       0.4763  0.2263  0.1555  0.3144     NaN
+{
+  "model": "B2_lr1e-4",
+  "model_path": "experiments/runs/B2_lr1e-4/best",
+  "rows": 94503,
+  "audio_hours": 182.6652417777778,
+  "inference_sec": 219.3582365512848,
+  "wer_test.clean_clean": 0.05892422398052343,
+  "wer_test.other_clean": 0.1311350132778022,
+  "wer_white_0_5dB": 0.2855536175525882,
+  "wer_pink_0_5dB": 0.22810453778629228,
+  "wer_brown_0_5dB": 0.09988657917059827,
+  "wer_esc50_0_5dB": 0.19559850932624215,
+  "word_auroc_conf_min": 0.8397531423575324,
+  "word_auroc_conf_mean": 0.877843903627326
+}

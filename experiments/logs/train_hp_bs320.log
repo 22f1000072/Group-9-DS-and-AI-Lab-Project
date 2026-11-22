@@ -1,0 +1,224 @@
+{
+  "name": "hp_bs320",
+  "init_model": "facebook/wav2vec2-base",
+  "augment": true,
+  "p_clean": 0.2,
+  "snr_min": 0.0,
+  "snr_max": 20.0,
+  "max_steps": 8000,
+  "lr": 5e-05,
+  "warmup_ratio": 0.08,
+  "weight_decay": 0.005,
+  "max_grad_norm": 1.0,
+  "max_batch_seconds": 320,
+  "grad_accum": 1,
+  "eval_every": 2000,
+  "save_every": 2000,
+  "log_every": 50,
+  "num_workers": 28,
+  "seed": 42,
+  "mask_time_prob": 0.4,
+  "mask_time_length": 10,
+  "mask_feature_prob": 0.1,
+  "mask_feature_length": 64,
+  "layerdrop": 0.1,
+  "attention_dropout": 0.1,
+  "hidden_dropout": 0.1,
+  "feat_proj_dropout": 0.0,
+  "final_dropout": 0.0,
+  "freeze_feature_encoder": true,
+  "eval_max_seconds": 600.0,
+  "max_train_utts": null
+}
+train utts 28538 (100.6 h), 1180 batches/epoch, ~6.8 epochs; dev rows 4000
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]Loading weights: 100%|██████████| 211/211 [00:00<00:00, 46877.38it/s]
+[transformers] [1mWav2Vec2ForCTC LOAD REPORT[0m from: facebook/wav2vec2-base
+Key                          | Status     | 
+-----------------------------+------------+-
+project_hid.weight           | UNEXPECTED | 
+project_hid.bias             | UNEXPECTED | 
+quantizer.codevectors        | UNEXPECTED | 
+project_q.weight             | UNEXPECTED | 
+quantizer.weight_proj.bias   | UNEXPECTED | 
+project_q.bias               | UNEXPECTED | 
+quantizer.weight_proj.weight | UNEXPECTED | 
+lm_head.weight               | MISSING    | 
+lm_head.bias                 | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+step      1 ep 0 loss 9.0403 lr 7.81e-08 gn 4.49 8.605s/step 37 audio-s/s mem 5.2GB
+step     50 ep 0 loss 8.8820 lr 3.91e-06 gn 11.72 0.186s/step 1637 audio-s/s mem 6.0GB
+step    100 ep 0 loss 6.3347 lr 7.81e-06 gn 5.70 0.184s/step 1631 audio-s/s mem 6.0GB
+step    150 ep 0 loss 3.6765 lr 1.17e-05 gn 1.97 0.187s/step 1650 audio-s/s mem 6.0GB
+step    200 ep 0 loss 3.2093 lr 1.56e-05 gn 0.80 0.181s/step 1658 audio-s/s mem 6.0GB
+step    250 ep 0 loss 3.0327 lr 1.95e-05 gn 0.64 0.185s/step 1657 audio-s/s mem 6.0GB
+step    300 ep 0 loss 2.9758 lr 2.34e-05 gn 0.59 0.185s/step 1657 audio-s/s mem 6.0GB
+step    350 ep 0 loss 2.9158 lr 2.73e-05 gn 2.28 0.186s/step 1643 audio-s/s mem 6.0GB
+step    400 ep 0 loss 2.8934 lr 3.13e-05 gn 0.50 0.189s/step 1646 audio-s/s mem 6.0GB
+step    450 ep 0 loss 2.9298 lr 3.52e-05 gn 0.48 0.184s/step 1636 audio-s/s mem 6.0GB
+step    500 ep 0 loss 2.8947 lr 3.91e-05 gn 0.58 0.185s/step 1663 audio-s/s mem 6.0GB
+step    550 ep 0 loss 2.8801 lr 4.30e-05 gn 0.16 0.186s/step 1665 audio-s/s mem 6.0GB
+step    600 ep 0 loss 2.8711 lr 4.69e-05 gn 0.28 0.186s/step 1664 audio-s/s mem 6.0GB
+step    650 ep 0 loss 2.8686 lr 4.99e-05 gn 1.58 0.188s/step 1623 audio-s/s mem 6.0GB
+step    700 ep 0 loss 2.8719 lr 4.96e-05 gn 0.19 0.185s/step 1647 audio-s/s mem 6.0GB
+step    750 ep 0 loss 2.8688 lr 4.93e-05 gn 0.47 0.189s/step 1644 audio-s/s mem 6.0GB
+step    800 ep 0 loss 2.8782 lr 4.89e-05 gn 1.22 0.185s/step 1658 audio-s/s mem 6.0GB
+step    850 ep 0 loss 2.8638 lr 4.86e-05 gn 0.31 0.186s/step 1657 audio-s/s mem 6.0GB
+step    900 ep 0 loss 2.8646 lr 4.82e-05 gn 0.35 0.187s/step 1644 audio-s/s mem 6.0GB
+step    950 ep 0 loss 2.8595 lr 4.79e-05 gn 0.66 0.190s/step 1642 audio-s/s mem 6.0GB
+step   1000 ep 0 loss 2.8607 lr 4.76e-05 gn 0.21 0.189s/step 1648 audio-s/s mem 6.0GB
+step   1050 ep 0 loss 2.8609 lr 4.72e-05 gn 0.31 0.184s/step 1663 audio-s/s mem 6.0GB
+step   1100 ep 0 loss 2.8608 lr 4.69e-05 gn 0.42 0.184s/step 1639 audio-s/s mem 6.0GB
+step   1150 ep 0 loss 2.8557 lr 4.65e-05 gn 0.29 0.187s/step 1672 audio-s/s mem 6.0GB
+step   1200 ep 1 loss 2.8614 lr 4.62e-05 gn 0.22 0.265s/step 1126 audio-s/s mem 6.0GB
+step   1250 ep 1 loss 2.8548 lr 4.59e-05 gn 0.24 0.186s/step 1646 audio-s/s mem 6.0GB
+step   1300 ep 1 loss 2.8038 lr 4.55e-05 gn 0.75 0.187s/step 1664 audio-s/s mem 6.0GB
+step   1350 ep 1 loss 2.6001 lr 4.52e-05 gn 1.11 0.188s/step 1646 audio-s/s mem 6.0GB
+step   1400 ep 1 loss 2.3037 lr 4.48e-05 gn 2.00 0.189s/step 1647 audio-s/s mem 6.0GB
+step   1450 ep 1 loss 1.9394 lr 4.45e-05 gn 1.36 0.186s/step 1646 audio-s/s mem 6.0GB
+step   1500 ep 1 loss 1.6088 lr 4.42e-05 gn 1.12 0.186s/step 1655 audio-s/s mem 6.0GB
+step   1550 ep 1 loss 1.4811 lr 4.38e-05 gn 1.79 0.182s/step 1663 audio-s/s mem 6.0GB
+step   1600 ep 1 loss 1.4911 lr 4.35e-05 gn 1.60 0.186s/step 1675 audio-s/s mem 6.0GB
+step   1650 ep 1 loss 1.3606 lr 4.31e-05 gn 2.77 0.186s/step 1658 audio-s/s mem 6.0GB
+step   1700 ep 1 loss 1.1987 lr 4.28e-05 gn 1.84 0.183s/step 1676 audio-s/s mem 6.0GB
+step   1750 ep 1 loss 1.1632 lr 4.25e-05 gn 1.67 0.183s/step 1640 audio-s/s mem 6.0GB
+step   1800 ep 1 loss 1.0861 lr 4.21e-05 gn 1.55 0.188s/step 1639 audio-s/s mem 6.0GB
+step   1850 ep 1 loss 1.0466 lr 4.18e-05 gn 1.71 0.187s/step 1651 audio-s/s mem 6.0GB
+step   1900 ep 1 loss 1.0767 lr 4.14e-05 gn 2.21 0.184s/step 1649 audio-s/s mem 6.0GB
+step   1950 ep 1 loss 1.0433 lr 4.11e-05 gn 1.67 0.189s/step 1646 audio-s/s mem 6.0GB
+step   2000 ep 1 loss 0.9863 lr 4.08e-05 gn 1.56 0.188s/step 1653 audio-s/s mem 6.0GB
+[eval 2000] {"wer_clean": 0.3396, "cer_clean": 0.0992, "wer_noisy": 0.4398, "cer_noisy": 0.1666, "wer_avg": 0.3897, "empty_hyp_frac": 0.0, "eval_sec": 10.5843, "example_ref": "HAT TOO CLOSE TO ME I COULDN'T GET IT EXPLAINED CHUNKY THE BOYS ROARED", "example_hyp": "HAT TO CLOSE TO ME I COULDNT GET IT EXPLAINED CHUNKY THE BOYES ROARED", "step": 2000}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  3.22it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  3.22it/s]
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  3.46it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  3.46it/s]
+step   2050 ep 1 loss 0.9486 lr 4.04e-05 gn 1.36 0.188s/step 1650 audio-s/s mem 10.3GB
+step   2100 ep 1 loss 1.0293 lr 4.01e-05 gn 1.41 0.185s/step 1681 audio-s/s mem 10.3GB
+step   2150 ep 1 loss 0.8670 lr 3.97e-05 gn 1.63 0.184s/step 1660 audio-s/s mem 10.3GB
+step   2200 ep 1 loss 0.8593 lr 3.94e-05 gn 1.33 0.189s/step 1649 audio-s/s mem 10.3GB
+step   2250 ep 1 loss 0.8819 lr 3.91e-05 gn 1.28 0.184s/step 1646 audio-s/s mem 10.3GB
+step   2300 ep 1 loss 0.8377 lr 3.87e-05 gn 1.39 0.183s/step 1635 audio-s/s mem 10.3GB
+step   2350 ep 1 loss 0.8670 lr 3.84e-05 gn 1.85 0.188s/step 1660 audio-s/s mem 10.3GB
+step   2400 ep 2 loss 0.8848 lr 3.80e-05 gn 1.41 0.261s/step 1165 audio-s/s mem 10.3GB
+step   2450 ep 2 loss 0.8203 lr 3.77e-05 gn 1.66 0.184s/step 1668 audio-s/s mem 10.3GB
+step   2500 ep 2 loss 0.7825 lr 3.74e-05 gn 1.62 0.188s/step 1617 audio-s/s mem 10.3GB
+step   2550 ep 2 loss 0.7867 lr 3.70e-05 gn 1.37 0.188s/step 1651 audio-s/s mem 10.3GB
+step   2600 ep 2 loss 0.8011 lr 3.67e-05 gn 1.50 0.182s/step 1626 audio-s/s mem 10.3GB
+step   2650 ep 2 loss 0.7781 lr 3.63e-05 gn 1.76 0.188s/step 1657 audio-s/s mem 10.3GB
+step   2700 ep 2 loss 0.7854 lr 3.60e-05 gn 1.78 0.188s/step 1644 audio-s/s mem 10.3GB
+step   2750 ep 2 loss 0.8326 lr 3.57e-05 gn 1.27 0.186s/step 1674 audio-s/s mem 10.3GB
+step   2800 ep 2 loss 0.7585 lr 3.53e-05 gn 1.17 0.186s/step 1631 audio-s/s mem 10.3GB
+step   2850 ep 2 loss 0.8107 lr 3.50e-05 gn 1.84 0.188s/step 1636 audio-s/s mem 10.3GB
+step   2900 ep 2 loss 0.7721 lr 3.46e-05 gn 1.84 0.186s/step 1656 audio-s/s mem 10.3GB
+step   2950 ep 2 loss 0.7243 lr 3.43e-05 gn 1.55 0.189s/step 1632 audio-s/s mem 10.3GB
+step   3000 ep 2 loss 0.7548 lr 3.40e-05 gn 2.47 0.190s/step 1633 audio-s/s mem 10.3GB
+step   3050 ep 2 loss 0.7226 lr 3.36e-05 gn 1.83 0.187s/step 1647 audio-s/s mem 10.3GB
+step   3100 ep 2 loss 0.7830 lr 3.33e-05 gn 1.76 0.184s/step 1675 audio-s/s mem 10.3GB
+step   3150 ep 2 loss 0.7075 lr 3.29e-05 gn 1.48 0.188s/step 1643 audio-s/s mem 10.3GB
+step   3200 ep 2 loss 0.7249 lr 3.26e-05 gn 1.54 0.186s/step 1640 audio-s/s mem 10.3GB
+step   3250 ep 2 loss 0.7351 lr 3.23e-05 gn 1.58 0.188s/step 1642 audio-s/s mem 10.3GB
+step   3300 ep 2 loss 0.7147 lr 3.19e-05 gn 1.61 0.183s/step 1648 audio-s/s mem 10.3GB
+step   3350 ep 2 loss 0.7088 lr 3.16e-05 gn 1.56 0.188s/step 1649 audio-s/s mem 10.3GB
+step   3400 ep 2 loss 0.7468 lr 3.13e-05 gn 1.87 0.184s/step 1652 audio-s/s mem 10.3GB
+step   3450 ep 2 loss 0.7370 lr 3.09e-05 gn 1.49 0.185s/step 1679 audio-s/s mem 10.3GB
+step   3500 ep 2 loss 0.7365 lr 3.06e-05 gn 1.25 0.186s/step 1655 audio-s/s mem 10.3GB
+step   3550 ep 3 loss 0.7042 lr 3.02e-05 gn 1.62 0.266s/step 1137 audio-s/s mem 10.3GB
+step   3600 ep 3 loss 0.6908 lr 2.99e-05 gn 1.67 0.186s/step 1669 audio-s/s mem 10.3GB
+step   3650 ep 3 loss 0.7350 lr 2.96e-05 gn 1.37 0.184s/step 1685 audio-s/s mem 10.3GB
+step   3700 ep 3 loss 0.7515 lr 2.92e-05 gn 1.75 0.186s/step 1645 audio-s/s mem 10.3GB
+step   3750 ep 3 loss 0.7042 lr 2.89e-05 gn 1.81 0.186s/step 1642 audio-s/s mem 10.3GB
+step   3800 ep 3 loss 0.6998 lr 2.85e-05 gn 2.01 0.184s/step 1650 audio-s/s mem 10.3GB
+step   3850 ep 3 loss 0.6815 lr 2.82e-05 gn 1.55 0.185s/step 1641 audio-s/s mem 10.3GB
+step   3900 ep 3 loss 0.6852 lr 2.79e-05 gn 2.20 0.184s/step 1668 audio-s/s mem 10.3GB
+step   3950 ep 3 loss 0.6880 lr 2.75e-05 gn 1.63 0.187s/step 1662 audio-s/s mem 10.3GB
+step   4000 ep 3 loss 0.7577 lr 2.72e-05 gn 1.48 0.186s/step 1669 audio-s/s mem 10.3GB
+[eval 4000] {"wer_clean": 0.1696, "cer_clean": 0.0525, "wer_noisy": 0.2775, "cer_noisy": 0.1119, "wer_avg": 0.2235, "empty_hyp_frac": 0.0, "eval_sec": 10.1185, "example_ref": "HAT TOO CLOSE TO ME I COULDN'T GET IT EXPLAINED CHUNKY THE BOYS ROARED", "example_hyp": "HAT TO CLOSE TO ME I COULDN'T GET IT EXPLAINED TUNKY THE BOY'S RARED", "step": 4000}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.87it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.87it/s]
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.97it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.97it/s]
+step   4050 ep 3 loss 0.6444 lr 2.68e-05 gn 1.70 0.189s/step 1620 audio-s/s mem 10.3GB
+step   4100 ep 3 loss 0.6996 lr 2.65e-05 gn 1.96 0.186s/step 1667 audio-s/s mem 10.3GB
+step   4150 ep 3 loss 0.6532 lr 2.62e-05 gn 1.50 0.186s/step 1647 audio-s/s mem 10.3GB
+step   4200 ep 3 loss 0.6580 lr 2.58e-05 gn 1.48 0.190s/step 1639 audio-s/s mem 10.3GB
+step   4250 ep 3 loss 0.7603 lr 2.55e-05 gn 1.61 0.186s/step 1668 audio-s/s mem 10.3GB
+step   4300 ep 3 loss 0.6356 lr 2.51e-05 gn 1.74 0.187s/step 1644 audio-s/s mem 10.3GB
+step   4350 ep 3 loss 0.7284 lr 2.48e-05 gn 1.32 0.185s/step 1675 audio-s/s mem 10.3GB
+step   4400 ep 3 loss 0.6489 lr 2.45e-05 gn 1.73 0.186s/step 1609 audio-s/s mem 10.3GB
+step   4450 ep 3 loss 0.6719 lr 2.41e-05 gn 1.38 0.188s/step 1635 audio-s/s mem 10.3GB
+step   4500 ep 3 loss 0.6672 lr 2.38e-05 gn 1.22 0.185s/step 1641 audio-s/s mem 10.3GB
+step   4550 ep 3 loss 0.6330 lr 2.34e-05 gn 1.39 0.186s/step 1669 audio-s/s mem 10.3GB
+step   4600 ep 3 loss 0.6502 lr 2.31e-05 gn 1.72 0.186s/step 1653 audio-s/s mem 10.3GB
+step   4650 ep 3 loss 0.6806 lr 2.28e-05 gn 1.18 0.188s/step 1654 audio-s/s mem 10.3GB
+step   4700 ep 3 loss 0.6390 lr 2.24e-05 gn 1.72 0.185s/step 1645 audio-s/s mem 10.3GB
+step   4750 ep 4 loss 0.6726 lr 2.21e-05 gn 1.49 0.273s/step 1132 audio-s/s mem 10.3GB
+step   4800 ep 4 loss 0.6814 lr 2.17e-05 gn 1.58 0.184s/step 1653 audio-s/s mem 10.3GB
+step   4850 ep 4 loss 0.6672 lr 2.14e-05 gn 1.95 0.186s/step 1654 audio-s/s mem 10.3GB
+step   4900 ep 4 loss 0.6262 lr 2.11e-05 gn 1.35 0.189s/step 1646 audio-s/s mem 10.3GB
+step   4950 ep 4 loss 0.6528 lr 2.07e-05 gn 1.69 0.189s/step 1644 audio-s/s mem 10.3GB
+step   5000 ep 4 loss 0.6212 lr 2.04e-05 gn 1.43 0.188s/step 1649 audio-s/s mem 10.3GB
+step   5050 ep 4 loss 0.6181 lr 2.00e-05 gn 1.24 0.189s/step 1640 audio-s/s mem 10.3GB
+step   5100 ep 4 loss 0.6598 lr 1.97e-05 gn 1.60 0.186s/step 1673 audio-s/s mem 10.3GB
+step   5150 ep 4 loss 0.6464 lr 1.94e-05 gn 1.57 0.183s/step 1664 audio-s/s mem 10.3GB
+step   5200 ep 4 loss 0.6313 lr 1.90e-05 gn 1.40 0.191s/step 1631 audio-s/s mem 10.3GB
+step   5250 ep 4 loss 0.6264 lr 1.87e-05 gn 1.79 0.187s/step 1612 audio-s/s mem 10.3GB
+step   5300 ep 4 loss 0.6339 lr 1.83e-05 gn 1.57 0.186s/step 1661 audio-s/s mem 10.3GB
+step   5350 ep 4 loss 0.6299 lr 1.80e-05 gn 1.89 0.189s/step 1650 audio-s/s mem 10.3GB
+step   5400 ep 4 loss 0.6156 lr 1.77e-05 gn 1.47 0.188s/step 1629 audio-s/s mem 10.3GB
+step   5450 ep 4 loss 0.6435 lr 1.73e-05 gn 19.94 0.183s/step 1642 audio-s/s mem 10.3GB
+step   5500 ep 4 loss 0.6599 lr 1.70e-05 gn 1.72 0.185s/step 1666 audio-s/s mem 10.3GB
+step   5550 ep 4 loss 0.6608 lr 1.66e-05 gn 1.59 0.186s/step 1654 audio-s/s mem 10.3GB
+step   5600 ep 4 loss 0.6464 lr 1.63e-05 gn 1.41 0.185s/step 1653 audio-s/s mem 10.3GB
+step   5650 ep 4 loss 0.6658 lr 1.60e-05 gn 1.56 0.182s/step 1643 audio-s/s mem 10.3GB
+step   5700 ep 4 loss 0.6198 lr 1.56e-05 gn 1.15 0.190s/step 1632 audio-s/s mem 10.3GB
+step   5750 ep 4 loss 0.6144 lr 1.53e-05 gn 1.31 0.186s/step 1621 audio-s/s mem 10.3GB
+step   5800 ep 4 loss 0.6271 lr 1.49e-05 gn 1.37 0.189s/step 1626 audio-s/s mem 10.3GB
+step   5850 ep 4 loss 0.5964 lr 1.46e-05 gn 1.49 0.187s/step 1634 audio-s/s mem 10.3GB
+step   5900 ep 5 loss 0.6058 lr 1.43e-05 gn 1.29 0.269s/step 1163 audio-s/s mem 10.3GB
+step   5950 ep 5 loss 0.6359 lr 1.39e-05 gn 1.52 0.187s/step 1662 audio-s/s mem 10.3GB
+step   6000 ep 5 loss 0.6076 lr 1.36e-05 gn 1.67 0.187s/step 1642 audio-s/s mem 10.3GB
+[eval 6000] {"wer_clean": 0.1424, "cer_clean": 0.0451, "wer_noisy": 0.2464, "cer_noisy": 0.101, "wer_avg": 0.1944, "empty_hyp_frac": 0.0, "eval_sec": 10.1037, "example_ref": "HAT TOO CLOSE TO ME I COULDN'T GET IT EXPLAINED CHUNKY THE BOYS ROARED", "example_hyp": "HAT TOO CLOSE TO ME I COULDN'T GET IT EXPLAINED CUNKY THE BOY'S RARED", "step": 6000}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.93it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.93it/s]
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.97it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.97it/s]
+step   6050 ep 5 loss 0.6262 lr 1.32e-05 gn 1.87 0.187s/step 1660 audio-s/s mem 10.3GB
+step   6100 ep 5 loss 0.6343 lr 1.29e-05 gn 1.40 0.187s/step 1652 audio-s/s mem 10.3GB
+step   6150 ep 5 loss 0.6088 lr 1.26e-05 gn 1.22 0.186s/step 1662 audio-s/s mem 10.3GB
+step   6200 ep 5 loss 0.6105 lr 1.22e-05 gn 1.28 0.188s/step 1622 audio-s/s mem 10.3GB
+step   6250 ep 5 loss 0.5937 lr 1.19e-05 gn 1.81 0.189s/step 1644 audio-s/s mem 10.3GB
+step   6300 ep 5 loss 0.6148 lr 1.15e-05 gn 1.71 0.185s/step 1639 audio-s/s mem 10.3GB
+step   6350 ep 5 loss 0.6537 lr 1.12e-05 gn 1.44 0.182s/step 1641 audio-s/s mem 10.3GB
+step   6400 ep 5 loss 0.6265 lr 1.09e-05 gn 1.61 0.186s/step 1629 audio-s/s mem 10.3GB
+step   6450 ep 5 loss 0.6386 lr 1.05e-05 gn 1.89 0.188s/step 1646 audio-s/s mem 10.3GB
+step   6500 ep 5 loss 0.6279 lr 1.02e-05 gn 1.58 0.184s/step 1660 audio-s/s mem 10.3GB
+step   6550 ep 5 loss 0.5550 lr 9.85e-06 gn 1.34 0.191s/step 1628 audio-s/s mem 10.3GB
+step   6600 ep 5 loss 0.5999 lr 9.51e-06 gn 1.62 0.183s/step 1628 audio-s/s mem 10.3GB
+step   6650 ep 5 loss 0.6119 lr 9.17e-06 gn 1.22 0.188s/step 1660 audio-s/s mem 10.3GB
+step   6700 ep 5 loss 0.6278 lr 8.83e-06 gn 1.30 0.186s/step 1666 audio-s/s mem 10.3GB
+step   6750 ep 5 loss 0.6197 lr 8.49e-06 gn 1.72 0.184s/step 1659 audio-s/s mem 10.3GB
+step   6800 ep 5 loss 0.5812 lr 8.15e-06 gn 1.24 0.188s/step 1640 audio-s/s mem 10.3GB
+step   6850 ep 5 loss 0.6378 lr 7.81e-06 gn 1.62 0.187s/step 1662 audio-s/s mem 10.3GB
+step   6900 ep 5 loss 0.5992 lr 7.47e-06 gn 1.45 0.185s/step 1645 audio-s/s mem 10.3GB
+step   6950 ep 5 loss 0.6752 lr 7.13e-06 gn 1.53 0.183s/step 1679 audio-s/s mem 10.3GB
+step   7000 ep 5 loss 0.5836 lr 6.79e-06 gn 1.65 0.189s/step 1644 audio-s/s mem 10.3GB
+step   7050 ep 5 loss 0.5822 lr 6.45e-06 gn 1.77 0.185s/step 1649 audio-s/s mem 10.3GB
+step   7100 ep 6 loss 0.6000 lr 6.11e-06 gn 1.70 0.267s/step 1168 audio-s/s mem 10.3GB
+step   7150 ep 6 loss 0.5907 lr 5.77e-06 gn 1.35 0.189s/step 1643 audio-s/s mem 10.3GB
+step   7200 ep 6 loss 0.6433 lr 5.43e-06 gn 1.23 0.183s/step 1683 audio-s/s mem 10.3GB
+step   7250 ep 6 loss 0.6100 lr 5.10e-06 gn 1.80 0.186s/step 1641 audio-s/s mem 10.3GB
+step   7300 ep 6 loss 0.5922 lr 4.76e-06 gn 1.39 0.185s/step 1661 audio-s/s mem 10.3GB
+step   7350 ep 6 loss 0.6171 lr 4.42e-06 gn 1.61 0.187s/step 1648 audio-s/s mem 10.3GB
+step   7400 ep 6 loss 0.6793 lr 4.08e-06 gn 1.54 0.181s/step 1639 audio-s/s mem 10.3GB
+step   7450 ep 6 loss 0.6188 lr 3.74e-06 gn 1.39 0.190s/step 1634 audio-s/s mem 10.3GB
+step   7500 ep 6 loss 0.6140 lr 3.40e-06 gn 1.41 0.186s/step 1645 audio-s/s mem 10.3GB
+step   7550 ep 6 loss 0.6199 lr 3.06e-06 gn 1.32 0.187s/step 1665 audio-s/s mem 10.3GB
+step   7600 ep 6 loss 0.5924 lr 2.72e-06 gn 1.43 0.187s/step 1641 audio-s/s mem 10.3GB
+step   7650 ep 6 loss 0.6081 lr 2.38e-06 gn 1.53 0.185s/step 1650 audio-s/s mem 10.3GB
+step   7700 ep 6 loss 0.6090 lr 2.04e-06 gn 1.16 0.183s/step 1636 audio-s/s mem 10.3GB
+step   7750 ep 6 loss 0.5663 lr 1.70e-06 gn 1.66 0.191s/step 1616 audio-s/s mem 10.3GB
+step   7800 ep 6 loss 0.6108 lr 1.36e-06 gn 1.44 0.186s/step 1642 audio-s/s mem 10.3GB
+step   7850 ep 6 loss 0.6078 lr 1.02e-06 gn 1.82 0.185s/step 1670 audio-s/s mem 10.3GB
+step   7900 ep 6 loss 0.6062 lr 6.79e-07 gn 2.06 0.187s/step 1644 audio-s/s mem 10.3GB
+step   7950 ep 6 loss 0.5699 lr 3.40e-07 gn 1.53 0.189s/step 1640 audio-s/s mem 10.3GB
+step   8000 ep 6 loss 0.5834 lr 0.00e+00 gn 1.88 0.191s/step 1615 audio-s/s mem 10.3GB
+[eval 8000] {"wer_clean": 0.1369, "cer_clean": 0.0436, "wer_noisy": 0.237, "cer_noisy": 0.0979, "wer_avg": 0.187, "empty_hyp_frac": 0.0, "eval_sec": 10.1477, "example_ref": "HAT TOO CLOSE TO ME I COULDN'T GET IT EXPLAINED CHUNKY THE BOYS ROARED", "example_hyp": "HAT TOO CLOSE TO ME I COULDN'T GET IT EXPLAINED CUNKY THE BOY'S RARED", "step": 8000}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.89it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.89it/s]
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.99it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  2.99it/s]
+[done] best dev wer_avg 0.1870 -> /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/experiments/runs/hp_bs320

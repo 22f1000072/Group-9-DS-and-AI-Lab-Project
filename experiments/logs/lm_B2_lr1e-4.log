@@ -1,0 +1,73 @@
++ for s in dev test
++ python scripts/dump_logits.py --model experiments/runs/B2_lr1e-4/best --name B2_lr1e-4 --set dev --max-seconds 100 --workers 8
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 14511.28it/s]
+4000 utts, 1352236 frames, 21s -> /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/processed/logits/B2_lr1e-4
++ for s in dev test
++ python scripts/dump_logits.py --model experiments/runs/B2_lr1e-4/best --name B2_lr1e-4 --set test --max-seconds 100 --workers 8
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 13327.57it/s]
+94503 utts, 32819180 frames, 411s -> /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/processed/logits/B2_lr1e-4
++ for s in dev test
++ python scripts/decode_words.py --name B2_lr1e-4 --set dev --decoder lm --lm 4gram --alpha 0.8 --beta 2.0 --workers 48
+Loading the LM will be faster if you build a binary file.
+Reading /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/raw/librispeech_lm/4-gram.arpa
+----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90---95--100
+****************************************************************************************************
+LM 4-gram.arpa loaded in 42s
+{
+ "model": "B2_lr1e-4_lm4",
+ "set": "dev",
+ "rows": 4000,
+ "decode_sec": 1.5219,
+ "decoder": "lm",
+ "lm": "4gram",
+ "alpha": 0.8,
+ "beta": 2.0,
+ "beam": 50,
+ "wer_validation.clean_clean": 0.0358,
+ "wer_validation.other_clean": 0.0878,
+ "wer_clean_pooled": 0.0602,
+ "wer_noisy_pooled": 0.1244,
+ "wer_white_0_5dB": 0.2049,
+ "wer_musan_music_0_5dB": 0.1778,
+ "wer_musan_noise_0_5dB": 0.1212,
+ "wer_pink_0_5dB": 0.1649,
+ "word_auroc_conf_mean": 0.8433,
+ "word_auroc_conf_min": 0.8004
+}
++ for s in dev test
++ python scripts/decode_words.py --name B2_lr1e-4 --set test --decoder lm --lm 4gram --alpha 0.8 --beta 2.0 --workers 48
+Loading the LM will be faster if you build a binary file.
+Reading /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/raw/librispeech_lm/4-gram.arpa
+----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90---95--100
+****************************************************************************************************
+LM 4-gram.arpa loaded in 42s
+{
+ "model": "B2_lr1e-4_lm4",
+ "set": "test",
+ "rows": 94503,
+ "decode_sec": 25.0227,
+ "decoder": "lm",
+ "lm": "4gram",
+ "alpha": 0.8,
+ "beta": 2.0,
+ "beam": 50,
+ "wer_test.clean_clean": 0.0367,
+ "wer_test.other_clean": 0.0918,
+ "wer_clean_pooled": 0.0642,
+ "wer_noisy_pooled": 0.1161,
+ "wer_white_0_5dB": 0.2257,
+ "wer_pink_0_5dB": 0.1744,
+ "wer_brown_0_5dB": 0.067,
+ "wer_esc50_0_5dB": 0.1482,
+ "word_auroc_conf_mean": 0.8478,
+ "word_auroc_conf_min": 0.8064
+}
++ python scripts/error_detector.py --run B2_lr1e-4_lm4
+dev words 74743 (err 0.079), test words 1767871 (err 0.096)
+raw       {'auroc': 0.8478, 'ece': 0.0515, 'brier': 0.0731, 'recall_at_30pct': 0.7739, 'precision_at_0.5': np.float64(0.7679), 'recall_at_0.5': np.float64(0.0302), 'flagged_frac_at_0.5': 0.0038, 'error_rate': 0.0962, 'n_words': 1767871}
+isotonic  {'auroc': 0.8475, 'ece': 0.0063, 'brier': 0.0659, 'recall_at_30pct': 0.7738, 'precision_at_0.5': np.float64(0.5897), 'recall_at_0.5': np.float64(0.3378), 'flagged_frac_at_0.5': 0.0551, 'error_rate': 0.0962, 'n_words': 1767871}
+logreg    {'auroc': 0.8908, 'ece': 0.0075, 'brier': 0.0578, 'recall_at_30pct': 0.859, 'precision_at_0.5': np.float64(0.6933), 'recall_at_0.5': np.float64(0.369), 'flagged_frac_at_0.5': 0.0512, 'error_rate': 0.0962, 'n_words': 1767871}
+gbm       {'auroc': 0.8918, 'ece': 0.0071, 'brier': 0.0568, 'recall_at_30pct': 0.8565, 'precision_at_0.5': np.float64(0.7093), 'recall_at_0.5': np.float64(0.3721), 'flagged_frac_at_0.5': 0.0505, 'error_rate': 0.0962, 'n_words': 1767871}
+selected: gbm
++ echo B2 LM DONE
+B2 LM DONE

@@ -1,0 +1,57 @@
+6 clips, durations (s): [124.2, 124.3, 120.7, 121.7, 121.3, 118.8]
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 12543.69it/s]
+Loading the LM will be faster if you build a binary file.
+Reading /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/raw/librispeech_lm/3-gram.pruned.1e-7.arpa
+----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90---95--100
+****************************************************************************************************
+{'model': 'fp32', 'clip': '367-130732', 'condition': 'clean', 'duration_s': 124.225, 't_load_audio': 0.0, 't_acoustic_model': 5.817, 't_decoding': 0.31, 't_error_detector': 0.071, 'rtf': 0.05, 'wer': 0.091, 'n_words': 364, 'n_flagged': 9}
+{'model': 'fp32', 'clip': '367-130732', 'condition': 'esc50 5 dB', 'duration_s': 124.225, 't_load_audio': 0.0, 't_acoustic_model': 5.789, 't_decoding': 0.402, 't_error_detector': 0.069, 'rtf': 0.05, 'wer': 0.11, 'n_words': 356, 'n_flagged': 13}
+{'model': 'fp32', 'clip': '367-130732', 'condition': 'white 5 dB', 'duration_s': 124.225, 't_load_audio': 0.0, 't_acoustic_model': 5.854, 't_decoding': 0.468, 't_error_detector': 0.069, 'rtf': 0.051, 'wer': 0.161, 'n_words': 354, 'n_flagged': 30}
+{'model': 'fp32', 'clip': '367-293981', 'condition': 'clean', 'duration_s': 124.265, 't_load_audio': 0.0, 't_acoustic_model': 5.798, 't_decoding': 0.292, 't_error_detector': 0.069, 'rtf': 0.05, 'wer': 0.082, 'n_words': 434, 'n_flagged': 3}
+{'model': 'fp32', 'clip': '367-293981', 'condition': 'esc50 5 dB', 'duration_s': 124.265, 't_load_audio': 0.0, 't_acoustic_model': 5.86, 't_decoding': 0.465, 't_error_detector': 0.069, 'rtf': 0.051, 'wer': 0.101, 'n_words': 434, 'n_flagged': 9}
+{'model': 'fp32', 'clip': '367-293981', 'condition': 'white 5 dB', 'duration_s': 124.265, 't_load_audio': 0.0, 't_acoustic_model': 5.85, 't_decoding': 0.39, 't_error_detector': 0.068, 'rtf': 0.051, 'wer': 0.126, 'n_words': 433, 'n_flagged': 12}
+{'model': 'fp32', 'clip': '533-1066', 'condition': 'clean', 'duration_s': 120.72, 't_load_audio': 0.0, 't_acoustic_model': 5.627, 't_decoding': 0.288, 't_error_detector': 0.069, 'rtf': 0.05, 'wer': 0.126, 'n_words': 272, 'n_flagged': 10}
+{'model': 'fp32', 'clip': '533-1066', 'condition': 'esc50 5 dB', 'duration_s': 120.72, 't_load_audio': 0.0, 't_acoustic_model': 5.673, 't_decoding': 0.341, 't_error_detector': 0.068, 'rtf': 0.05, 'wer': 0.141, 'n_words': 271, 'n_flagged': 10}
+{'model': 'fp32', 'clip': '533-1066', 'condition': 'white 5 dB', 'duration_s': 120.72, 't_load_audio': 0.0, 't_acoustic_model': 5.667, 't_decoding': 0.372, 't_error_detector': 0.068, 'rtf': 0.051, 'wer': 0.206, 'n_words': 261, 'n_flagged': 17}
+{'model': 'fp32', 'clip': '533-131556', 'condition': 'clean', 'duration_s': 121.67, 't_load_audio': 0.0, 't_acoustic_model': 5.732, 't_decoding': 0.274, 't_error_detector': 0.07, 'rtf': 0.05, 'wer': 0.096, 'n_words': 291, 'n_flagged': 4}
+{'model': 'fp32', 'clip': '533-131556', 'condition': 'esc50 5 dB', 'duration_s': 121.67, 't_load_audio': 0.0, 't_acoustic_model': 5.806, 't_decoding': 0.246, 't_error_detector': 0.07, 'rtf': 0.05, 'wer': 0.089, 'n_words': 290, 'n_flagged': 4}
+{'model': 'fp32', 'clip': '533-131556', 'condition': 'white 5 dB', 'duration_s': 121.67, 't_load_audio': 0.0, 't_acoustic_model': 5.772, 't_decoding': 0.331, 't_error_detector': 0.07, 'rtf': 0.051, 'wer': 0.147, 'n_words': 287, 'n_flagged': 12}
+{'model': 'fp32', 'clip': '533-131562', 'condition': 'clean', 'duration_s': 121.345, 't_load_audio': 0.0, 't_acoustic_model': 5.714, 't_decoding': 0.308, 't_error_detector': 0.069, 'rtf': 0.05, 'wer': 0.102, 'n_words': 294, 'n_flagged': 5}
+{'model': 'fp32', 'clip': '533-131562', 'condition': 'esc50 5 dB', 'duration_s': 121.345, 't_load_audio': 0.0, 't_acoustic_model': 5.765, 't_decoding': 0.418, 't_error_detector': 0.07, 'rtf': 0.052, 'wer': 0.17, 'n_words': 287, 'n_flagged': 19}
+{'model': 'fp32', 'clip': '533-131562', 'condition': 'white 5 dB', 'duration_s': 121.345, 't_load_audio': 0.0, 't_acoustic_model': 5.768, 't_decoding': 0.432, 't_error_detector': 0.069, 'rtf': 0.052, 'wer': 0.201, 'n_words': 281, 'n_flagged': 23}
+{'model': 'fp32', 'clip': '533-131564', 'condition': 'clean', 'duration_s': 118.85, 't_load_audio': 0.0, 't_acoustic_model': 5.456, 't_decoding': 0.317, 't_error_detector': 0.069, 'rtf': 0.049, 'wer': 0.138, 'n_words': 277, 'n_flagged': 11}
+{'model': 'fp32', 'clip': '533-131564', 'condition': 'esc50 5 dB', 'duration_s': 118.85, 't_load_audio': 0.0, 't_acoustic_model': 5.492, 't_decoding': 0.327, 't_error_detector': 0.07, 'rtf': 0.05, 'wer': 0.134, 'n_words': 278, 'n_flagged': 12}
+{'model': 'fp32', 'clip': '533-131564', 'condition': 'white 5 dB', 'duration_s': 118.85, 't_load_audio': 0.0, 't_acoustic_model': 5.5, 't_decoding': 0.366, 't_error_detector': 0.07, 'rtf': 0.05, 'wer': 0.166, 'n_words': 283, 'n_flagged': 16}
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 12957.40it/s]
+/home/user1/DSAI/venvs/group9-asr/lib/python3.14/site-packages/torch/ao/nn/quantized/modules/utils.py:72: UserWarning: torch.quantize_per_tensor, torch.quantize_per_channel and other quantized tensor creation functions that produce tensors with dtype torch.quint8, torch.qint8, and torch.qint32 are deprecated and will be removed in a future PyTorch release. Please see https://github.com/pytorch/pytorch/issues/184982 for more information. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/quantized/Quantizer.cpp:111.)
+  qweight = torch.quantize_per_tensor(
+Loading the LM will be faster if you build a binary file.
+Reading /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/raw/librispeech_lm/3-gram.pruned.1e-7.arpa
+----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90---95--100
+****************************************************************************************************
+{'model': 'int8', 'clip': '367-130732', 'condition': 'clean', 'duration_s': 124.225, 't_load_audio': 0.0, 't_acoustic_model': 3.764, 't_decoding': 0.372, 't_error_detector': 0.069, 'rtf': 0.034, 'wer': 0.113, 'n_words': 359, 'n_flagged': 11}
+{'model': 'int8', 'clip': '367-130732', 'condition': 'esc50 5 dB', 'duration_s': 124.225, 't_load_audio': 0.0, 't_acoustic_model': 3.832, 't_decoding': 0.451, 't_error_detector': 0.069, 'rtf': 0.035, 'wer': 0.164, 'n_words': 348, 'n_flagged': 23}
+{'model': 'int8', 'clip': '367-130732', 'condition': 'white 5 dB', 'duration_s': 124.225, 't_load_audio': 0.0, 't_acoustic_model': 3.808, 't_decoding': 0.505, 't_error_detector': 0.069, 'rtf': 0.035, 'wer': 0.202, 'n_words': 348, 'n_flagged': 36}
+{'model': 'int8', 'clip': '367-293981', 'condition': 'clean', 'duration_s': 124.265, 't_load_audio': 0.0, 't_acoustic_model': 3.749, 't_decoding': 0.351, 't_error_detector': 0.069, 'rtf': 0.034, 'wer': 0.101, 'n_words': 433, 'n_flagged': 8}
+{'model': 'int8', 'clip': '367-293981', 'condition': 'esc50 5 dB', 'duration_s': 124.265, 't_load_audio': 0.0, 't_acoustic_model': 3.821, 't_decoding': 0.392, 't_error_detector': 0.069, 'rtf': 0.034, 'wer': 0.115, 'n_words': 431, 'n_flagged': 11}
+{'model': 'int8', 'clip': '367-293981', 'condition': 'white 5 dB', 'duration_s': 124.265, 't_load_audio': 0.0, 't_acoustic_model': 3.805, 't_decoding': 0.475, 't_error_detector': 0.069, 'rtf': 0.035, 'wer': 0.157, 'n_words': 427, 'n_flagged': 22}
+{'model': 'int8', 'clip': '533-1066', 'condition': 'clean', 'duration_s': 120.72, 't_load_audio': 0.0, 't_acoustic_model': 3.623, 't_decoding': 0.322, 't_error_detector': 0.069, 'rtf': 0.033, 'wer': 0.137, 'n_words': 271, 'n_flagged': 12}
+{'model': 'int8', 'clip': '533-1066', 'condition': 'esc50 5 dB', 'duration_s': 120.72, 't_load_audio': 0.0, 't_acoustic_model': 3.689, 't_decoding': 0.342, 't_error_detector': 0.069, 'rtf': 0.034, 'wer': 0.134, 'n_words': 271, 'n_flagged': 12}
+{'model': 'int8', 'clip': '533-1066', 'condition': 'white 5 dB', 'duration_s': 120.72, 't_load_audio': 0.0, 't_acoustic_model': 3.69, 't_decoding': 0.354, 't_error_detector': 0.069, 'rtf': 0.034, 'wer': 0.195, 'n_words': 259, 'n_flagged': 19}
+{'model': 'int8', 'clip': '533-131556', 'condition': 'clean', 'duration_s': 121.67, 't_load_audio': 0.0, 't_acoustic_model': 3.686, 't_decoding': 0.278, 't_error_detector': 0.069, 'rtf': 0.033, 'wer': 0.103, 'n_words': 284, 'n_flagged': 6}
+{'model': 'int8', 'clip': '533-131556', 'condition': 'esc50 5 dB', 'duration_s': 121.67, 't_load_audio': 0.0, 't_acoustic_model': 3.757, 't_decoding': 0.287, 't_error_detector': 0.069, 'rtf': 0.034, 'wer': 0.096, 'n_words': 284, 'n_flagged': 9}
+{'model': 'int8', 'clip': '533-131556', 'condition': 'white 5 dB', 'duration_s': 121.67, 't_load_audio': 0.0, 't_acoustic_model': 3.74, 't_decoding': 0.384, 't_error_detector': 0.069, 'rtf': 0.034, 'wer': 0.164, 'n_words': 274, 'n_flagged': 18}
+{'model': 'int8', 'clip': '533-131562', 'condition': 'clean', 'duration_s': 121.345, 't_load_audio': 0.0, 't_acoustic_model': 3.658, 't_decoding': 0.307, 't_error_detector': 0.069, 'rtf': 0.033, 'wer': 0.122, 'n_words': 289, 'n_flagged': 7}
+{'model': 'int8', 'clip': '533-131562', 'condition': 'esc50 5 dB', 'duration_s': 121.345, 't_load_audio': 0.0, 't_acoustic_model': 3.718, 't_decoding': 0.418, 't_error_detector': 0.069, 'rtf': 0.035, 'wer': 0.201, 'n_words': 287, 'n_flagged': 21}
+{'model': 'int8', 'clip': '533-131562', 'condition': 'white 5 dB', 'duration_s': 121.345, 't_load_audio': 0.0, 't_acoustic_model': 3.721, 't_decoding': 0.428, 't_error_detector': 0.069, 'rtf': 0.035, 'wer': 0.201, 'n_words': 280, 'n_flagged': 23}
+{'model': 'int8', 'clip': '533-131564', 'condition': 'clean', 'duration_s': 118.85, 't_load_audio': 0.0, 't_acoustic_model': 3.522, 't_decoding': 0.317, 't_error_detector': 0.069, 'rtf': 0.033, 'wer': 0.166, 'n_words': 278, 'n_flagged': 13}
+{'model': 'int8', 'clip': '533-131564', 'condition': 'esc50 5 dB', 'duration_s': 118.85, 't_load_audio': 0.0, 't_acoustic_model': 3.519, 't_decoding': 0.316, 't_error_detector': 0.07, 'rtf': 0.033, 'wer': 0.145, 'n_words': 278, 'n_flagged': 17}
+{'model': 'int8', 'clip': '533-131564', 'condition': 'white 5 dB', 'duration_s': 118.85, 't_load_audio': 0.0, 't_acoustic_model': 3.57, 't_decoding': 0.406, 't_error_detector': 0.069, 'rtf': 0.034, 'wer': 0.18, 'n_words': 277, 'n_flagged': 26}
+                  rtf_mean  rtf_max  wer_mean  dur_mean
+model condition                                        
+fp32  clean         0.0497   0.0502    0.1059  121.8458
+      esc50 5 dB    0.0506   0.0515    0.1242  121.8458
+      white 5 dB    0.0509   0.0517    0.1679  121.8458
+int8  clean         0.0333   0.0339    0.1237  121.8458
+      esc50 5 dB    0.0341   0.0350    0.1423  121.8458
+      white 5 dB    0.0346   0.0353    0.1831  121.8458

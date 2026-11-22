@@ -1,0 +1,10 @@
+[2026-11-18 21:51:08] part 2 start
+[2026-11-18 21:51:08] eval A_clean_ext start (test_conditions_ext.csv)
+[2026-11-18 21:52:52] eval A_clean_ext exit 0
+[2026-11-18 21:52:52] eval B_noisy_ext start (test_conditions_ext.csv)
+[2026-11-18 21:54:40] eval B_noisy_ext exit 0
+[2026-11-18 21:54:40] eval B2_lr1e-4_ext start (test_conditions_ext.csv)
+[2026-11-18 21:56:26] eval B2_lr1e-4_ext exit 0
+[2026-11-18 21:56:26] lr for 460 h runs: 1.0e-4
+[2026-11-18 21:56:26] train B460 start --set lr=1.0e-4
+[2026-11-18 23:32:38] queue part 2 stopped by hand before B460_rev; replaced by ai_work/run_m5_day2.sh (B960_rev plan)

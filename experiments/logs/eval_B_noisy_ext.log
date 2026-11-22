@@ -1,0 +1,30 @@
+38913 rows, 75.2 h audio
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 13787.26it/s]
+[W1118 21:53:04.012394032 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5186256896 bytes (free: 5192810496, total: 47667740672).
+[W1118 21:53:17.606401987 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5242880000 bytes (free: 4467195904, total: 47667740672).
+inference 96s (2830x real time)
+snr_db                       -5       0      10       5   clean
+ls_split   noise_type                                          
+test.clean esc50         0.2933     NaN     NaN     NaN     NaN
+           pink          0.4376     NaN     NaN     NaN     NaN
+           reverb+clean     NaN     NaN     NaN     NaN  0.1256
+           reverb+esc50     NaN  0.3882  0.1978  0.2680     NaN
+           white         0.4904     NaN     NaN     NaN     NaN
+test.other esc50         0.4712     NaN     NaN     NaN     NaN
+           pink          0.6693     NaN     NaN     NaN     NaN
+           reverb+clean     NaN     NaN     NaN     NaN  0.2784
+           reverb+esc50     NaN  0.5623  0.4012  0.4596     NaN
+           white         0.7249     NaN     NaN     NaN     NaN
+{
+  "model": "B_noisy_ext",
+  "model_path": "experiments/runs/B_noisy/best",
+  "rows": 38913,
+  "audio_hours": 75.21509955555557,
+  "inference_sec": 95.68848538398743,
+  "wer_reverb+esc50_0_5dB": 0.41932824369275346,
+  "wer_esc50_m5dB": 0.3820661653275384,
+  "wer_white_m5dB": 0.607344713540922,
+  "wer_pink_m5dB": 0.553169587967861,
+  "word_auroc_conf_min": 0.8911022705751507,
+  "word_auroc_conf_mean": 0.9189348919099185
+}

@@ -1,0 +1,11 @@
+[2026-11-17 12:09:53] eval ref_base960h start
+[2026-11-17 12:14:00] eval ref_base960h exit 0
+[2026-11-17 12:14:00] train B_noisy start
+[2026-11-17 16:07:34] train B_noisy exit 0
+[2026-11-17 16:07:34] eval B_noisy start
+[2026-11-17 16:11:31] eval B_noisy exit 0
+[2026-11-17 16:11:31] train A_clean start
+[2026-11-17 20:04:20] train A_clean exit 0
+[2026-11-17 20:04:20] eval A_clean start
+[2026-11-17 20:08:19] eval A_clean exit 0
+[2026-11-17 20:08:19] PIPELINE DONE

@@ -1,0 +1,5 @@
+[2026-11-18 17:46:37] train B2_lr1e-4 start
+[2026-11-18 21:47:08] train B2_lr1e-4 exit 0
+[2026-11-18 21:47:08] eval B2_lr1e-4 start
+[2026-11-18 21:51:04] eval B2_lr1e-4 exit 0
+[2026-11-18 21:51:04] M5 QUEUE DONE

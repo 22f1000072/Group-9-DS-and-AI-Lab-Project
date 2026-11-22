@@ -1,0 +1,27 @@
+[librispeech] 292367 utterances, 982.3 h (0s)
+{
+  "total_utts": 292367,
+  "decode_failed": 0,
+  "empty_text": 0,
+  "text_changed_by_norm": 0,
+  "non_16k": 0,
+  "multi_channel": 0,
+  "ctc_infeasible": 0,
+  "duplicate_ids": 0,
+  "train_before_filter": 28539,
+  "train_after_filter": 28538,
+  "train_dropped_too_long": 1,
+  "train_dropped_too_short": 0,
+  "train_hours": 100.58406744444444,
+  "shared_speakers_train_valid": 0,
+  "shared_speakers_train_test": 0,
+  "shared_speakers_valid_test": 0,
+  "train_utts": 28538,
+  "valid_utts": 5567,
+  "valid_hours": 10.508996333333334,
+  "test_utts": 5559,
+  "test_hours": 10.745014222222222,
+  "valid_eval_rows": 4000,
+  "test_condition_rows": 94503
+}
+[done] 2s -> /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/processed

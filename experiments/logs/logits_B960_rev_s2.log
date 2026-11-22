@@ -1,0 +1,6 @@
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 13097.02it/s]
+[W1119 14:39:14.703895562 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5240782848 bytes (free: 5111021568, total: 47667740672).
+4000 utts, 1352236 frames, 15s -> /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/processed/logits/B960_rev_s2
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 13561.23it/s]
+[W1119 14:39:49.989437185 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5240782848 bytes (free: 4783865856, total: 47667740672).
+94503 utts, 32819180 frames, 226s -> /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/processed/logits/B960_rev_s2

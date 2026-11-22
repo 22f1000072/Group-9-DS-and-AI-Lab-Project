@@ -1,0 +1,58 @@
+Loading the LM will be faster if you build a binary file.
+Reading /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/raw/librispeech_lm/4-gram.arpa
+----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90---95--100
+****************************************************************************************************
+LM 4-gram.arpa loaded in 41s
+{
+ "model": "B960_rev_s2_lm4",
+ "set": "dev",
+ "rows": 4000,
+ "decode_sec": 1.5041,
+ "decoder": "lm",
+ "lm": "4gram",
+ "alpha": 0.8,
+ "beta": 2.0,
+ "beam": 50,
+ "wer_validation.clean_clean": 0.0274,
+ "wer_validation.other_clean": 0.0645,
+ "wer_clean_pooled": 0.0448,
+ "wer_noisy_pooled": 0.0934,
+ "wer_white_0_5dB": 0.1662,
+ "wer_musan_music_0_5dB": 0.1348,
+ "wer_musan_noise_0_5dB": 0.087,
+ "wer_pink_0_5dB": 0.1268,
+ "word_auroc_conf_mean": 0.8649,
+ "word_auroc_conf_min": 0.8298
+}
+Loading the LM will be faster if you build a binary file.
+Reading /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/raw/librispeech_lm/4-gram.arpa
+----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90---95--100
+****************************************************************************************************
+LM 4-gram.arpa loaded in 41s
+{
+ "model": "B960_rev_s2_lm4",
+ "set": "test",
+ "rows": 94503,
+ "decode_sec": 23.9735,
+ "decoder": "lm",
+ "lm": "4gram",
+ "alpha": 0.8,
+ "beta": 2.0,
+ "beam": 50,
+ "wer_test.clean_clean": 0.0297,
+ "wer_test.other_clean": 0.0706,
+ "wer_clean_pooled": 0.0501,
+ "wer_noisy_pooled": 0.0922,
+ "wer_white_0_5dB": 0.1862,
+ "wer_pink_0_5dB": 0.1407,
+ "wer_brown_0_5dB": 0.0513,
+ "wer_esc50_0_5dB": 0.1181,
+ "word_auroc_conf_mean": 0.865,
+ "word_auroc_conf_min": 0.8318
+}
+dev words 74967 (err 0.060), test words 1772246 (err 0.076)
+raw       {'auroc': 0.865, 'ece': 0.0356, 'brier': 0.0574, 'recall_at_30pct': 0.8099, 'precision_at_0.5': np.float64(0.736), 'recall_at_0.5': np.float64(0.0355), 'flagged_frac_at_0.5': 0.0037, 'error_rate': 0.0762, 'n_words': 1772246}
+isotonic  {'auroc': 0.8647, 'ece': 0.0067, 'brier': 0.0532, 'recall_at_30pct': 0.8091, 'precision_at_0.5': np.float64(0.5997), 'recall_at_0.5': np.float64(0.2719), 'flagged_frac_at_0.5': 0.0346, 'error_rate': 0.0762, 'n_words': 1772246}
+logreg    {'auroc': 0.8914, 'ece': 0.0072, 'brier': 0.0492, 'recall_at_30pct': 0.8671, 'precision_at_0.5': np.float64(0.6661), 'recall_at_0.5': np.float64(0.3147), 'flagged_frac_at_0.5': 0.036, 'error_rate': 0.0762, 'n_words': 1772246}
+gbm       {'auroc': 0.8913, 'ece': 0.0066, 'brier': 0.0485, 'recall_at_30pct': 0.8637, 'precision_at_0.5': np.float64(0.6951), 'recall_at_0.5': np.float64(0.3086), 'flagged_frac_at_0.5': 0.0339, 'error_rate': 0.0762, 'n_words': 1772246}
+selected: logreg

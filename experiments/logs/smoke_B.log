@@ -1,0 +1,64 @@
+{
+  "name": "B_noisy_smoke",
+  "init_model": "facebook/wav2vec2-base",
+  "augment": true,
+  "p_clean": 0.2,
+  "snr_min": 0.0,
+  "snr_max": 20.0,
+  "max_steps": 80,
+  "lr": 0.0001,
+  "warmup_ratio": 0.1,
+  "weight_decay": 0.005,
+  "max_grad_norm": 1.0,
+  "max_batch_seconds": 320,
+  "grad_accum": 1,
+  "eval_every": 1000000000,
+  "save_every": 1000000000,
+  "log_every": 10,
+  "num_workers": 24,
+  "seed": 42,
+  "mask_time_prob": 0.05,
+  "mask_time_length": 10,
+  "layerdrop": 0.05,
+  "attention_dropout": 0.1,
+  "hidden_dropout": 0.1,
+  "feat_proj_dropout": 0.0,
+  "final_dropout": 0.0,
+  "freeze_feature_encoder": true,
+  "eval_max_seconds": 600.0,
+  "max_train_utts": 4000,
+  "smoke_steps": 80
+}
+train utts 4000 (14.1 h), 165 batches/epoch, ~0.5 epochs; dev rows 200
+Loading weights:   0%|          | 0/211 [00:00<?, ?it/s]Loading weights: 100%|██████████| 211/211 [00:00<00:00, 46337.41it/s]
+[transformers] [1mWav2Vec2ForCTC LOAD REPORT[0m from: facebook/wav2vec2-base
+Key                          | Status     | 
+-----------------------------+------------+-
+project_q.bias               | UNEXPECTED | 
+quantizer.weight_proj.bias   | UNEXPECTED | 
+quantizer.weight_proj.weight | UNEXPECTED | 
+quantizer.codevectors        | UNEXPECTED | 
+project_q.weight             | UNEXPECTED | 
+project_hid.bias             | UNEXPECTED | 
+project_hid.weight           | UNEXPECTED | 
+lm_head.bias                 | MISSING    | 
+lm_head.weight               | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+/home/user1/DSAI/venvs/group9-asr/lib/python3.14/site-packages/transformers/modeling_utils.py:3280: FutureWarning: `gradient_checkpointing_disable` is deprecated and will be removed in v6. Use `activation_checkpointing_disable` instead.
+  warnings.warn(
+step      1 ep 0 loss 8.2690 lr 1.25e-05 gn 4.25 8.466s/step 37 audio-s/s mem 5.6GB
+step     10 ep 0 loss 7.6886 lr 9.72e-05 gn 14.86 0.194s/step 1448 audio-s/s mem 7.3GB
+step     20 ep 0 loss 3.2223 lr 8.33e-05 gn 2.48 0.163s/step 1918 audio-s/s mem 7.4GB
+step     30 ep 0 loss 3.0043 lr 6.94e-05 gn 1.80 0.165s/step 1893 audio-s/s mem 7.4GB
+step     40 ep 0 loss 3.1953 lr 5.56e-05 gn 0.79 0.159s/step 1927 audio-s/s mem 7.4GB
+step     50 ep 0 loss 3.0141 lr 4.17e-05 gn 0.45 0.157s/step 1980 audio-s/s mem 7.4GB
+step     60 ep 0 loss 2.9208 lr 2.78e-05 gn 0.65 0.161s/step 1901 audio-s/s mem 7.4GB
+step     70 ep 0 loss 2.9743 lr 1.39e-05 gn 0.76 0.160s/step 1968 audio-s/s mem 7.4GB
+step     80 ep 0 loss 2.9183 lr 0.00e+00 gn 0.54 0.154s/step 1915 audio-s/s mem 7.4GB
+[eval 80] {"wer_clean": 1.0, "cer_clean": 1.0, "wer_noisy": 1.0, "cer_noisy": 1.0, "wer_avg": 1.0, "empty_hyp_frac": 1.0, "eval_sec": 1.9534, "example_ref": "HAT TOO CLOSE TO ME I COULDN'T GET IT EXPLAINED CHUNKY THE BOYS ROARED", "example_hyp": "", "step": 80}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  3.32it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  3.32it/s]
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  3.81it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  3.81it/s]
+[done] best dev wer_avg 1.0000 -> /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/ai_work/outputs/runs/B_noisy_smoke

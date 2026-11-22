@@ -1,0 +1,30 @@
+38913 rows, 75.2 h audio
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 12966.61it/s]
+[W1119 14:37:29.871951293 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5186256896 bytes (free: 5192810496, total: 47667740672).
+[W1119 14:37:42.521041856 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5242880000 bytes (free: 4467195904, total: 47667740672).
+inference 96s (2827x real time)
+snr_db                       -5       0      10       5   clean
+ls_split   noise_type                                          
+test.clean esc50         0.2378     NaN     NaN     NaN     NaN
+           pink          0.3651     NaN     NaN     NaN     NaN
+           reverb+clean     NaN     NaN     NaN     NaN  0.0770
+           reverb+esc50     NaN  0.2812  0.1272  0.1795     NaN
+           white         0.4163     NaN     NaN     NaN     NaN
+test.other esc50         0.3882     NaN     NaN     NaN     NaN
+           pink          0.5803     NaN     NaN     NaN     NaN
+           reverb+clean     NaN     NaN     NaN     NaN  0.1747
+           reverb+esc50     NaN  0.4342  0.2740  0.3339     NaN
+           white         0.6444     NaN     NaN     NaN     NaN
+{
+  "model": "B960_rev_s2_ext",
+  "model_path": "experiments/runs/B960_rev_s2/best",
+  "rows": 38913,
+  "audio_hours": 75.21509955555557,
+  "inference_sec": 95.79229760169983,
+  "wer_reverb+esc50_0_5dB": 0.3070177946797053,
+  "wer_esc50_m5dB": 0.31280321009540696,
+  "wer_white_m5dB": 0.5301232379264004,
+  "wer_pink_m5dB": 0.4724692381742106,
+  "word_auroc_conf_min": 0.9120705884139737,
+  "word_auroc_conf_mean": 0.9282949586283765
+}

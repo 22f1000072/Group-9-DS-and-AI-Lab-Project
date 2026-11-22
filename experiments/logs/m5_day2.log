@@ -1,0 +1,35 @@
+[2026-11-18 23:32:38] waiting for B460 (pid 1853070)
+[2026-11-19 06:25:40] day 2 start
+[2026-11-19 06:25:42] train B460 already finished (80000 steps)
+[2026-11-19 06:25:42] eval B460 start (test_conditions.csv)
+[2026-11-19 06:29:38] eval B460 exit 0
+[2026-11-19 06:29:38] eval B460_ext start (test_conditions_ext.csv)
+[2026-11-19 06:31:25] eval B460_ext exit 0
+[2026-11-19 06:31:25] logits B460/dev start
+[2026-11-19 06:31:44] logits B460/dev exit 0
+[2026-11-19 06:31:44] logits B460/test start
+[2026-11-19 06:35:37] logits B460/test exit 0
+[2026-11-19 06:35:37] train B960_rev start
+[2026-11-19 06:38:14] lm+detector B460 exit 0
+[2026-11-19 10:29:38] train B960_rev exit 0
+[2026-11-19 10:29:38] eval B960_rev start (test_conditions.csv)
+[2026-11-19 10:33:34] eval B960_rev exit 0
+[2026-11-19 10:33:34] eval B960_rev_ext start (test_conditions_ext.csv)
+[2026-11-19 10:35:20] eval B960_rev_ext exit 0
+[2026-11-19 10:35:20] logits B960_rev/dev start
+[2026-11-19 10:35:40] logits B960_rev/dev exit 0
+[2026-11-19 10:35:40] logits B960_rev/test start
+[2026-11-19 10:39:33] logits B960_rev/test exit 0
+[2026-11-19 10:39:33] train B960_rev_s2 start
+[2026-11-19 10:42:09] lm+detector B960_rev exit 0
+[2026-11-19 14:33:21] train B960_rev_s2 exit 0
+[2026-11-19 14:33:21] eval B960_rev_s2 start (test_conditions.csv)
+[2026-11-19 14:37:17] eval B960_rev_s2 exit 0
+[2026-11-19 14:37:17] eval B960_rev_s2_ext start (test_conditions_ext.csv)
+[2026-11-19 14:39:04] eval B960_rev_s2_ext exit 0
+[2026-11-19 14:39:04] logits B960_rev_s2/dev start
+[2026-11-19 14:39:23] logits B960_rev_s2/dev exit 0
+[2026-11-19 14:39:23] logits B960_rev_s2/test start
+[2026-11-19 14:43:16] logits B960_rev_s2/test exit 0
+[2026-11-19 14:45:50] lm+detector B960_rev_s2 exit 0
+[2026-11-19 14:45:50] M5 DAY 2 DONE
