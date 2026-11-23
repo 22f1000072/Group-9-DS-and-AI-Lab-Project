@@ -1,0 +1,52 @@
+{
+  "weight": 8.0,
+  "max_cost": 8.0,
+  "oov_logp": -5.0,
+  "clips": 38913,
+  "ci95_spoken_acc_gain_accept_all_pts_noisy": [
+    21.524656102820522,
+    23.786340310211614
+  ],
+  "ci95_spoken_acc_gain_oracle_pts_noisy": [
+    21.367506560917953,
+    23.595352536411355
+  ],
+  "noisy": {
+    "clips": 33354.0,
+    "spoken_terms": 21822.0,
+    "suggestions_per_min": 1.2925891582502225,
+    "suggestion_precision_%": 96.94,
+    "spoken_acc_off_%": 58.52809091742279,
+    "unspoken_rate_off_%": 0.0010841921684153137,
+    "wer_off_%": 7.8949793014928975,
+    "spoken_acc_boosted_%": 82.00439923013472,
+    "unspoken_rate_boosted_%": 0.02121918958184257,
+    "wer_boosted_%": 6.868155434192091,
+    "spoken_acc_accept_all_%": 81.1428833287508,
+    "unspoken_rate_accept_all_%": 0.019515459031475647,
+    "wer_accept_all_%": 6.920735678634629,
+    "spoken_acc_oracle_%": 80.9824947300889,
+    "unspoken_rate_oracle_%": 0.004026999482685451,
+    "wer_oracle_%": 6.913746159735923,
+    "extra_decode_ms_per_clip": 23.96164519172087
+  },
+  "clean": {
+    "clips": 5559.0,
+    "spoken_terms": 3637.0,
+    "suggestions_per_min": 1.186596847273704,
+    "suggestion_precision_%": 98.95424836601308,
+    "spoken_acc_off_%": 63.89881770690129,
+    "unspoken_rate_off_%": 0.0009293075729274118,
+    "wer_off_%": 5.217358152479532,
+    "spoken_acc_boosted_%": 85.86747319219137,
+    "unspoken_rate_boosted_%": 0.006505153010491882,
+    "wer_boosted_%": 4.264241939019625,
+    "spoken_acc_accept_all_%": 85.15259829529832,
+    "unspoken_rate_accept_all_%": 0.005575845437564471,
+    "wer_accept_all_%": 4.298554122704181,
+    "spoken_acc_oracle_%": 85.09760791861424,
+    "unspoken_rate_oracle_%": 0.0018586151458548235,
+    "wer_oracle_%": 4.2947416578503415,
+    "extra_decode_ms_per_clip": 16.33136080104518
+  }
+}

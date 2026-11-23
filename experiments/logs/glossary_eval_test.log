@@ -1,0 +1,60 @@
+test: 38913 clips, weights [8.0], 96 workers
+  2000/38913  1 s
+  4000/38913  2 s
+  6000/38913  3 s
+  8000/38913  3 s
+  10000/38913  4 s
+  12000/38913  4 s
+  14000/38913  5 s
+  16000/38913  6 s
+  18000/38913  6 s
+  20000/38913  7 s
+  22000/38913  7 s
+  24000/38913  8 s
+  26000/38913  9 s
+  28000/38913  10 s
+  30000/38913  11 s
+  32000/38913  12 s
+  34000/38913  13 s
+  36000/38913  14 s
+  38000/38913  16 s
+decoded in 18 s
+                                                                 0          0
+clips                                                      33354.0     5559.0
+spoken_terms                                               21822.0     3637.0
+suggestions_per_min                                       1.292589   1.186597
+suggestion_precision_%                                       96.94  98.954248
+spoken_acc_off_%                                         58.528091  63.898818
+unspoken_rate_off_%                                       0.001084   0.000929
+wer_off_%                                                 7.894979   5.217358
+spoken_acc_boosted_%                                     82.004399  85.867473
+unspoken_rate_boosted_%                                   0.021219   0.006505
+wer_boosted_%                                             6.868155   4.264242
+spoken_acc_accept_all_%                                  81.142883  85.152598
+unspoken_rate_accept_all_%                                0.019515   0.005576
+wer_accept_all_%                                          6.920736   4.298554
+spoken_acc_oracle_%                                      80.982495  85.097608
+unspoken_rate_oracle_%                                    0.004027   0.001859
+wer_oracle_%                                              6.913746   4.294742
+extra_decode_ms_per_clip                                 23.961645  16.331361
+condition                   unseen noise (ESC-50 + brown, 0-10 dB)      clean
+95 % CI gain (accept all): (21.524656102820522, 23.786340310211614)  (oracle): (21.367506560917953, 23.595352536411355)
+                                              0                         1
+kind                        LM-known terms only  contains LM-unknown term
+clips                                   13392.0                    2286.0
+spoken_terms                            18246.0                    3576.0
+suggestions_per_min                    1.713081                  4.598694
+suggestion_precision_%                97.945817                 97.794581
+spoken_acc_off_%                      64.989587                 25.559284
+unspoken_rate_off_%                      0.0004                  0.014203
+wer_off_%                              8.137006                 13.801498
+spoken_acc_boosted_%                  83.612847                 73.797539
+unspoken_rate_boosted_%                0.022011                  0.054443
+wer_boosted_%                          6.811715                  9.511236
+spoken_acc_accept_all_%               83.157952                 70.861298
+unspoken_rate_accept_all_%              0.02081                  0.049709
+wer_accept_all_%                       6.855976                  9.883895
+spoken_acc_oracle_%                   83.059301                 70.385906
+unspoken_rate_oracle_%                 0.005203                  0.018937
+wer_oracle_%                           6.849021                  9.872659
+extra_decode_ms_per_clip              32.109442                  42.18984

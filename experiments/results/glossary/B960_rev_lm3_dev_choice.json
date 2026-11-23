@@ -1,0 +1,6 @@
+{
+  "weight": 8.0,
+  "max_cost": 8.0,
+  "oov_logp": -5.0,
+  "rule": "smallest weight, then smallest max_cost, within 1 pt of the best accept-all spoken-term accuracy, s.t. unspoken-term rate <= 0.1 %, suggestion precision >= 95 %, WER <= off"
+}
