@@ -1,0 +1,7 @@
+{
+  "weight": 8.0,
+  "max_cost": 4.0,
+  "near_dist": 0.1,
+  "near_cost": 16.0,
+  "rule": "among settings with unspoken-term rate <= 0.1 %, suggestion precision >= 95 % and WER <= off: the highest accept-all spoken-term accuracy; within 1 pt of it, the highest suggestion precision (rule fixed before running the grid)"
+}

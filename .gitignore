@@ -26,5 +26,5 @@ experiments/runs/*/last/
 *.bin
 
 # Large generated outputs (per-utterance predictions, logs); summaries/metrics CSV+JSON are kept
-experiments/logs/
+
 experiments/results/**/*.parquet

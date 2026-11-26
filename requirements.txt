@@ -51,5 +51,21 @@ kenlm==0.3.0
 pygtrie==2.6.2
 sortedcontainers==2.4.0
 
-# --- Planned demo (not used yet; uncomment when the Gradio app is added) ---
-# gradio
+# --- Transcription assistant app (deployment/app) ---
+gradio==6.32.0
+gradio_client==2.7.2
+fastapi==0.165.0
+starlette==1.10.0
+uvicorn==0.54.0
+python-multipart==0.0.34
+safehttpx==0.1.7
+groovy==0.1.2
+hf-gradio==0.4.1
+orjson==3.13.0
+pydub==0.25.1
+audioop-lts==0.2.2
+brotli==1.2.1
+opentelemetry-api==1.45.2
+pytz==2026.6
+semantic-version==2.10.0
+tomlkit==0.14.0

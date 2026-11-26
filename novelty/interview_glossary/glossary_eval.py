@@ -17,9 +17,15 @@ Metrics: spoken-term accuracy (% of spoken glossary-term occurrences transcribed
 (% of (clip, unspoken term) pairs where the term appears in the output), suggestions per minute, suggestion
 precision, WER, decoding time.
 
+Two versions of the suggestion step are compared on the same decodes:
+  v1 : one suggestion per differing stretch that contains a complete glossary term (first version)
+  v2 : one suggestion per term occurrence + "near" matches (spans spelled close to a term, checked against the audio)
+
 Usage:
-  python scripts/glossary_eval.py --set dev  --grid            # choose weight and max acoustic cost on dev
-  python scripts/glossary_eval.py --set test --weight W --max-cost C   # held-out test, unseen noise + clean
+  python novelty/interview_glossary/glossary_eval.py --set dev  --grid            # v1: choose weight and max acoustic cost on dev
+  python novelty/interview_glossary/glossary_eval.py --set test --weight W --max-cost C   # v1: held-out test, unseen noise + clean
+  python novelty/interview_glossary/glossary_eval.py --set dev  --grid-v2         # v2: choose max cost / near distance / near cost
+  python novelty/interview_glossary/glossary_eval.py --set test --v2              # v1 and v2 on the held-out test (chosen settings)
 Outputs -> experiments/results/glossary/
 """
 import argparse
@@ -32,8 +38,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from group9_ds_ai_lab.assistant import glossary as G  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import glossary as G  # noqa: E402
 from group9_ds_ai_lab.assistant.engine import LMS, _arpa_unigrams, _ctc_labels  # noqa: E402
 from group9_ds_ai_lab.inference.decode import FRAME_SEC  # noqa: E402
 from group9_ds_ai_lab.utils.paths import EVAL, PROCESSED  # noqa: E402
@@ -105,9 +112,16 @@ def work(i):
     for wgt in _G["weights"]:
         t0 = time.perf_counter()
         bst = spans_to_words(G.boosted_beam(dec, lp, terms, beam=beam, weight=wgt, oov_logp=_G["oov_logp"]))
-        kept, _ = G.find_suggestions(std, bst, terms, lp, max_cost=np.inf)
-        res["runs"][wgt] = {"bst": [w["word"] for w in bst], "t": time.perf_counter() - t0,
-                            "sug": [(s.std_start, s.std_end, s.suggested, s.terms, float(s.support)) for s in kept]}
+        if _G.get("v2"):
+            c1 = G.candidates(std, bst, terms, lp, split=False, near=False)
+            t1 = time.perf_counter()
+            c2 = G.candidates(std, bst, terms, lp, split=True, near=True)
+            res["runs"][wgt] = {"bst": [w["word"] for w in bst], "t": t1 - t0, "t_v2": time.perf_counter() - t0,
+                                "cands": {"v1": c1, "v2": c2}}
+        else:
+            kept, _ = G.find_suggestions(std, bst, terms, lp, max_cost=np.inf, split=False, near=False)
+            res["runs"][wgt] = {"bst": [w["word"] for w in bst], "t": time.perf_counter() - t0,
+                                "sug": [(s.std_start, s.std_end, s.suggested, s.terms, float(s.support)) for s in kept]}
     return res
 
 
@@ -119,7 +133,7 @@ def count_term(words, term):
 
 def apply(std, sugs):
     out = list(std)
-    for s0, s1, sug, _, _ in sorted(sugs, key=lambda s: -s[0]):
+    for s0, s1, sug, *_ in sorted(sugs, key=lambda s: -s[0]):
         out[s0:s1] = sug.split()
     return out
 
@@ -132,19 +146,27 @@ def edits(ref, hyp):
     return o.substitutions + o.deletions + o.insertions
 
 
-def score(meta, results, gloss, wgt, max_cost):
+def score(meta, results, gloss, wgt, max_cost, v2=None):
+    """v2: None (v1 results), or (version, max_cost, near_dist, near_cost) to select from stored candidates."""
     rows = []
     for r in results:
         m = meta.iloc[r["i"]]
         ref = m.text.split()
         spoken, unspoken = gloss[m.audio_id]
         run = r["runs"][wgt]
-        sugs = [s for s in run["sug"] if s[4] >= -max_cost]
+        if v2 is None:
+            sugs = [s for s in run["sug"] if s[4] >= -max_cost]
+        else:
+            ver, mc, nd, nc = v2
+            kept, _ = G.select(run["cands"][ver], mc, nd, nc)
+            sugs = [(s.std_start, s.std_end, s.suggested, s.terms, float(s.support), s.kind) for s in kept]
         e_std = edits(m.text, r["std"])
         good = [s for s in sugs if edits(m.text, apply(r["std"], [s])) < e_std]
         hyps = {"off": r["std"], "boosted": run["bst"], "accept_all": apply(r["std"], sugs), "oracle": apply(r["std"], good)}
         row = {"audio_id": m.audio_id, "noise_type": m.noise_type, "snr_db": m.snr_db, "dur": m.duration,
-               "n_ref": len(ref), "n_sug": len(sugs), "n_sug_good": len(good), "t_std": r["t_std"], "t_gloss": run["t"]}
+               "n_ref": len(ref), "n_sug": len(sugs), "n_sug_good": len(good), "t_std": r["t_std"],
+               "t_gloss": run["t_v2"] if (v2 is not None and v2[0] == "v2") else run["t"],
+               "n_sug_near": sum(len(s) > 5 and s[5] == "near" for s in sugs)}
         for k, h in hyps.items():
             row[f"spk_ref_{k}"] = sum(count_term(ref, t) for t in spoken)
             row[f"spk_ok_{k}"] = sum(min(count_term(ref, t), count_term(h, t)) for t in spoken)
@@ -194,6 +216,8 @@ def main():
     ap.add_argument("--beta", type=float, default=2.0)
     ap.add_argument("--beam", type=int, default=50)
     ap.add_argument("--grid", action="store_true")
+    ap.add_argument("--grid-v2", action="store_true")
+    ap.add_argument("--v2", action="store_true", help="test: compare v1 and v2 (v2 settings from the dev choice)")
     ap.add_argument("--weight", type=float, default=G.DEFAULT_WEIGHT)
     ap.add_argument("--max-cost", type=float, default=G.DEFAULT_MAX_COST)
     ap.add_argument("--oov-logp", type=float, default=G.DEFAULT_OOV_LOGP)
@@ -229,6 +253,7 @@ def main():
     _G["gloss"] = gloss
     weights = [0.0, 1.0, 2.0, 3.0, 5.0, 8.0, 12.0, 16.0, 20.0] if a.grid else [a.weight]
     _G["weights"] = weights
+    _G["v2"] = a.grid_v2 or a.v2
     print(f"{a.set}: {len(idx)} clips, weights {weights}, {a.workers} workers", flush=True)
 
     t0 = time.time()
@@ -242,6 +267,8 @@ def main():
     print(f"decoded in {time.time() - t0:.0f} s", flush=True)
 
     tag = f"{a.name}_lm{a.lm[0]}_{a.set}"
+    if _G["v2"]:
+        return run_v2(a, meta, results, gloss, weights[0], tag)
     with open(OUT / f"{tag}_glossaries.json", "w") as f:
         json.dump({k: {"spoken": v[0], "unspoken": v[1]} for k, v in gloss.items()
                    if k in set(meta.audio_id.iloc[idx])}, f)
@@ -295,6 +322,76 @@ def main():
     print(pd.concat([overall_noisy, overall_clean]).T.to_string())
     print("95 % CI gain (accept all):", ci, " (oracle):", ci_or)
     print(by_kind.T.to_string())
+
+
+# ------------------------------------------------------------------------------------------ v2 (step 3)
+V2_RULE = ("among settings with unspoken-term rate <= 0.1 %, suggestion precision >= 95 % and WER <= off: the "
+           "highest accept-all spoken-term accuracy; within 1 pt of it, the highest suggestion precision "
+           "(rule fixed before running the grid)")
+
+
+def _score_job(args):
+    w, cfg = args
+    return cfg, summarize(score(_G["meta"], _G["results"], _G["gloss_all"], w, None, v2=cfg)).iloc[0].to_dict()
+
+
+def run_v2(a, meta, results, gloss, w, tag):
+    _G["meta"], _G["results"], _G["gloss_all"] = meta, results, gloss
+    if a.grid_v2:
+        cfgs = [("v1", 8.0, -1.0, 0.0)] + [("v2", mc, nd, nc) for mc in (4.0, 8.0, 12.0, 16.0)
+                                           for nd in (-1.0, 0.1, 0.2, 0.3, 0.4) for nc in (2.0, 4.0, 8.0, 12.0, 16.0)]
+        with mp.get_context("fork").Pool(min(a.workers, len(cfgs))) as pool:
+            out = pool.map(_score_job, [(w, c) for c in cfgs])
+        rows = [{"version": c[0], "max_cost": c[1], "near_dist": c[2], "near_cost": c[3], **s} for c, s in out]
+        grid = pd.DataFrame(rows)
+        grid.to_csv(OUT / f"{tag}_grid_v2.csv", index=False)
+        v2 = grid[grid.version == "v2"]
+        ok = v2[(v2["unspoken_rate_accept_all_%"] <= 0.1) & (v2["suggestion_precision_%"] >= 95)
+                & (v2["wer_accept_all_%"] <= v2["wer_off_%"])]
+        ok = ok if len(ok) else v2
+        top = ok["spoken_acc_accept_all_%"].max()
+        best = ok[ok["spoken_acc_accept_all_%"] >= top - 1.0].sort_values(
+            ["suggestion_precision_%", "spoken_acc_accept_all_%"], ascending=False).iloc[0]
+        cols = ["version", "max_cost", "near_dist", "near_cost", "spoken_acc_off_%", "spoken_acc_accept_all_%",
+                "spoken_acc_oracle_%", "unspoken_rate_accept_all_%", "suggestion_precision_%", "suggestions_per_min",
+                "wer_off_%", "wer_accept_all_%"]
+        pd.set_option("display.width", 250)
+        print(grid[cols].sort_values("spoken_acc_accept_all_%", ascending=False).head(25).to_string(index=False))
+        print("v1:", grid[grid.version == "v1"][cols].to_string(index=False))
+        print("chosen:", best[cols].to_dict())
+        json.dump({"weight": w, "max_cost": float(best.max_cost), "near_dist": float(best.near_dist),
+                   "near_cost": float(best.near_cost), "rule": V2_RULE},
+                  open(OUT / f"{tag}_choice_v2.json", "w"), indent=2)
+        return
+    ch = json.load(open(OUT / f"{a.name}_lm{a.lm[0]}_dev_choice_v2.json"))
+    parts = []
+    for ver, cfg in (("v1", ("v1", a.max_cost, -1.0, 0.0)),
+                     ("v2", ("v2", ch["max_cost"], ch["near_dist"], ch["near_cost"]))):
+        df = score(meta, results, gloss, w, None, v2=cfg)
+        df["condition"] = df.noise_type + df.snr_db.map(lambda s: "" if pd.isna(s) else f" {int(s)} dB")
+        noisy = df[df.noise_type != "clean"]
+        oov = noisy.assign(kind=np.where(noisy.spk_oov > 0, "contains LM-unknown term", "LM-known terms only"))
+        res = pd.concat([summarize(noisy).assign(condition="unseen noise (ESC-50 + brown, 0-10 dB)"),
+                         summarize(df[df.noise_type == "clean"]).assign(condition="clean"),
+                         summarize(df, "condition"),
+                         summarize(oov[oov.spk_ref_off > 0], "kind").rename(columns={"kind": "condition"})
+                         .assign(condition=lambda d: "unseen noise, " + d.condition)])
+        res.insert(0, "version", ver)
+        ci = bootstrap_ci(noisy, "spk_ok_off", "spk_ok_accept_all", "spk_ref_off")
+        res["ci95_gain_accept_all_noisy"] = str(tuple(round(x, 2) for x in ci))
+        res["near_share_%"] = 100 * df.n_sug_near.sum() / max(df.n_sug.sum(), 1)
+        parts.append(res)
+        df.to_parquet(OUT / f"{tag}_clips_{ver}.parquet", index=False)
+    out = pd.concat(parts)
+    out.to_csv(OUT / f"{tag}_v1_vs_v2.csv", index=False)
+    json.dump({"v1": {"weight": w, "max_cost": a.max_cost}, "v2": ch}, open(OUT / f"{tag}_v1_vs_v2_settings.json", "w"),
+              indent=2)
+    cols = ["version", "condition", "spoken_acc_off_%", "spoken_acc_accept_all_%", "spoken_acc_oracle_%",
+            "unspoken_rate_off_%", "unspoken_rate_accept_all_%", "suggestion_precision_%", "suggestions_per_min",
+            "wer_off_%", "wer_accept_all_%", "extra_decode_ms_per_clip"]
+    pd.set_option("display.width", 250)
+    print(out[cols].to_string(index=False))
+    print(out.groupby("version")["ci95_gain_accept_all_noisy"].first())
 
 
 if __name__ == "__main__":

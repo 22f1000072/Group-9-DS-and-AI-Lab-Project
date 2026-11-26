@@ -7,8 +7,6 @@ Pipeline (same components as the evaluated system):
   3. beam search with a KenLM n-gram LM (pyctcdecode), word times from the CTC frames (20 ms)
   4. word error detector (gradient-boosted trees trained on the dev set, scripts/error_detector.py)
   5. flags = words with P(error) >= threshold; replay window = word start - 1 s ... word end + 1 s (objective O4)
-  6. optional interview glossary (novelty): a second, glossary-boosted beam search on the same log-probabilities;
-     where it differs on a glossary term, a suggestion (with times) goes to the review queue (assistant/glossary.py)
 """
 from __future__ import annotations
 
@@ -42,7 +40,6 @@ class Word:
     flagged: bool
     replay_start: float
     replay_end: float
-    glossary: bool = False  # part of a glossary term in the standard transcript
 
 
 @dataclass
@@ -52,8 +49,6 @@ class Transcript:
     duration_s: float
     timings_s: dict = field(default_factory=dict)
     settings: dict = field(default_factory=dict)
-    glossary: list = field(default_factory=list)       # normalised glossary terms used
-    suggestions: list = field(default_factory=list)    # glossary suggestions (dicts, see glossary.Suggestion)
 
     @property
     def rtf(self) -> float:
@@ -166,15 +161,7 @@ class Assistant:
         self.settings = {"model": str(src), "lm": lm, "threshold": threshold, "threads": threads, "quantize": quantize,
                          "device": device, "window_s": window_s, "context_s": context_s, "beam": beam,
                          "alpha": alpha, "beta": beta, "replay_s": replay_s}
-        from group9_ds_ai_lab.assistant import glossary as G
-        self.glossary_params = {"weight": G.DEFAULT_WEIGHT, "oov_logp": G.DEFAULT_OOV_LOGP}
-        self.glossary_max_cost = G.DEFAULT_MAX_COST
         self.load_time_s = time.time() - t0
-
-    def parse_glossary(self, raw):
-        """User text / list -> (terms, warnings); at most 20 terms."""
-        from group9_ds_ai_lab.assistant.glossary import parse_glossary
-        return parse_glossary(raw, self.unigram_logp)
 
     # ------------------------------------------------------------------------------------------ acoustic model
     def log_probs(self, x: np.ndarray) -> np.ndarray:
@@ -213,14 +200,10 @@ class Assistant:
         lp[:, SPECIAL] = -1e4
         return lp - np.logaddexp.reduce(lp, axis=1, keepdims=True)
 
-    def _decode(self, lp: np.ndarray, terms: list | None = None, normalized: bool = False) -> list[dict]:
-        """Standard decoding, or glossary-boosted decoding when `terms` is given."""
+    def _decode(self, lp: np.ndarray, normalized: bool = False) -> list[dict]:
         lp = lp if normalized else self._norm(lp)
         words = []
-        if terms:
-            from group9_ds_ai_lab.assistant.glossary import boosted_beam
-            spans = boosted_beam(self.decoder, lp, terms, beam=self.beam, **self.glossary_params)
-        elif self.decoder is None:
+        if self.decoder is None:
             from group9_ds_ai_lab.inference.decode import greedy_words
             _, gw = greedy_words(lp)
             spans = [(w["word"], int(round(w["start"] / FRAME_SEC)), int(round(w["end"] / FRAME_SEC))) for w in gw]
@@ -274,8 +257,7 @@ class Assistant:
         return self.detector.predict_proba(w[self.features].to_numpy(np.float64))[:, 1]
 
     # ------------------------------------------------------------------------------------------ public API
-    def transcribe(self, audio, sr: int | None = None, threshold: float | None = None, glossary=None) -> Transcript:
-        """glossary: None, user text (one term per line) or a list of terms / parsed glossary.Term objects."""
+    def transcribe(self, audio, sr: int | None = None, threshold: float | None = None) -> Transcript:
         thr = self.threshold if threshold is None else threshold
         t = {}
         t0 = time.perf_counter()
@@ -288,35 +270,12 @@ class Assistant:
         lpn = self._norm(lp)
         raw = self._decode(lpn, normalized=True)
         t["decoding"] = time.perf_counter() - t0
-        terms, suggestions = [], []
-        if glossary:
-            from group9_ds_ai_lab.assistant.glossary import Term, find_suggestions, term_in
-            t0 = time.perf_counter()
-            terms = glossary if all(isinstance(g, Term) for g in glossary) else self.parse_glossary(glossary)[0]
-            if terms:
-                bst = self._decode(lpn, terms=terms, normalized=True)
-                suggestions, _ = find_suggestions(raw, bst, terms, lpn, self.glossary_max_cost)
-                ws = [w["word"] for w in raw]
-                for term in terms:
-                    for k in term_in(ws, term):
-                        for j in range(k, k + len(term.words)):
-                            raw[j]["glossary"] = True
-            t["glossary"] = time.perf_counter() - t0
         t0 = time.perf_counter()
         p = self.risk(raw)
         t["error_detector"] = time.perf_counter() - t0
         dur = len(x) / SAMPLE_RATE
         words = [Word(w["word"], round(w["start"], 3), round(w["end"], 3), round(w["conf_mean"], 4), round(float(pe), 4),
-                      bool(pe >= thr), round(max(w["start"] - self.replay_s, 0.0), 3), round(min(w["end"] + self.replay_s, dur), 3),
-                      bool(w.get("glossary", False)))
+                      bool(pe >= thr), round(max(w["start"] - self.replay_s, 0.0), 3), round(min(w["end"] + self.replay_s, dur), 3))
                  for w, pe in zip(raw, p)]
-        sug = []
-        for s in suggestions:
-            d = s.to_dict()
-            d["replay_start"] = round(max(s.start - self.replay_s, 0.0), 3)
-            d["replay_end"] = round(min(s.end + self.replay_s, dur), 3)
-            sug.append(d)
         return Transcript(" ".join(w.word for w in words), words, round(dur, 3), {k: round(v, 4) for k, v in t.items()},
-                          {**self.settings, "threshold": thr, **({"glossary": {**self.glossary_params,
-                                                                     "max_acoustic_cost": self.glossary_max_cost}} if terms else {})},
-                          [x.text for x in terms], sug)
+                          {**self.settings, "threshold": thr})
