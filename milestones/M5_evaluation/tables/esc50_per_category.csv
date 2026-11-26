@@ -1,0 +1,51 @@
+category,wer_B_noisy_lm4,n_utts,wer_rover3_final,group,rel_reduction_%
+sea_waves,28.41,201,23.13,Natural soundscapes & water,18.58
+vacuum_cleaner,27.36,220,21.93,Interior / domestic,19.84
+toilet_flush,26.34,226,21.48,Natural soundscapes & water,18.47
+rain,25.91,216,20.21,Natural soundscapes & water,22.01
+chainsaw,26.49,218,20.16,Exterior / urban,23.88
+hand_saw,23.71,216,18.28,Exterior / urban,22.9
+church_bells,19.69,237,15.11,Exterior / urban,23.26
+airplane,18.64,241,15.03,Exterior / urban,19.35
+sheep,19.74,211,14.75,Animals,25.29
+pig,19.08,240,14.28,Animals,25.19
+clapping,19.57,222,14.2,"Human, non-speech",27.45
+washing_machine,17.95,221,14.19,Interior / domestic,20.93
+breathing,16.59,204,13.73,"Human, non-speech",17.24
+brushing_teeth,17.66,222,13.21,"Human, non-speech",25.23
+insects,17.5,217,12.67,Animals,27.63
+engine,15.96,215,12.58,Exterior / urban,21.21
+train,16.0,226,12.49,Exterior / urban,21.93
+chirping_birds,16.8,218,12.44,Natural soundscapes & water,25.94
+crow,16.06,268,12.37,Animals,23.01
+crying_baby,16.82,238,12.11,"Human, non-speech",28.02
+helicopter,15.22,225,11.79,Exterior / urban,22.51
+door_wood_creaks,16.63,202,11.57,Interior / domestic,30.47
+siren,15.78,214,11.22,Exterior / urban,28.9
+cow,15.22,228,11.16,Animals,26.69
+laughing,14.91,242,10.72,"Human, non-speech",28.11
+car_horn,14.97,222,10.41,Exterior / urban,30.47
+pouring_water,14.26,208,10.13,Natural soundscapes & water,28.96
+footsteps,12.77,218,9.83,"Human, non-speech",22.98
+wind,12.94,220,9.74,Natural soundscapes & water,24.73
+sneezing,12.18,230,9.72,"Human, non-speech",20.19
+cat,12.2,229,9.49,Animals,22.22
+fireworks,11.42,222,9.06,Exterior / urban,20.66
+rooster,11.93,232,8.95,Animals,25.0
+coughing,12.07,197,8.75,"Human, non-speech",27.53
+crickets,11.91,205,8.59,Natural soundscapes & water,27.88
+snoring,11.38,253,8.46,"Human, non-speech",25.65
+glass_breaking,11.07,217,8.42,Interior / domestic,23.97
+hen,10.9,218,8.02,Animals,26.42
+keyboard_typing,11.09,208,7.89,Interior / domestic,28.88
+drinking_sipping,11.48,237,7.76,"Human, non-speech",32.43
+frog,11.05,234,7.59,Animals,31.28
+mouse_click,9.82,231,7.38,Interior / domestic,24.88
+crackling_fire,9.47,200,7.27,Natural soundscapes & water,23.2
+thunderstorm,9.36,213,7.13,Natural soundscapes & water,23.85
+dog,8.88,210,7.06,Animals,20.51
+water_drops,9.22,231,6.93,Natural soundscapes & water,24.82
+clock_alarm,9.34,225,6.4,Interior / domestic,31.48
+can_opening,8.04,222,6.26,Interior / domestic,22.15
+door_wood_knock,7.79,217,5.92,Interior / domestic,24.05
+clock_tick,7.85,231,5.62,Interior / domestic,28.36

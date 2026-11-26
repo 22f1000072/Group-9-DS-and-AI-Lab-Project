@@ -1,0 +1,43 @@
+{
+  "environment": {
+    "python": "3.14.4",
+    "os": "Linux-7.0.0-34-generic-x86_64-with-glibc2.43",
+    "cpu": "x86_64",
+    "cpu_count": 128,
+    "torch": "2.14.1+cu130",
+    "transformers": "5.23.0",
+    "cuda": "13.0",
+    "gpu": "NVIDIA L40S",
+    "jiwer": "n/a",
+    "sklearn": "1.9.1",
+    "pyctcdecode": "n/a",
+    "kenlm": "n/a",
+    "numpy": "2.5.5",
+    "pandas": "3.1.1",
+    "git_commit": "1fdd4cf"
+  },
+  "config": {
+    "seed": 0,
+    "n_boot": 1000,
+    "breakdown_factor": 2.0,
+    "breakdown_abs_wer": 20.0,
+    "detector_run": "B960_rev_lm4",
+    "threshold": 0.5,
+    "review_budget": 0.3,
+    "budgets": [
+      0.05,
+      0.1,
+      0.2,
+      0.3,
+      0.5
+    ],
+    "speed_clips": 6,
+    "speed_threads": 4,
+    "repro_models": [
+      "B960_rev"
+    ],
+    "audio_examples_per_noise": 2
+  },
+  "source": "local",
+  "recompute": "none"
+}

@@ -1,0 +1,176 @@
+{
+  "utterances_scored": 6656,
+  "hours": 9.614443802083333,
+  "speaker_languages": 19,
+  "states": 17,
+  "utts_with_digits": 769,
+  "oov": {
+    "ref_words_clean": 73260,
+    "oov_share_%": 4.452634452634452,
+    "oov_word_error_%": 98.6817903126916,
+    "in_vocab_word_error_%": 24.49784279550844,
+    "top_oov_words": [
+      [
+        "KARNATAKA",
+        53
+      ],
+      [
+        "ESIC",
+        35
+      ],
+      [
+        "KERALA",
+        33
+      ],
+      [
+        "PINCODE",
+        32
+      ],
+      [
+        "OTP",
+        30
+      ],
+      [
+        "AICTE",
+        30
+      ],
+      [
+        "PRADESH",
+        26
+      ],
+      [
+        "EPFO",
+        23
+      ],
+      [
+        "NEPALI",
+        21
+      ],
+      [
+        "PRAN",
+        19
+      ],
+      [
+        "UAN",
+        19
+      ],
+      [
+        "MAHARASHTRA",
+        18
+      ],
+      [
+        "GRAMIN",
+        18
+      ],
+      [
+        "LOGIN",
+        17
+      ],
+      [
+        "JAMMU",
+        16
+      ],
+      [
+        "TV",
+        16
+      ],
+      [
+        "YOUTUBE",
+        15
+      ],
+      [
+        "APY",
+        15
+      ],
+      [
+        "MPIN",
+        15
+      ],
+      [
+        "ODISHA",
+        14
+      ],
+      [
+        "AUTOPAY",
+        14
+      ],
+      [
+        "KANNADA",
+        14
+      ],
+      [
+        "DOWNLOAD",
+        14
+      ],
+      [
+        "FRESHO",
+        13
+      ],
+      [
+        "BIHAR",
+        13
+      ]
+    ]
+  },
+  "replay_window": {
+    "flags": 87566,
+    "hit_rate_%": 94.23634744078753,
+    "aligned_clips": 6656
+  },
+  "final_system": [
+    "rover3_final",
+    "4-gram LM + ROVER"
+  ],
+  "top_char_confusions": [
+    [
+      "A",
+      "E",
+      792
+    ],
+    [
+      "I",
+      "E",
+      503
+    ],
+    [
+      "A",
+      "O",
+      412
+    ],
+    [
+      "E",
+      "I",
+      405
+    ],
+    [
+      "E",
+      "A",
+      388
+    ],
+    [
+      "A",
+      "I",
+      347
+    ],
+    [
+      "O",
+      "A",
+      335
+    ],
+    [
+      "T",
+      "D",
+      328
+    ],
+    [
+      "E",
+      "O",
+      327
+    ],
+    [
+      "I",
+      "A",
+      311
+    ]
+  ]
+}

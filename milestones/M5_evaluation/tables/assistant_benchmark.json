@@ -1,0 +1,56 @@
+{
+  "threads": 4,
+  "load_time_s_fp32": 3.48,
+  "load_time_s_int8": 2.15,
+  "summary": [
+    {
+      "model": "fp32",
+      "condition": "clean",
+      "rtf_mean": 0.0497,
+      "rtf_max": 0.0502,
+      "wer_mean": 0.1059,
+      "dur_mean": 121.8458
+    },
+    {
+      "model": "fp32",
+      "condition": "esc50 5 dB",
+      "rtf_mean": 0.0506,
+      "rtf_max": 0.0515,
+      "wer_mean": 0.1242,
+      "dur_mean": 121.8458
+    },
+    {
+      "model": "fp32",
+      "condition": "white 5 dB",
+      "rtf_mean": 0.0509,
+      "rtf_max": 0.0517,
+      "wer_mean": 0.1679,
+      "dur_mean": 121.8458
+    },
+    {
+      "model": "int8",
+      "condition": "clean",
+      "rtf_mean": 0.0333,
+      "rtf_max": 0.0339,
+      "wer_mean": 0.1237,
+      "dur_mean": 121.8458
+    },
+    {
+      "model": "int8",
+      "condition": "esc50 5 dB",
+      "rtf_mean": 0.0341,
+      "rtf_max": 0.035,
+      "wer_mean": 0.1423,
+      "dur_mean": 121.8458
+    },
+    {
+      "model": "int8",
+      "condition": "white 5 dB",
+      "rtf_mean": 0.0346,
+      "rtf_max": 0.0353,
+      "wer_mean": 0.1831,
+      "dur_mean": 121.8458
+    }
+  ],
+  "target_O5": "RTF <= 1.0 for clips up to 2 minutes on CPU"
+}

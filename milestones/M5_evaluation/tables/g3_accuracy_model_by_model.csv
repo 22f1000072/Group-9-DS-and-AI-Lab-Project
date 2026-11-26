@@ -1,0 +1,7 @@
+step,change,system,decoding,wer_clean_%,wer_esc50_0-5dB_%,wer_all_noisy_%,acc_clean_%,rel_change_vs_prev_clean_%,acc_esc50_0-5dB_%,rel_change_vs_prev_esc50_0-5dB_%,acc_all_noisy_%,rel_change_vs_prev_all_noisy_%
+"Model A (clean, 100 h)",start,A_clean,greedy,9.43,38.29,29.86,90.57,,61.71,,70.14,
++ noise-aware training (Model B),noise training,B_noisy,greedy,9.62,20.12,16.07,90.38,2.1,79.88,-47.4,83.93,-46.2
++ 3.6x data (B460),more data,B460,greedy,7.89,16.66,13.36,92.11,-18.0,83.34,-17.2,86.64,-16.8
+"+ 2x data, reverb, speed, telephone (B960_rev)",more data + augmentation,B960_rev,greedy,7.28,15.39,12.38,92.72,-7.7,84.61,-7.6,87.62,-7.3
++ 4-gram LM,language model,B960_rev,4-gram LM,4.99,11.75,9.16,95.01,-31.5,88.25,-23.7,90.84,-26.1
++ ROVER of 3 models (final),system combination,rover3_final,4-gram LM + ROVER,4.9,11.42,8.94,95.1,-1.7,88.58,-2.8,91.06,-2.3

@@ -1,0 +1,841 @@
+system,decoding,noise_type,snr,ls_split,n_utts,n_ref_words,wer_%,cer_%
+A_clean,4-gram LM,brown,20,both,5559,104919,6.403,2.5117
+A_clean,4-gram LM,brown,20,test.clean,2620,52576,3.7413,1.2233
+A_clean,4-gram LM,brown,20,test.other,2939,52343,9.0767,3.8415
+A_clean,4-gram LM,brown,10,both,5559,104919,6.4888,2.5743
+A_clean,4-gram LM,brown,10,test.clean,2620,52576,3.6956,1.2262
+A_clean,4-gram LM,brown,10,test.other,2939,52343,9.2945,3.9658
+A_clean,4-gram LM,brown,5,both,5559,104919,6.7033,2.6728
+A_clean,4-gram LM,brown,5,test.clean,2620,52576,3.7698,1.2492
+A_clean,4-gram LM,brown,5,test.other,2939,52343,9.6498,4.1421
+A_clean,4-gram LM,brown,0,both,5559,104919,7.1827,2.9405
+A_clean,4-gram LM,brown,0,test.clean,2620,52576,3.9809,1.3594
+A_clean,4-gram LM,brown,0,test.other,2939,52343,10.3987,4.5726
+A_clean,4-gram LM,clean,clean,both,5559,104919,6.3621,2.5133
+A_clean,4-gram LM,clean,clean,test.clean,2620,52576,3.6937,1.2191
+A_clean,4-gram LM,clean,clean,test.other,2939,52343,9.0423,3.8492
+A_clean,4-gram LM,esc50,20,both,5559,104919,7.8746,3.3614
+A_clean,4-gram LM,esc50,20,test.clean,2620,52576,4.386,1.5664
+A_clean,4-gram LM,esc50,20,test.other,2939,52343,11.3788,5.2141
+A_clean,4-gram LM,esc50,10,both,5559,104919,14.8105,7.7577
+A_clean,4-gram LM,esc50,10,test.clean,2620,52576,8.3631,3.9111
+A_clean,4-gram LM,esc50,10,test.other,2939,52343,21.2865,11.728
+A_clean,4-gram LM,esc50,5,both,5559,104919,24.3998,14.4733
+A_clean,4-gram LM,esc50,5,test.clean,2620,52576,15.6573,8.6612
+A_clean,4-gram LM,esc50,5,test.other,2939,52343,33.1811,20.4724
+A_clean,4-gram LM,esc50,0,both,5559,104919,40.7657,27.7756
+A_clean,4-gram LM,esc50,0,test.clean,2620,52576,32.8914,22.0612
+A_clean,4-gram LM,esc50,0,test.other,2939,52343,48.6751,33.6738
+A_clean,4-gram LM,pink,20,both,5559,104919,7.6888,3.2434
+A_clean,4-gram LM,pink,20,test.clean,2620,52576,3.9467,1.3295
+A_clean,4-gram LM,pink,20,test.other,2939,52343,11.4476,5.2189
+A_clean,4-gram LM,pink,10,both,5559,104919,14.3539,7.2673
+A_clean,4-gram LM,pink,10,test.clean,2620,52576,6.7217,2.7809
+A_clean,4-gram LM,pink,10,test.other,2939,52343,22.0201,11.8981
+A_clean,4-gram LM,pink,5,both,5559,104919,31.0287,18.9082
+A_clean,4-gram LM,pink,5,test.clean,2620,52576,18.5864,10.151
+A_clean,4-gram LM,pink,5,test.other,2939,52343,43.5264,27.9471
+A_clean,4-gram LM,pink,0,both,5559,104919,69.323,52.9867
+A_clean,4-gram LM,pink,0,test.clean,2620,52576,60.7235,44.8663
+A_clean,4-gram LM,pink,0,test.other,2939,52343,77.9608,61.3683
+A_clean,4-gram LM,white,20,both,5559,104919,9.6779,4.3853
+A_clean,4-gram LM,white,20,test.clean,2620,52576,4.5857,1.6282
+A_clean,4-gram LM,white,20,test.other,2939,52343,14.7928,7.231
+A_clean,4-gram LM,white,10,both,5559,104919,24.5065,14.0589
+A_clean,4-gram LM,white,10,test.clean,2620,52576,12.7244,6.3002
+A_clean,4-gram LM,white,10,test.other,2939,52343,36.3411,22.0672
+A_clean,4-gram LM,white,5,both,5559,104919,49.2923,33.0357
+A_clean,4-gram LM,white,5,test.clean,2620,52576,36.1591,22.697
+A_clean,4-gram LM,white,5,test.other,2939,52343,62.484,43.7069
+A_clean,4-gram LM,white,0,both,5559,104919,83.0155,66.5055
+A_clean,4-gram LM,white,0,test.clean,2620,52576,77.7389,60.6568
+A_clean,4-gram LM,white,0,test.other,2939,52343,88.3155,72.5423
+B2_lr1e-4,4-gram LM,brown,20,both,5559,104919,6.4345,2.5685
+B2_lr1e-4,4-gram LM,brown,20,test.clean,2620,52576,3.6576,1.2187
+B2_lr1e-4,4-gram LM,brown,20,test.other,2939,52343,9.2238,3.9618
+B2_lr1e-4,4-gram LM,brown,10,both,5559,104919,6.4879,2.6026
+B2_lr1e-4,4-gram LM,brown,10,test.clean,2620,52576,3.6804,1.2151
+B2_lr1e-4,4-gram LM,brown,10,test.other,2939,52343,9.3078,4.0347
+B2_lr1e-4,4-gram LM,brown,5,both,5559,104919,6.6032,2.6614
+B2_lr1e-4,4-gram LM,brown,5,test.clean,2620,52576,3.7355,1.2492
+B2_lr1e-4,4-gram LM,brown,5,test.other,2939,52343,9.4836,4.119
+B2_lr1e-4,4-gram LM,brown,0,both,5559,104919,6.8024,2.7801
+B2_lr1e-4,4-gram LM,brown,0,test.clean,2620,52576,3.7831,1.2684
+B2_lr1e-4,4-gram LM,brown,0,test.other,2939,52343,9.8351,4.3405
+B2_lr1e-4,4-gram LM,clean,clean,both,5559,104919,6.4183,2.549
+B2_lr1e-4,4-gram LM,clean,clean,test.clean,2620,52576,3.669,1.2141
+B2_lr1e-4,4-gram LM,clean,clean,test.other,2939,52343,9.1798,3.9269
+B2_lr1e-4,4-gram LM,esc50,20,both,5559,104919,6.9091,2.8366
+B2_lr1e-4,4-gram LM,esc50,20,test.clean,2620,52576,3.8801,1.327
+B2_lr1e-4,4-gram LM,esc50,20,test.other,2939,52343,9.9517,4.3947
+B2_lr1e-4,4-gram LM,esc50,10,both,5559,104919,8.7992,3.9772
+B2_lr1e-4,4-gram LM,esc50,10,test.clean,2620,52576,4.5591,1.727
+B2_lr1e-4,4-gram LM,esc50,10,test.other,2939,52343,13.0581,6.2997
+B2_lr1e-4,4-gram LM,esc50,5,both,5559,104919,11.5699,5.6869
+B2_lr1e-4,4-gram LM,esc50,5,test.clean,2620,52576,5.9989,2.5024
+B2_lr1e-4,4-gram LM,esc50,5,test.other,2939,52343,17.1656,8.9739
+B2_lr1e-4,4-gram LM,esc50,0,both,5559,104919,18.0625,10.1157
+B2_lr1e-4,4-gram LM,esc50,0,test.clean,2620,52576,10.6189,5.4051
+B2_lr1e-4,4-gram LM,esc50,0,test.other,2939,52343,25.5392,14.9777
+B2_lr1e-4,4-gram LM,pink,20,both,5559,104919,6.7862,2.8023
+B2_lr1e-4,4-gram LM,pink,20,test.clean,2620,52576,3.7603,1.2912
+B2_lr1e-4,4-gram LM,pink,20,test.other,2939,52343,9.8256,4.3621
+B2_lr1e-4,4-gram LM,pink,10,both,5559,104919,8.8525,4.003
+B2_lr1e-4,4-gram LM,pink,10,test.clean,2620,52576,4.4925,1.6773
+B2_lr1e-4,4-gram LM,pink,10,test.other,2939,52343,13.232,6.4035
+B2_lr1e-4,4-gram LM,pink,5,both,5559,104919,12.5716,6.2666
+B2_lr1e-4,4-gram LM,pink,5,test.clean,2620,52576,6.2348,2.6235
+B2_lr1e-4,4-gram LM,pink,5,test.other,2939,52343,18.9366,10.0268
+B2_lr1e-4,4-gram LM,pink,0,both,5559,104919,22.3058,12.5677
+B2_lr1e-4,4-gram LM,pink,0,test.clean,2620,52576,12.2794,6.2579
+B2_lr1e-4,4-gram LM,pink,0,test.other,2939,52343,32.3768,19.0803
+B2_lr1e-4,4-gram LM,white,20,both,5559,104919,7.4172,3.1455
+B2_lr1e-4,4-gram LM,white,20,test.clean,2620,52576,3.9257,1.3736
+B2_lr1e-4,4-gram LM,white,20,test.other,2939,52343,10.9241,4.9744
+B2_lr1e-4,4-gram LM,white,10,both,5559,104919,11.018,5.3034
+B2_lr1e-4,4-gram LM,white,10,test.clean,2620,52576,5.3104,2.1344
+B2_lr1e-4,4-gram LM,white,10,test.other,2939,52343,16.751,8.5743
+B2_lr1e-4,4-gram LM,white,5,both,5559,104919,16.4727,8.7646
+B2_lr1e-4,4-gram LM,white,5,test.clean,2620,52576,8.3061,3.7971
+B2_lr1e-4,4-gram LM,white,5,test.other,2939,52343,24.6757,13.8918
+B2_lr1e-4,4-gram LM,white,0,both,5559,104919,28.6583,16.9951
+B2_lr1e-4,4-gram LM,white,0,test.clean,2620,52576,16.7662,9.036
+B2_lr1e-4,4-gram LM,white,0,test.other,2939,52343,40.6033,25.2103
+B460,4-gram LM,brown,20,both,5559,104919,5.2907,2.0287
+B460,4-gram LM,brown,20,test.clean,2620,52576,2.99,0.9352
+B460,4-gram LM,brown,20,test.other,2939,52343,7.6018,3.1574
+B460,4-gram LM,brown,10,both,5559,104919,5.3489,2.0612
+B460,4-gram LM,brown,10,test.clean,2620,52576,3.0014,0.9498
+B460,4-gram LM,brown,10,test.other,2939,52343,7.7069,3.2083
+B460,4-gram LM,brown,5,both,5559,104919,5.4766,2.1391
+B460,4-gram LM,brown,5,test.clean,2620,52576,3.0794,0.9836
+B460,4-gram LM,brown,5,test.other,2939,52343,7.8845,3.3319
+B460,4-gram LM,brown,0,both,5559,104919,5.6377,2.2275
+B460,4-gram LM,brown,0,test.clean,2620,52576,3.0736,0.9715
+B460,4-gram LM,brown,0,test.other,2939,52343,8.2131,3.524
+B460,4-gram LM,clean,clean,both,5559,104919,5.266,2.0257
+B460,4-gram LM,clean,clean,test.clean,2620,52576,2.9671,0.932
+B460,4-gram LM,clean,clean,test.other,2939,52343,7.575,3.1544
+B460,4-gram LM,esc50,20,both,5559,104919,5.732,2.2856
+B460,4-gram LM,esc50,20,test.clean,2620,52576,3.1554,1.0088
+B460,4-gram LM,esc50,20,test.other,2939,52343,8.3201,3.6036
+B460,4-gram LM,esc50,10,both,5559,104919,7.2637,3.1617
+B460,4-gram LM,esc50,10,test.clean,2620,52576,3.844,1.3718
+B460,4-gram LM,esc50,10,test.other,2939,52343,10.6987,5.0092
+B460,4-gram LM,esc50,5,both,5559,104919,9.6217,4.6184
+B460,4-gram LM,esc50,5,test.clean,2620,52576,4.911,1.9632
+B460,4-gram LM,esc50,5,test.other,2939,52343,14.3534,7.3589
+B460,4-gram LM,esc50,0,both,5559,104919,15.6912,8.6341
+B460,4-gram LM,esc50,0,test.clean,2620,52576,8.9832,4.51
+B460,4-gram LM,esc50,0,test.other,2939,52343,22.429,12.8909
+B460,4-gram LM,pink,20,both,5559,104919,5.6758,2.2694
+B460,4-gram LM,pink,20,test.clean,2620,52576,3.1345,1.0159
+B460,4-gram LM,pink,20,test.other,2939,52343,8.2284,3.5632
+B460,4-gram LM,pink,10,both,5559,104919,7.3342,3.2117
+B460,4-gram LM,pink,10,test.clean,2620,52576,3.7336,1.3221
+B460,4-gram LM,pink,10,test.other,2939,52343,10.9508,5.1621
+B460,4-gram LM,pink,5,both,5559,104919,10.5138,5.1251
+B460,4-gram LM,pink,5,test.clean,2620,52576,5.1031,2.0676
+B460,4-gram LM,pink,5,test.other,2939,52343,15.9486,8.281
+B460,4-gram LM,pink,0,both,5559,104919,19.5008,10.8491
+B460,4-gram LM,pink,0,test.clean,2620,52576,10.4801,5.2055
+B460,4-gram LM,pink,0,test.other,2939,52343,28.5616,16.6741
+B460,4-gram LM,white,20,both,5559,104919,6.1238,2.5048
+B460,4-gram LM,white,20,test.clean,2620,52576,3.3152,1.1018
+B460,4-gram LM,white,20,test.other,2939,52343,8.9448,3.953
+B460,4-gram LM,white,10,both,5559,104919,9.1528,4.2936
+B460,4-gram LM,white,10,test.clean,2620,52576,4.3651,1.6773
+B460,4-gram LM,white,10,test.other,2939,52343,13.9618,6.9941
+B460,4-gram LM,white,5,both,5559,104919,13.9517,7.2249
+B460,4-gram LM,white,5,test.clean,2620,52576,6.8073,3.0093
+B460,4-gram LM,white,5,test.other,2939,52343,21.1279,11.5762
+B460,4-gram LM,white,0,both,5559,104919,25.2433,14.791
+B460,4-gram LM,white,0,test.clean,2620,52576,14.3107,7.6407
+B460,4-gram LM,white,0,test.other,2939,52343,36.2245,22.1713
+B960_rev,4-gram LM,brown,20,both,5559,104919,4.9533,1.8579
+B960_rev,4-gram LM,brown,20,test.clean,2620,52576,2.9158,0.9129
+B960_rev,4-gram LM,brown,20,test.other,2939,52343,7.0,2.8333
+B960_rev,4-gram LM,brown,10,both,5559,104919,4.9886,1.8748
+B960_rev,4-gram LM,brown,10,test.clean,2620,52576,2.8815,0.9004
+B960_rev,4-gram LM,brown,10,test.other,2939,52343,7.1051,2.8806
+B960_rev,4-gram LM,brown,5,both,5559,104919,5.0487,1.9066
+B960_rev,4-gram LM,brown,5,test.clean,2620,52576,2.969,0.9264
+B960_rev,4-gram LM,brown,5,test.other,2939,52343,7.1375,2.9183
+B960_rev,4-gram LM,brown,0,both,5559,104919,5.1773,1.9862
+B960_rev,4-gram LM,brown,0,test.clean,2620,52576,2.9843,0.9431
+B960_rev,4-gram LM,brown,0,test.other,2939,52343,7.3802,3.0628
+B960_rev,4-gram LM,clean,clean,both,5559,104919,4.9867,1.8622
+B960_rev,4-gram LM,clean,clean,test.clean,2620,52576,2.9747,0.9285
+B960_rev,4-gram LM,clean,clean,test.other,2939,52343,7.0076,2.8259
+B960_rev,4-gram LM,esc50,20,both,5559,104919,5.3193,2.0552
+B960_rev,4-gram LM,esc50,20,test.clean,2620,52576,3.066,0.9804
+B960_rev,4-gram LM,esc50,20,test.other,2939,52343,7.5827,3.1647
+B960_rev,4-gram LM,esc50,10,both,5559,104919,6.6928,2.848
+B960_rev,4-gram LM,esc50,10,test.clean,2620,52576,3.6633,1.3128
+B960_rev,4-gram LM,esc50,10,test.other,2939,52343,9.7358,4.4325
+B960_rev,4-gram LM,esc50,5,both,5559,104919,8.9307,4.2119
+B960_rev,4-gram LM,esc50,5,test.clean,2620,52576,4.7702,1.9152
+B960_rev,4-gram LM,esc50,5,test.other,2939,52343,13.1097,6.5824
+B960_rev,4-gram LM,esc50,0,both,5559,104919,14.5674,7.9018
+B960_rev,4-gram LM,esc50,0,test.clean,2620,52576,8.7587,4.3466
+B960_rev,4-gram LM,esc50,0,test.other,2939,52343,20.402,11.5714
+B960_rev,4-gram LM,pink,20,both,5559,104919,5.2488,2.0432
+B960_rev,4-gram LM,pink,20,test.clean,2620,52576,3.0565,0.9821
+B960_rev,4-gram LM,pink,20,test.other,2939,52343,7.4509,3.1383
+B960_rev,4-gram LM,pink,10,both,5559,104919,6.7042,2.8783
+B960_rev,4-gram LM,pink,10,test.clean,2620,52576,3.6062,1.283
+B960_rev,4-gram LM,pink,10,test.other,2939,52343,9.816,4.5249
+B960_rev,4-gram LM,pink,5,both,5559,104919,9.6646,4.6332
+B960_rev,4-gram LM,pink,5,test.clean,2620,52576,4.9966,2.0318
+B960_rev,4-gram LM,pink,5,test.other,2939,52343,14.3534,7.3182
+B960_rev,4-gram LM,pink,0,both,5559,104919,18.1731,9.9403
+B960_rev,4-gram LM,pink,0,test.clean,2620,52576,10.2176,5.0918
+B960_rev,4-gram LM,pink,0,test.other,2939,52343,26.164,14.9447
+B960_rev,4-gram LM,white,20,both,5559,104919,5.652,2.2416
+B960_rev,4-gram LM,white,20,test.clean,2620,52576,3.2239,1.0599
+B960_rev,4-gram LM,white,20,test.other,2939,52343,8.0909,3.4613
+B960_rev,4-gram LM,white,10,both,5559,104919,8.4246,3.8532
+B960_rev,4-gram LM,white,10,test.clean,2620,52576,4.3442,1.6694
+B960_rev,4-gram LM,white,10,test.other,2939,52343,12.5232,6.1072
+B960_rev,4-gram LM,white,5,both,5559,104919,12.9061,6.6097
+B960_rev,4-gram LM,white,5,test.clean,2620,52576,6.8111,3.0334
+B960_rev,4-gram LM,white,5,test.other,2939,52343,19.0283,10.3011
+B960_rev,4-gram LM,white,0,both,5559,104919,24.0366,13.8993
+B960_rev,4-gram LM,white,0,test.clean,2620,52576,14.1129,7.4809
+B960_rev,4-gram LM,white,0,test.other,2939,52343,34.0045,20.5241
+B960_rev_s2,4-gram LM,brown,20,both,5559,104919,4.9533,1.8658
+B960_rev_s2,4-gram LM,brown,20,test.clean,2620,52576,2.9405,0.9232
+B960_rev_s2,4-gram LM,brown,20,test.other,2939,52343,6.9751,2.8388
+B960_rev_s2,4-gram LM,brown,10,both,5559,104919,5.0134,1.8914
+B960_rev_s2,4-gram LM,brown,10,test.clean,2620,52576,2.9443,0.9161
+B960_rev_s2,4-gram LM,brown,10,test.other,2939,52343,7.0917,2.8982
+B960_rev_s2,4-gram LM,brown,5,both,5559,104919,5.0687,1.932
+B960_rev_s2,4-gram LM,brown,5,test.clean,2620,52576,2.9957,0.942
+B960_rev_s2,4-gram LM,brown,5,test.other,2939,52343,7.1509,2.9539
+B960_rev_s2,4-gram LM,brown,0,both,5559,104919,5.1945,1.995
+B960_rev_s2,4-gram LM,brown,0,test.clean,2620,52576,3.0356,0.9555
+B960_rev_s2,4-gram LM,brown,0,test.other,2939,52343,7.363,3.0679
+B960_rev_s2,4-gram LM,clean,clean,both,5559,104919,5.0067,1.8795
+B960_rev_s2,4-gram LM,clean,clean,test.clean,2620,52576,2.9652,0.9217
+B960_rev_s2,4-gram LM,clean,clean,test.other,2939,52343,7.0573,2.8681
+B960_rev_s2,4-gram LM,esc50,20,both,5559,104919,5.3537,2.0926
+B960_rev_s2,4-gram LM,esc50,20,test.clean,2620,52576,3.1193,0.9921
+B960_rev_s2,4-gram LM,esc50,20,test.other,2939,52343,7.598,3.2285
+B960_rev_s2,4-gram LM,esc50,10,both,5559,104919,6.7605,2.8777
+B960_rev_s2,4-gram LM,esc50,10,test.clean,2620,52576,3.7203,1.3487
+B960_rev_s2,4-gram LM,esc50,10,test.other,2939,52343,9.8141,4.456
+B960_rev_s2,4-gram LM,esc50,5,both,5559,104919,8.986,4.2487
+B960_rev_s2,4-gram LM,esc50,5,test.clean,2620,52576,4.8292,1.9376
+B960_rev_s2,4-gram LM,esc50,5,test.other,2939,52343,13.1613,6.6341
+B960_rev_s2,4-gram LM,esc50,0,both,5559,104919,14.6408,7.9562
+B960_rev_s2,4-gram LM,esc50,0,test.clean,2620,52576,8.8215,4.3928
+B960_rev_s2,4-gram LM,esc50,0,test.other,2939,52343,20.486,11.6341
+B960_rev_s2,4-gram LM,pink,20,both,5559,104919,5.3203,2.0737
+B960_rev_s2,4-gram LM,pink,20,test.clean,2620,52576,3.0908,0.9889
+B960_rev_s2,4-gram LM,pink,20,test.other,2939,52343,7.5598,3.1933
+B960_rev_s2,4-gram LM,pink,10,both,5559,104919,6.7776,2.9207
+B960_rev_s2,4-gram LM,pink,10,test.clean,2620,52576,3.6252,1.289
+B960_rev_s2,4-gram LM,pink,10,test.other,2939,52343,9.944,4.6048
+B960_rev_s2,4-gram LM,pink,5,both,5559,104919,9.8343,4.6945
+B960_rev_s2,4-gram LM,pink,5,test.clean,2620,52576,5.1012,2.0392
+B960_rev_s2,4-gram LM,pink,5,test.other,2939,52343,14.5884,7.4352
+B960_rev_s2,4-gram LM,pink,0,both,5559,104919,18.3065,10.0464
+B960_rev_s2,4-gram LM,pink,0,test.clean,2620,52576,10.1339,5.0119
+B960_rev_s2,4-gram LM,pink,0,test.other,2939,52343,26.5155,15.2428
+B960_rev_s2,4-gram LM,white,20,both,5559,104919,5.6968,2.2793
+B960_rev_s2,4-gram LM,white,20,test.clean,2620,52576,3.1764,1.0557
+B960_rev_s2,4-gram LM,white,20,test.other,2939,52343,8.2284,3.5423
+B960_rev_s2,4-gram LM,white,10,both,5559,104919,8.4132,3.8742
+B960_rev_s2,4-gram LM,white,10,test.clean,2620,52576,4.3138,1.6577
+B960_rev_s2,4-gram LM,white,10,test.other,2939,52343,12.5308,6.1619
+B960_rev_s2,4-gram LM,white,5,both,5559,104919,13.071,6.6947
+B960_rev_s2,4-gram LM,white,5,test.clean,2620,52576,6.832,3.0157
+B960_rev_s2,4-gram LM,white,5,test.other,2939,52343,19.3378,10.4921
+B960_rev_s2,4-gram LM,white,0,both,5559,104919,24.1729,14.0535
+B960_rev_s2,4-gram LM,white,0,test.clean,2620,52576,14.1186,7.5161
+B960_rev_s2,4-gram LM,white,0,test.other,2939,52343,34.272,20.8012
+B_noisy,4-gram LM,brown,20,both,5559,104919,6.322,2.5039
+B_noisy,4-gram LM,brown,20,test.clean,2620,52576,3.6994,1.235
+B_noisy,4-gram LM,brown,20,test.other,2939,52343,8.9563,3.8136
+B_noisy,4-gram LM,brown,10,both,5559,104919,6.3506,2.5261
+B_noisy,4-gram LM,brown,10,test.clean,2620,52576,3.688,1.2446
+B_noisy,4-gram LM,brown,10,test.other,2939,52343,9.0251,3.8488
+B_noisy,4-gram LM,brown,5,both,5559,104919,6.4269,2.5732
+B_noisy,4-gram LM,brown,5,test.clean,2620,52576,3.6975,1.2581
+B_noisy,4-gram LM,brown,5,test.other,2939,52343,9.1684,3.9306
+B_noisy,4-gram LM,brown,0,both,5559,104919,6.6699,2.6963
+B_noisy,4-gram LM,brown,0,test.clean,2620,52576,3.7603,1.2663
+B_noisy,4-gram LM,brown,0,test.other,2939,52343,9.5925,4.1722
+B_noisy,4-gram LM,clean,clean,both,5559,104919,6.2686,2.4879
+B_noisy,4-gram LM,clean,clean,test.clean,2620,52576,3.7032,1.2389
+B_noisy,4-gram LM,clean,clean,test.other,2939,52343,8.8455,3.777
+B_noisy,4-gram LM,esc50,20,both,5559,104919,6.7319,2.7538
+B_noisy,4-gram LM,esc50,20,test.clean,2620,52576,3.8972,1.3341
+B_noisy,4-gram LM,esc50,20,test.other,2939,52343,9.5791,4.2191
+B_noisy,4-gram LM,esc50,10,both,5559,104919,8.7105,3.9622
+B_noisy,4-gram LM,esc50,10,test.clean,2620,52576,4.5876,1.7483
+B_noisy,4-gram LM,esc50,10,test.other,2939,52343,12.8518,6.2473
+B_noisy,4-gram LM,esc50,5,both,5559,104919,11.5851,5.7441
+B_noisy,4-gram LM,esc50,5,test.clean,2620,52576,6.0275,2.5447
+B_noisy,4-gram LM,esc50,5,test.other,2939,52343,17.1675,9.0465
+B_noisy,4-gram LM,esc50,0,both,5559,104919,18.601,10.5599
+B_noisy,4-gram LM,esc50,0,test.clean,2620,52576,11.0621,5.7415
+B_noisy,4-gram LM,esc50,0,test.other,2939,52343,26.1735,15.5332
+B_noisy,4-gram LM,pink,20,both,5559,104919,6.6775,2.7224
+B_noisy,4-gram LM,pink,20,test.clean,2620,52576,3.8135,1.3107
+B_noisy,4-gram LM,pink,20,test.other,2939,52343,9.5543,4.1795
+B_noisy,4-gram LM,pink,10,both,5559,104919,8.7782,3.9723
+B_noisy,4-gram LM,pink,10,test.clean,2620,52576,4.561,1.7178
+B_noisy,4-gram LM,pink,10,test.other,2939,52343,13.0142,6.2994
+B_noisy,4-gram LM,pink,5,both,5559,104919,12.5583,6.2854
+B_noisy,4-gram LM,pink,5,test.clean,2620,52576,6.269,2.6534
+B_noisy,4-gram LM,pink,5,test.other,2939,52343,18.8755,10.0342
+B_noisy,4-gram LM,pink,0,both,5559,104919,22.7004,12.8922
+B_noisy,4-gram LM,pink,0,test.clean,2620,52576,12.5685,6.4331
+B_noisy,4-gram LM,pink,0,test.other,2939,52343,32.8774,19.5591
+B_noisy,4-gram LM,white,20,both,5559,104919,7.2237,3.0439
+B_noisy,4-gram LM,white,20,test.clean,2620,52576,3.9771,1.3856
+B_noisy,4-gram LM,white,20,test.other,2939,52343,10.4847,4.7555
+B_noisy,4-gram LM,white,10,both,5559,104919,10.9408,5.2675
+B_noisy,4-gram LM,white,10,test.clean,2620,52576,5.3637,2.1582
+B_noisy,4-gram LM,white,10,test.other,2939,52343,16.5428,8.4767
+B_noisy,4-gram LM,white,5,both,5559,104919,16.4746,8.8443
+B_noisy,4-gram LM,white,5,test.clean,2620,52576,8.3974,3.8703
+B_noisy,4-gram LM,white,5,test.other,2939,52343,24.5878,13.9783
+B_noisy,4-gram LM,white,0,both,5559,104919,29.1005,17.4658
+B_noisy,4-gram LM,white,0,test.clean,2620,52576,17.0991,9.3596
+B_noisy,4-gram LM,white,0,test.other,2939,52343,41.1555,25.8328
+rover3_final,4-gram LM + ROVER,brown,20,both,5559,104919,4.8552,1.936
+rover3_final,4-gram LM + ROVER,brown,20,test.clean,2620,52576,2.8739,0.9388
+rover3_final,4-gram LM + ROVER,brown,20,test.other,2939,52343,6.8452,2.9653
+rover3_final,4-gram LM + ROVER,brown,10,both,5559,104919,4.9066,1.9607
+rover3_final,4-gram LM + ROVER,brown,10,test.clean,2620,52576,2.8872,0.9455
+rover3_final,4-gram LM + ROVER,brown,10,test.other,2939,52343,6.935,3.0085
+rover3_final,4-gram LM + ROVER,brown,5,both,5559,104919,4.9838,2.0096
+rover3_final,4-gram LM + ROVER,brown,5,test.clean,2620,52576,2.9405,0.9715
+rover3_final,4-gram LM + ROVER,brown,5,test.other,2939,52343,7.0363,3.0811
+rover3_final,4-gram LM + ROVER,brown,0,both,5559,104919,5.0753,2.0635
+rover3_final,4-gram LM + ROVER,brown,0,test.clean,2620,52576,2.9424,0.9605
+rover3_final,4-gram LM + ROVER,brown,0,test.other,2939,52343,7.2178,3.2021
+rover3_final,4-gram LM + ROVER,clean,clean,both,5559,104919,4.9,1.962
+rover3_final,4-gram LM + ROVER,clean,clean,test.clean,2620,52576,2.8892,0.9527
+rover3_final,4-gram LM + ROVER,clean,clean,test.other,2939,52343,6.9197,3.0038
+rover3_final,4-gram LM + ROVER,esc50,20,both,5559,104919,5.2088,2.1519
+rover3_final,4-gram LM + ROVER,esc50,20,test.clean,2620,52576,3.0413,1.0038
+rover3_final,4-gram LM + ROVER,esc50,20,test.other,2939,52343,7.3859,3.337
+rover3_final,4-gram LM + ROVER,esc50,10,both,5559,104919,6.5641,2.9883
+rover3_final,4-gram LM + ROVER,esc50,10,test.clean,2620,52576,3.6442,1.3551
+rover3_final,4-gram LM + ROVER,esc50,10,test.other,2939,52343,9.497,4.6741
+rover3_final,4-gram LM + ROVER,esc50,5,both,5559,104919,8.7,4.408
+rover3_final,4-gram LM + ROVER,esc50,5,test.clean,2620,52576,4.6675,1.9639
+rover3_final,4-gram LM + ROVER,esc50,5,test.other,2939,52343,12.7505,6.9307
+rover3_final,4-gram LM + ROVER,esc50,0,both,5559,104919,14.1357,8.3197
+rover3_final,4-gram LM + ROVER,esc50,0,test.clean,2620,52576,8.4259,4.5196
+rover3_final,4-gram LM + ROVER,esc50,0,test.other,2939,52343,19.8709,12.242
+rover3_final,4-gram LM + ROVER,pink,20,both,5559,104919,5.1916,2.1469
+rover3_final,4-gram LM + ROVER,pink,20,test.clean,2620,52576,3.0014,1.0177
+rover3_final,4-gram LM + ROVER,pink,20,test.other,2939,52343,7.3916,3.3125
+rover3_final,4-gram LM + ROVER,pink,10,both,5559,104919,6.5984,3.003
+rover3_final,4-gram LM + ROVER,pink,10,test.clean,2620,52576,3.5834,1.3285
+rover3_final,4-gram LM + ROVER,pink,10,test.other,2939,52343,9.6269,4.7313
+rover3_final,4-gram LM + ROVER,pink,5,both,5559,104919,9.4654,4.8854
+rover3_final,4-gram LM + ROVER,pink,5,test.clean,2620,52576,4.8939,2.0701
+rover3_final,4-gram LM + ROVER,pink,5,test.other,2939,52343,14.0573,7.7912
+rover3_final,4-gram LM + ROVER,pink,0,both,5559,104919,17.7994,10.4469
+rover3_final,4-gram LM + ROVER,pink,0,test.clean,2620,52576,9.9,5.1803
+rover3_final,4-gram LM + ROVER,pink,0,test.other,2939,52343,25.7341,15.8829
+rover3_final,4-gram LM + ROVER,white,20,both,5559,104919,5.5271,2.3527
+rover3_final,4-gram LM + ROVER,white,20,test.clean,2620,52576,3.1193,1.0947
+rover3_final,4-gram LM + ROVER,white,20,test.other,2939,52343,7.9457,3.6512
+rover3_final,4-gram LM + ROVER,white,10,both,5559,104919,8.1711,4.0226
+rover3_final,4-gram LM + ROVER,white,10,test.clean,2620,52576,4.2244,1.6869
+rover3_final,4-gram LM + ROVER,white,10,test.other,2939,52343,12.1353,6.4335
+rover3_final,4-gram LM + ROVER,white,5,both,5559,104919,12.6212,6.8883
+rover3_final,4-gram LM + ROVER,white,5,test.clean,2620,52576,6.5733,3.0672
+rover3_final,4-gram LM + ROVER,white,5,test.other,2939,52343,18.6959,10.8323
+rover3_final,4-gram LM + ROVER,white,0,both,5559,104919,23.3113,14.5708
+rover3_final,4-gram LM + ROVER,white,0,test.clean,2620,52576,13.5765,7.7008
+rover3_final,4-gram LM + ROVER,white,0,test.other,2939,52343,33.0894,21.6617
+A_clean,greedy,brown,20,both,5559,104919,9.4578,3.1765
+A_clean,greedy,brown,20,test.clean,2620,52576,5.8753,1.7121
+A_clean,greedy,brown,20,test.other,2939,52343,13.0562,4.688
+A_clean,greedy,brown,10,both,5559,104919,9.677,3.2896
+A_clean,greedy,brown,10,test.clean,2620,52576,5.9438,1.7394
+A_clean,greedy,brown,10,test.other,2939,52343,13.4268,4.8897
+A_clean,greedy,brown,5,both,5559,104919,10.0096,3.419
+A_clean,greedy,brown,5,test.clean,2620,52576,6.0636,1.7842
+A_clean,greedy,brown,5,test.other,2939,52343,13.9732,5.1064
+A_clean,greedy,brown,0,both,5559,104919,10.5052,3.642
+A_clean,greedy,brown,0,test.clean,2620,52576,6.2557,1.8442
+A_clean,greedy,brown,0,test.other,2939,52343,14.7737,5.4975
+A_clean,greedy,clean,clean,both,5559,104919,9.4282,3.1641
+A_clean,greedy,clean,clean,test.clean,2620,52576,5.8468,1.6972
+A_clean,greedy,clean,clean,test.other,2939,52343,13.0256,4.6781
+A_clean,greedy,esc50,20,both,5559,104919,11.4431,4.1253
+A_clean,greedy,esc50,20,test.clean,2620,52576,6.8073,2.0666
+A_clean,greedy,esc50,20,test.other,2939,52343,16.0996,6.2502
+A_clean,greedy,esc50,10,both,5559,104919,19.6399,8.5854
+A_clean,greedy,esc50,10,test.clean,2620,52576,12.0625,4.6599
+A_clean,greedy,esc50,10,test.other,2939,52343,27.251,12.6372
+A_clean,greedy,esc50,5,both,5559,104919,29.9746,14.9536
+A_clean,greedy,esc50,5,test.clean,2620,52576,20.5512,9.3859
+A_clean,greedy,esc50,5,test.other,2939,52343,39.4398,20.7004
+A_clean,greedy,esc50,0,both,5559,104919,46.6093,27.1249
+A_clean,greedy,esc50,0,test.clean,2620,52576,38.2969,21.7376
+A_clean,greedy,esc50,0,test.other,2939,52343,54.9586,32.6854
+A_clean,greedy,pink,20,both,5559,104919,11.1667,3.97
+A_clean,greedy,pink,20,test.clean,2620,52576,6.3736,1.8755
+A_clean,greedy,pink,20,test.other,2939,52343,15.9811,6.1318
+A_clean,greedy,pink,10,both,5559,104919,19.5656,8.23
+A_clean,greedy,pink,10,test.clean,2620,52576,10.4097,3.6039
+A_clean,greedy,pink,10,test.other,2939,52343,28.7622,13.0049
+A_clean,greedy,pink,5,both,5559,104919,38.198,18.9551
+A_clean,greedy,pink,5,test.clean,2620,52576,25.601,11.1395
+A_clean,greedy,pink,5,test.other,2939,52343,50.8511,27.0221
+A_clean,greedy,pink,0,both,5559,104919,73.8951,48.1616
+A_clean,greedy,pink,0,test.clean,2620,52576,66.3402,40.8109
+A_clean,greedy,pink,0,test.other,2939,52343,81.4837,55.7487
+A_clean,greedy,white,20,both,5559,104919,13.6963,5.1982
+A_clean,greedy,white,20,test.clean,2620,52576,7.2581,2.2243
+A_clean,greedy,white,20,test.other,2939,52343,20.1632,8.2678
+A_clean,greedy,white,10,both,5559,104919,30.8181,14.6758
+A_clean,greedy,white,10,test.clean,2620,52576,18.1528,7.341
+A_clean,greedy,white,10,test.other,2939,52343,43.5397,22.2465
+A_clean,greedy,white,5,both,5559,104919,56.1957,31.1713
+A_clean,greedy,white,5,test.clean,2620,52576,44.041,22.4722
+A_clean,greedy,white,5,test.other,2939,52343,68.4046,40.1502
+A_clean,greedy,white,0,both,5559,104919,86.8699,58.6035
+A_clean,greedy,white,0,test.clean,2620,52576,82.5643,53.5332
+A_clean,greedy,white,0,test.other,2939,52343,91.1946,63.8368
+B2_lr1e-4,greedy,brown,20,both,5559,104919,9.5178,3.2254
+B2_lr1e-4,greedy,brown,20,test.clean,2620,52576,5.8297,1.7053
+B2_lr1e-4,greedy,brown,20,test.other,2939,52343,13.2224,4.7944
+B2_lr1e-4,greedy,brown,10,both,5559,104919,9.676,3.2858
+B2_lr1e-4,greedy,brown,10,test.clean,2620,52576,5.9152,1.7181
+B2_lr1e-4,greedy,brown,10,test.other,2939,52343,13.4536,4.904
+B2_lr1e-4,greedy,brown,5,both,5559,104919,9.8495,3.3569
+B2_lr1e-4,greedy,brown,5,test.clean,2620,52576,6.0256,1.7675
+B2_lr1e-4,greedy,brown,5,test.other,2939,52343,13.6905,4.9975
+B2_lr1e-4,greedy,brown,0,both,5559,104919,10.1278,3.4866
+B2_lr1e-4,greedy,brown,0,test.clean,2620,52576,6.0636,1.7757
+B2_lr1e-4,greedy,brown,0,test.other,2939,52343,14.2101,5.2526
+B2_lr1e-4,greedy,clean,clean,both,5559,104919,9.4949,3.2157
+B2_lr1e-4,greedy,clean,clean,test.clean,2620,52576,5.8924,1.7131
+B2_lr1e-4,greedy,clean,clean,test.other,2939,52343,13.1135,4.7665
+B2_lr1e-4,greedy,esc50,20,both,5559,104919,10.2336,3.5565
+B2_lr1e-4,greedy,esc50,20,test.clean,2620,52576,6.1834,1.8367
+B2_lr1e-4,greedy,esc50,20,test.other,2939,52343,14.3018,5.3315
+B2_lr1e-4,greedy,esc50,10,both,5559,104919,12.6669,4.7609
+B2_lr1e-4,greedy,esc50,10,test.clean,2620,52576,7.336,2.3319
+B2_lr1e-4,greedy,esc50,10,test.other,2939,52343,18.0215,7.268
+B2_lr1e-4,greedy,esc50,5,both,5559,104919,15.9742,6.5096
+B2_lr1e-4,greedy,esc50,5,test.clean,2620,52576,9.1791,3.1812
+B2_lr1e-4,greedy,esc50,5,test.other,2939,52343,22.7996,9.9451
+B2_lr1e-4,greedy,esc50,0,both,5559,104919,23.1455,10.6885
+B2_lr1e-4,greedy,esc50,0,test.clean,2620,52576,14.9079,6.1496
+B2_lr1e-4,greedy,esc50,0,test.other,2939,52343,31.4197,15.3733
+B2_lr1e-4,greedy,pink,20,both,5559,104919,10.2393,3.539
+B2_lr1e-4,greedy,pink,20,test.clean,2620,52576,6.1435,1.8101
+B2_lr1e-4,greedy,pink,20,test.other,2939,52343,14.3534,5.3234
+B2_lr1e-4,greedy,pink,10,both,5559,104919,12.8795,4.8592
+B2_lr1e-4,greedy,pink,10,test.clean,2620,52576,7.2524,2.3006
+B2_lr1e-4,greedy,pink,10,test.other,2939,52343,18.5316,7.5001
+B2_lr1e-4,greedy,pink,5,both,5559,104919,17.2819,7.1611
+B2_lr1e-4,greedy,pink,5,test.clean,2620,52576,9.6831,3.3517
+B2_lr1e-4,greedy,pink,5,test.other,2939,52343,24.9145,11.093
+B2_lr1e-4,greedy,pink,0,both,5559,104919,28.339,13.3088
+B2_lr1e-4,greedy,pink,0,test.clean,2620,52576,17.5879,7.2369
+B2_lr1e-4,greedy,pink,0,test.other,2939,52343,39.138,19.576
+B2_lr1e-4,greedy,white,20,both,5559,104919,10.9646,3.9169
+B2_lr1e-4,greedy,white,20,test.clean,2620,52576,6.4003,1.9245
+B2_lr1e-4,greedy,white,20,test.other,2939,52343,15.5494,5.9734
+B2_lr1e-4,greedy,white,10,both,5559,104919,15.5329,6.1953
+B2_lr1e-4,greedy,white,10,test.clean,2620,52576,8.4639,2.81
+B2_lr1e-4,greedy,white,10,test.other,2939,52343,22.6334,9.6895
+B2_lr1e-4,greedy,white,5,both,5559,104919,21.9779,9.6886
+B2_lr1e-4,greedy,white,5,test.clean,2620,52576,12.5609,4.667
+B2_lr1e-4,greedy,white,5,test.other,2939,52343,31.4369,14.8718
+B2_lr1e-4,greedy,white,0,both,5559,104919,35.1328,17.5046
+B2_lr1e-4,greedy,white,0,test.clean,2620,52576,22.6929,10.0142
+B2_lr1e-4,greedy,white,0,test.other,2939,52343,47.6281,25.2359
+B460,greedy,brown,20,both,5559,104919,7.9118,2.6107
+B460,greedy,brown,20,test.clean,2620,52576,4.7398,1.338
+B460,greedy,brown,20,test.other,2939,52343,11.098,3.9244
+B460,greedy,brown,10,both,5559,104919,7.9499,2.6315
+B460,greedy,brown,10,test.clean,2620,52576,4.7493,1.3451
+B460,greedy,brown,10,test.other,2939,52343,11.1648,3.9592
+B460,greedy,brown,5,both,5559,104919,8.0939,2.7152
+B460,greedy,brown,5,test.clean,2620,52576,4.814,1.3725
+B460,greedy,brown,5,test.other,2939,52343,11.3883,4.1011
+B460,greedy,brown,0,both,5559,104919,8.3541,2.8344
+B460,greedy,brown,0,test.clean,2620,52576,4.8159,1.3778
+B460,greedy,brown,0,test.other,2939,52343,11.908,4.3379
+B460,greedy,clean,clean,both,5559,104919,7.8899,2.5949
+B460,greedy,clean,clean,test.clean,2620,52576,4.6999,1.3224
+B460,greedy,clean,clean,test.other,2939,52343,11.0941,3.9082
+B460,greedy,esc50,20,both,5559,104919,8.4055,2.8635
+B460,greedy,esc50,20,test.clean,2620,52576,4.9319,1.4208
+B460,greedy,esc50,20,test.other,2939,52343,11.8946,4.3526
+B460,greedy,esc50,10,both,5559,104919,10.3947,3.8215
+B460,greedy,esc50,10,test.clean,2620,52576,5.8316,1.8279
+B460,greedy,esc50,10,test.other,2939,52343,14.9781,5.8792
+B460,greedy,esc50,5,both,5559,104919,13.2693,5.314
+B460,greedy,esc50,5,test.clean,2620,52576,7.4007,2.5074
+B460,greedy,esc50,5,test.other,2939,52343,19.164,8.2109
+B460,greedy,esc50,0,both,5559,104919,20.0421,9.1175
+B460,greedy,esc50,0,test.clean,2620,52576,12.422,5.0993
+B460,greedy,esc50,0,test.other,2939,52343,27.6962,13.2649
+B460,greedy,pink,20,both,5559,104919,8.4608,2.8803
+B460,greedy,pink,20,test.clean,2620,52576,4.9319,1.4208
+B460,greedy,pink,20,test.other,2939,52343,12.0054,4.3867
+B460,greedy,pink,10,both,5559,104919,10.5519,3.8826
+B460,greedy,pink,10,test.clean,2620,52576,5.7878,1.7856
+B460,greedy,pink,10,test.other,2939,52343,15.3373,6.0471
+B460,greedy,pink,5,both,5559,104919,14.3434,5.8298
+B460,greedy,pink,5,test.clean,2620,52576,7.823,2.6661
+B460,greedy,pink,5,test.other,2939,52343,20.893,9.0952
+B460,greedy,pink,0,both,5559,104919,24.5351,11.3791
+B460,greedy,pink,0,test.clean,2620,52576,14.733,5.9795
+B460,greedy,pink,0,test.other,2939,52343,34.3809,16.9524
+B460,greedy,white,20,both,5559,104919,8.9993,3.1381
+B460,greedy,white,20,test.clean,2620,52576,5.124,1.5078
+B460,greedy,white,20,test.other,2939,52343,12.8919,4.8208
+B460,greedy,white,10,both,5559,104919,12.8337,5.032
+B460,greedy,white,10,test.clean,2620,52576,6.7122,2.2083
+B460,greedy,white,10,test.other,2939,52343,18.9825,7.9466
+B460,greedy,white,5,both,5559,104919,18.5486,8.0207
+B460,greedy,white,5,test.clean,2620,52576,10.054,3.7218
+B460,greedy,white,5,test.other,2939,52343,27.081,12.4579
+B460,greedy,white,0,both,5559,104919,31.1364,15.2529
+B460,greedy,white,0,test.clean,2620,52576,19.4252,8.4986
+B460,greedy,white,0,test.other,2939,52343,42.8997,22.2245
+B960_rev,greedy,brown,20,both,5559,104919,7.2542,2.3596
+B960_rev,greedy,brown,20,test.clean,2620,52576,4.5648,1.2833
+B960_rev,greedy,brown,20,test.other,2939,52343,9.9555,3.4705
+B960_rev,greedy,brown,10,both,5559,104919,7.2999,2.3697
+B960_rev,greedy,brown,10,test.clean,2620,52576,4.5876,1.2954
+B960_rev,greedy,brown,10,test.other,2939,52343,10.0243,3.4785
+B960_rev,greedy,brown,5,both,5559,104919,7.3971,2.4146
+B960_rev,greedy,brown,5,test.clean,2620,52576,4.6428,1.3142
+B960_rev,greedy,brown,5,test.other,2939,52343,10.1637,3.5504
+B960_rev,greedy,brown,0,both,5559,104919,7.582,2.4964
+B960_rev,greedy,brown,0,test.clean,2620,52576,4.6523,1.3121
+B960_rev,greedy,brown,0,test.other,2939,52343,10.5248,3.7187
+B960_rev,greedy,clean,clean,both,5559,104919,7.2828,2.3535
+B960_rev,greedy,clean,clean,test.clean,2620,52576,4.6314,1.2915
+B960_rev,greedy,clean,clean,test.other,2939,52343,9.9459,3.4496
+B960_rev,greedy,esc50,20,both,5559,104919,7.826,2.5968
+B960_rev,greedy,esc50,20,test.clean,2620,52576,4.8653,1.3707
+B960_rev,greedy,esc50,20,test.other,2939,52343,10.7999,3.8624
+B960_rev,greedy,esc50,10,both,5559,104919,9.4911,3.4231
+B960_rev,greedy,esc50,10,test.clean,2620,52576,5.6547,1.743
+B960_rev,greedy,esc50,10,test.other,2939,52343,13.3447,5.1573
+B960_rev,greedy,esc50,5,both,5559,104919,12.2132,4.8163
+B960_rev,greedy,esc50,5,test.clean,2620,52576,7.1249,2.4132
+B960_rev,greedy,esc50,5,test.other,2939,52343,17.3242,7.2966
+B960_rev,greedy,esc50,0,both,5559,104919,18.5648,8.3727
+B960_rev,greedy,esc50,0,test.clean,2620,52576,11.9389,4.9036
+B960_rev,greedy,esc50,0,test.other,2939,52343,25.2202,11.9535
+B960_rev,greedy,pink,20,both,5559,104919,7.7393,2.5673
+B960_rev,greedy,pink,20,test.clean,2620,52576,4.8387,1.3732
+B960_rev,greedy,pink,20,test.other,2939,52343,10.6528,3.7997
+B960_rev,greedy,pink,10,both,5559,104919,9.6636,3.504
+B960_rev,greedy,pink,10,test.clean,2620,52576,5.5976,1.7281
+B960_rev,greedy,pink,10,test.other,2939,52343,13.7478,5.337
+B960_rev,greedy,pink,5,both,5559,104919,13.3532,5.2996
+B960_rev,greedy,pink,5,test.clean,2620,52576,7.7184,2.599
+B960_rev,greedy,pink,5,test.other,2939,52343,19.013,8.087
+B960_rev,greedy,pink,0,both,5559,104919,22.9987,10.5335
+B960_rev,greedy,pink,0,test.clean,2620,52576,14.2403,5.8228
+B960_rev,greedy,pink,0,test.other,2939,52343,31.796,15.3957
+B960_rev,greedy,white,20,both,5559,104919,8.2263,2.8025
+B960_rev,greedy,white,20,test.clean,2620,52576,4.9376,1.4492
+B960_rev,greedy,white,20,test.other,2939,52343,11.5297,4.1993
+B960_rev,greedy,white,10,both,5559,104919,11.7443,4.517
+B960_rev,greedy,white,10,test.clean,2620,52576,6.5867,2.1731
+B960_rev,greedy,white,10,test.other,2939,52343,16.9249,6.9362
+B960_rev,greedy,white,5,both,5559,104919,17.3524,7.4052
+B960_rev,greedy,white,5,test.clean,2620,52576,10.035,3.7154
+B960_rev,greedy,white,5,test.other,2939,52343,24.7024,11.2136
+B960_rev,greedy,white,0,both,5559,104919,29.4246,14.2803
+B960_rev,greedy,white,0,test.clean,2620,52576,19.0524,8.3203
+B960_rev,greedy,white,0,test.other,2939,52343,39.843,20.432
+B960_rev_s2,greedy,brown,20,both,5559,104919,7.3361,2.371
+B960_rev_s2,greedy,brown,20,test.clean,2620,52576,4.6428,1.3039
+B960_rev_s2,greedy,brown,20,test.other,2939,52343,10.0415,3.4723
+B960_rev_s2,greedy,brown,10,both,5559,104919,7.38,2.3988
+B960_rev_s2,greedy,brown,10,test.clean,2620,52576,4.6447,1.3192
+B960_rev_s2,greedy,brown,10,test.other,2939,52343,10.1274,3.513
+B960_rev_s2,greedy,brown,5,both,5559,104919,7.4915,2.437
+B960_rev_s2,greedy,brown,5,test.clean,2620,52576,4.6637,1.3182
+B960_rev_s2,greedy,brown,5,test.other,2939,52343,10.3318,3.5918
+B960_rev_s2,greedy,brown,0,both,5559,104919,7.6535,2.5391
+B960_rev_s2,greedy,brown,0,test.clean,2620,52576,4.7094,1.3409
+B960_rev_s2,greedy,brown,0,test.other,2939,52343,10.6108,3.7759
+B960_rev_s2,greedy,clean,clean,both,5559,104919,7.3476,2.3796
+B960_rev_s2,greedy,clean,clean,test.clean,2620,52576,4.6371,1.2951
+B960_rev_s2,greedy,clean,clean,test.other,2939,52343,10.0701,3.4991
+B960_rev_s2,greedy,esc50,20,both,5559,104919,7.8451,2.6221
+B960_rev_s2,greedy,esc50,20,test.clean,2620,52576,4.8672,1.3867
+B960_rev_s2,greedy,esc50,20,test.other,2939,52343,10.8362,3.8972
+B960_rev_s2,greedy,esc50,10,both,5559,104919,9.5531,3.4637
+B960_rev_s2,greedy,esc50,10,test.clean,2620,52576,5.6661,1.7831
+B960_rev_s2,greedy,esc50,10,test.other,2939,52343,13.4574,5.1984
+B960_rev_s2,greedy,esc50,5,both,5559,104919,12.3295,4.8608
+B960_rev_s2,greedy,esc50,5,test.clean,2620,52576,7.2029,2.4243
+B960_rev_s2,greedy,esc50,5,test.other,2939,52343,17.4789,7.3758
+B960_rev_s2,greedy,esc50,0,both,5559,104919,18.7163,8.3978
+B960_rev_s2,greedy,esc50,0,test.clean,2620,52576,12.1367,4.9391
+B960_rev_s2,greedy,esc50,0,test.other,2939,52343,25.3253,11.9678
+B960_rev_s2,greedy,pink,20,both,5559,104919,7.7955,2.6042
+B960_rev_s2,greedy,pink,20,test.clean,2620,52576,4.8216,1.3743
+B960_rev_s2,greedy,pink,20,test.other,2939,52343,10.7827,3.8738
+B960_rev_s2,greedy,pink,10,both,5559,104919,9.7008,3.5314
+B960_rev_s2,greedy,pink,10,test.clean,2620,52576,5.6299,1.7504
+B960_rev_s2,greedy,pink,10,test.other,2939,52343,13.7898,5.3696
+B960_rev_s2,greedy,pink,5,both,5559,104919,13.3017,5.3101
+B960_rev_s2,greedy,pink,5,test.clean,2620,52576,7.6613,2.5944
+B960_rev_s2,greedy,pink,5,test.other,2939,52343,18.9672,8.1131
+B960_rev_s2,greedy,pink,0,both,5559,104919,23.237,10.6057
+B960_rev_s2,greedy,pink,0,test.clean,2620,52576,14.267,5.7784
+B960_rev_s2,greedy,pink,0,test.other,2939,52343,32.2469,15.5882
+B960_rev_s2,greedy,white,20,both,5559,104919,8.2816,2.8429
+B960_rev_s2,greedy,white,20,test.clean,2620,52576,4.9852,1.4631
+B960_rev_s2,greedy,white,20,test.other,2939,52343,11.5928,4.2672
+B960_rev_s2,greedy,white,10,both,5559,104919,11.8301,4.5599
+B960_rev_s2,greedy,white,10,test.clean,2620,52576,6.6513,2.1888
+B960_rev_s2,greedy,white,10,test.other,2939,52343,17.0319,7.0073
+B960_rev_s2,greedy,white,5,both,5559,104919,17.4468,7.4317
+B960_rev_s2,greedy,white,5,test.clean,2620,52576,10.0084,3.7065
+B960_rev_s2,greedy,white,5,test.other,2939,52343,24.9183,11.2767
+B960_rev_s2,greedy,white,0,both,5559,104919,29.5619,14.3204
+B960_rev_s2,greedy,white,0,test.clean,2620,52576,19.0676,8.2627
+B960_rev_s2,greedy,white,0,test.other,2939,52343,40.1028,20.5728
+B_noisy,greedy,brown,20,both,5559,104919,9.6789,3.2272
+B_noisy,greedy,brown,20,test.clean,2620,52576,6.2405,1.7952
+B_noisy,greedy,brown,20,test.other,2939,52343,13.1326,4.7053
+B_noisy,greedy,brown,10,both,5559,104919,9.7189,3.2608
+B_noisy,greedy,brown,10,test.clean,2620,52576,6.2215,1.7973
+B_noisy,greedy,brown,10,test.other,2939,52343,13.232,4.7713
+B_noisy,greedy,brown,5,both,5559,104919,9.8562,3.3391
+B_noisy,greedy,brown,5,test.clean,2620,52576,6.2976,1.8414
+B_noisy,greedy,brown,5,test.other,2939,52343,13.4306,4.8849
+B_noisy,greedy,brown,0,both,5559,104919,10.1879,3.4518
+B_noisy,greedy,brown,0,test.clean,2620,52576,6.3736,1.8623
+B_noisy,greedy,brown,0,test.other,2939,52343,14.0191,5.0924
+B_noisy,greedy,clean,clean,both,5559,104919,9.6246,3.2043
+B_noisy,greedy,clean,clean,test.clean,2620,52576,6.1872,1.7824
+B_noisy,greedy,clean,clean,test.other,2939,52343,13.0772,4.6719
+B_noisy,greedy,esc50,20,both,5559,104919,10.2927,3.5373
+B_noisy,greedy,esc50,20,test.clean,2620,52576,6.4307,1.8964
+B_noisy,greedy,esc50,20,test.other,2939,52343,14.1719,5.231
+B_noisy,greedy,esc50,10,both,5559,104919,12.8261,4.8136
+B_noisy,greedy,esc50,10,test.clean,2620,52576,7.6917,2.4445
+B_noisy,greedy,esc50,10,test.other,2939,52343,17.9833,7.2588
+B_noisy,greedy,esc50,5,both,5559,104919,16.264,6.5863
+B_noisy,greedy,esc50,5,test.clean,2620,52576,9.5443,3.2892
+B_noisy,greedy,esc50,5,test.other,2939,52343,23.0136,9.9894
+B_noisy,greedy,esc50,0,both,5559,104919,23.9833,11.0834
+B_noisy,greedy,esc50,0,test.clean,2620,52576,15.6745,6.5197
+B_noisy,greedy,esc50,0,test.other,2939,52343,32.3291,15.7939
+B_noisy,greedy,pink,20,both,5559,104919,10.1974,3.491
+B_noisy,greedy,pink,20,test.clean,2620,52576,6.3679,1.8865
+B_noisy,greedy,pink,20,test.other,2939,52343,14.0439,5.1471
+B_noisy,greedy,pink,10,both,5559,104919,12.9042,4.8358
+B_noisy,greedy,pink,10,test.clean,2620,52576,7.4863,2.3646
+B_noisy,greedy,pink,10,test.other,2939,52343,18.3463,7.3864
+B_noisy,greedy,pink,5,both,5559,104919,17.5478,7.2015
+B_noisy,greedy,pink,5,test.clean,2620,52576,10.0369,3.4824
+B_noisy,greedy,pink,5,test.other,2939,52343,25.0922,11.0402
+B_noisy,greedy,pink,0,both,5559,104919,28.8565,13.548
+B_noisy,greedy,pink,0,test.clean,2620,52576,18.0577,7.4497
+B_noisy,greedy,pink,0,test.other,2939,52343,39.7035,19.8425
+B_noisy,greedy,white,20,both,5559,104919,10.9942,3.8967
+B_noisy,greedy,white,20,test.clean,2620,52576,6.678,2.0012
+B_noisy,greedy,white,20,test.other,2939,52343,15.3297,5.8532
+B_noisy,greedy,white,10,both,5559,104919,15.653,6.2033
+B_noisy,greedy,white,10,test.clean,2620,52576,8.7397,2.8974
+B_noisy,greedy,white,10,test.other,2939,52343,22.5971,9.6155
+B_noisy,greedy,white,5,both,5559,104919,22.2457,9.7922
+B_noisy,greedy,white,5,test.clean,2620,52576,13.0192,4.835
+B_noisy,greedy,white,5,test.other,2939,52343,31.5133,14.9088
+B_noisy,greedy,white,0,both,5559,104919,35.9372,17.8582
+B_noisy,greedy,white,0,test.clean,2620,52576,23.4461,10.3914
+B_noisy,greedy,white,0,test.other,2939,52343,48.484,25.5652
+ref_base960h,greedy,brown,20,both,5559,104919,6.0084,2.0101
+ref_base960h,greedy,brown,20,test.clean,2620,52576,3.3989,0.9573
+ref_base960h,greedy,brown,20,test.other,2939,52343,8.6296,3.0969
+ref_base960h,greedy,brown,10,both,5559,104919,6.1295,2.0718
+ref_base960h,greedy,brown,10,test.clean,2620,52576,3.4312,0.9733
+ref_base960h,greedy,brown,10,test.other,2939,52343,8.8398,3.2058
+ref_base960h,greedy,brown,5,both,5559,104919,6.3687,2.161
+ref_base960h,greedy,brown,5,test.clean,2620,52576,3.5187,1.0024
+ref_base960h,greedy,brown,5,test.other,2939,52343,9.2314,3.3568
+ref_base960h,greedy,brown,0,both,5559,104919,6.7223,2.3168
+ref_base960h,greedy,brown,0,test.clean,2620,52576,3.6633,1.0439
+ref_base960h,greedy,brown,0,test.other,2939,52343,9.795,3.6307
+ref_base960h,greedy,clean,clean,both,5559,104919,6.0037,1.9954
+ref_base960h,greedy,clean,clean,test.clean,2620,52576,3.4274,0.958
+ref_base960h,greedy,clean,clean,test.other,2939,52343,8.5914,3.0661
+ref_base960h,greedy,esc50,20,both,5559,104919,7.5563,2.7322
+ref_base960h,greedy,esc50,20,test.clean,2620,52576,3.9866,1.1967
+ref_base960h,greedy,esc50,20,test.other,2939,52343,11.1419,4.317
+ref_base960h,greedy,esc50,10,both,5559,104919,15.2041,6.9574
+ref_base960h,greedy,esc50,10,test.clean,2620,52576,8.8462,3.6149
+ref_base960h,greedy,esc50,10,test.other,2939,52343,21.5903,10.4074
+ref_base960h,greedy,esc50,5,both,5559,104919,26.4413,14.2029
+ref_base960h,greedy,esc50,5,test.clean,2620,52576,18.2117,9.2427
+ref_base960h,greedy,esc50,5,test.other,2939,52343,34.7076,19.3226
+ref_base960h,greedy,esc50,0,both,5559,104919,42.9083,27.824
+ref_base960h,greedy,esc50,0,test.clean,2620,52576,35.7273,22.9141
+ref_base960h,greedy,esc50,0,test.other,2939,52343,50.1213,32.8918
+ref_base960h,greedy,pink,20,both,5559,104919,7.4372,2.6665
+ref_base960h,greedy,pink,20,test.clean,2620,52576,3.8497,1.1175
+ref_base960h,greedy,pink,20,test.other,2939,52343,11.0406,4.2653
+ref_base960h,greedy,pink,10,both,5559,104919,18.7802,8.5373
+ref_base960h,greedy,pink,10,test.clean,2620,52576,9.5481,3.557
+ref_base960h,greedy,pink,10,test.other,2939,52343,28.0534,13.6777
+ref_base960h,greedy,pink,5,both,5559,104919,47.1659,26.8952
+ref_base960h,greedy,pink,5,test.clean,2620,52576,35.889,18.8619
+ref_base960h,greedy,pink,5,test.other,2939,52343,58.493,35.1869
+ref_base960h,greedy,pink,0,both,5559,104919,83.9305,65.2462
+ref_base960h,greedy,pink,0,test.clean,2620,52576,78.7508,58.8065
+ref_base960h,greedy,pink,0,test.other,2939,52343,89.1332,71.893
+ref_base960h,greedy,white,20,both,5559,104919,9.7876,3.7899
+ref_base960h,greedy,white,20,test.clean,2620,52576,4.6923,1.4634
+ref_base960h,greedy,white,20,test.other,2939,52343,14.9055,6.1912
+ref_base960h,greedy,white,10,both,5559,104919,34.0796,17.3136
+ref_base960h,greedy,white,10,test.clean,2620,52576,22.2478,10.0494
+ref_base960h,greedy,white,10,test.other,2939,52343,45.9641,24.8114
+ref_base960h,greedy,white,5,both,5559,104919,68.1754,41.5145
+ref_base960h,greedy,white,5,test.clean,2620,52576,59.628,34.1829
+ref_base960h,greedy,white,5,test.other,2939,52343,76.761,49.082
+ref_base960h,greedy,white,0,both,5559,104919,93.1928,74.889
+ref_base960h,greedy,white,0,test.clean,2620,52576,91.1937,70.9612
+ref_base960h,greedy,white,0,test.other,2939,52343,95.2009,78.9432
+A_clean,greedy (harder grid),esc50,-5,both,5559,104919,61.6485,41.1102
+A_clean,greedy (harder grid),esc50,-5,test.clean,2620,52576,55.1811,36.4103
+A_clean,greedy (harder grid),esc50,-5,test.other,2939,52343,68.1447,45.9613
+A_clean,greedy (harder grid),pink,-5,both,5559,104919,98.1147,92.0628
+A_clean,greedy (harder grid),pink,-5,test.clean,2620,52576,97.4437,90.4866
+A_clean,greedy (harder grid),pink,-5,test.other,2939,52343,98.7888,93.6896
+A_clean,greedy (harder grid),reverb+clean,clean,both,5559,104919,21.8216,9.9558
+A_clean,greedy (harder grid),reverb+clean,clean,test.clean,2620,52576,13.9836,5.8711
+A_clean,greedy (harder grid),reverb+clean,clean,test.other,2939,52343,29.6945,14.1719
+A_clean,greedy (harder grid),reverb+esc50,10,both,5559,104919,41.3662,22.5141
+A_clean,greedy (harder grid),reverb+esc50,10,test.clean,2620,52576,30.8962,15.863
+A_clean,greedy (harder grid),reverb+esc50,10,test.other,2939,52343,51.8828,29.3792
+A_clean,greedy (harder grid),reverb+esc50,5,both,5559,104919,52.0859,30.8049
+A_clean,greedy (harder grid),reverb+esc50,5,test.clean,2620,52576,43.3753,24.7892
+A_clean,greedy (harder grid),reverb+esc50,5,test.other,2939,52343,60.8353,37.0141
+A_clean,greedy (harder grid),reverb+esc50,0,both,5559,104919,65.969,42.7608
+A_clean,greedy (harder grid),reverb+esc50,0,test.clean,2620,52576,59.1601,37.6741
+A_clean,greedy (harder grid),reverb+esc50,0,test.other,2939,52343,72.8082,48.0111
+A_clean,greedy (harder grid),white,-5,both,5559,104919,99.2642,95.1587
+A_clean,greedy (harder grid),white,-5,test.clean,2620,52576,99.1137,94.8034
+A_clean,greedy (harder grid),white,-5,test.other,2939,52343,99.4154,95.5253
+B2_lr1e-4,greedy (harder grid),esc50,-5,both,5559,104919,36.8475,19.6353
+B2_lr1e-4,greedy (harder grid),esc50,-5,test.clean,2620,52576,27.8036,14.0887
+B2_lr1e-4,greedy (harder grid),esc50,-5,test.other,2939,52343,45.9316,25.3602
+B2_lr1e-4,greedy (harder grid),pink,-5,both,5559,104919,53.8606,29.6629
+B2_lr1e-4,greedy (harder grid),pink,-5,test.clean,2620,52576,41.9906,21.5171
+B2_lr1e-4,greedy (harder grid),pink,-5,test.other,2939,52343,65.7834,38.0707
+B2_lr1e-4,greedy (harder grid),reverb+clean,clean,both,5559,104919,20.2957,9.1878
+B2_lr1e-4,greedy (harder grid),reverb+clean,clean,test.clean,2620,52576,12.4144,5.0094
+B2_lr1e-4,greedy (harder grid),reverb+clean,clean,test.other,2939,52343,28.212,13.5006
+B2_lr1e-4,greedy (harder grid),reverb+esc50,10,both,5559,104919,29.8173,15.0164
+B2_lr1e-4,greedy (harder grid),reverb+esc50,10,test.clean,2620,52576,19.5374,8.9976
+B2_lr1e-4,greedy (harder grid),reverb+esc50,10,test.other,2939,52343,40.1429,21.2287
+B2_lr1e-4,greedy (harder grid),reverb+esc50,5,both,5559,104919,35.9201,19.1182
+B2_lr1e-4,greedy (harder grid),reverb+esc50,5,test.clean,2620,52576,26.2325,13.1251
+B2_lr1e-4,greedy (harder grid),reverb+esc50,5,test.other,2939,52343,45.6508,25.3041
+B2_lr1e-4,greedy (harder grid),reverb+esc50,0,both,5559,104919,46.7332,26.6915
+B2_lr1e-4,greedy (harder grid),reverb+esc50,0,test.clean,2620,52576,37.8861,20.8472
+B2_lr1e-4,greedy (harder grid),reverb+esc50,0,test.other,2939,52343,55.6197,32.7239
+B2_lr1e-4,greedy (harder grid),white,-5,both,5559,104919,59.2476,33.4328
+B2_lr1e-4,greedy (harder grid),white,-5,test.clean,2620,52576,47.1242,24.8339
+B2_lr1e-4,greedy (harder grid),white,-5,test.other,2939,52343,71.425,42.3082
+B460,greedy (harder grid),esc50,-5,both,5559,104919,32.9054,17.2062
+B460,greedy (harder grid),esc50,-5,test.clean,2620,52576,24.3876,12.155
+B460,greedy (harder grid),esc50,-5,test.other,2939,52343,41.4611,22.4199
+B460,greedy (harder grid),pink,-5,both,5559,104919,49.5706,26.7356
+B460,greedy (harder grid),pink,-5,test.clean,2620,52576,38.0097,19.107
+B460,greedy (harder grid),pink,-5,test.other,2939,52343,61.183,34.6094
+B460,greedy (harder grid),reverb+clean,clean,both,5559,104919,17.8862,8.1142
+B460,greedy (harder grid),reverb+clean,clean,test.clean,2620,52576,10.7121,4.3566
+B460,greedy (harder grid),reverb+clean,clean,test.other,2939,52343,25.0922,11.9927
+B460,greedy (harder grid),reverb+esc50,10,both,5559,104919,26.7168,13.3544
+B460,greedy (harder grid),reverb+esc50,10,test.clean,2620,52576,17.0534,7.889
+B460,greedy (harder grid),reverb+esc50,10,test.other,2939,52343,36.4232,18.9956
+B460,greedy (harder grid),reverb+esc50,5,both,5559,104919,32.6147,17.1258
+B460,greedy (harder grid),reverb+esc50,5,test.clean,2620,52576,23.3148,11.5025
+B460,greedy (harder grid),reverb+esc50,5,test.other,2939,52343,41.9559,22.9298
+B460,greedy (harder grid),reverb+esc50,0,both,5559,104919,43.0075,24.0761
+B460,greedy (harder grid),reverb+esc50,0,test.clean,2620,52576,34.2913,18.5696
+B460,greedy (harder grid),reverb+esc50,0,test.other,2939,52343,51.7624,29.7597
+B460,greedy (harder grid),white,-5,both,5559,104919,55.2426,30.6386
+B460,greedy (harder grid),white,-5,test.clean,2620,52576,43.1223,22.3809
+B460,greedy (harder grid),white,-5,test.other,2939,52343,67.4168,39.1618
+B960_rev,greedy (harder grid),esc50,-5,both,5559,104919,31.0134,16.14
+B960_rev,greedy (harder grid),esc50,-5,test.clean,2620,52576,23.4499,11.684
+B960_rev,greedy (harder grid),esc50,-5,test.other,2939,52343,38.6107,20.7393
+B960_rev,greedy (harder grid),pink,-5,both,5559,104919,47.2784,25.2961
+B960_rev,greedy (harder grid),pink,-5,test.clean,2620,52576,36.5889,18.4542
+B960_rev,greedy (harder grid),pink,-5,test.other,2939,52343,58.0154,32.358
+B960_rev,greedy (harder grid),reverb+clean,clean,both,5559,104919,12.5554,5.0438
+B960_rev,greedy (harder grid),reverb+clean,clean,test.clean,2620,52576,7.6936,2.7166
+B960_rev,greedy (harder grid),reverb+clean,clean,test.other,2939,52343,17.4388,7.4458
+B960_rev,greedy (harder grid),reverb+esc50,10,both,5559,104919,20.0097,9.1353
+B960_rev,greedy (harder grid),reverb+esc50,10,test.clean,2620,52576,12.6369,5.2819
+B960_rev,greedy (harder grid),reverb+esc50,10,test.other,2939,52343,27.4153,13.1127
+B960_rev,greedy (harder grid),reverb+esc50,5,both,5559,104919,25.6236,12.6422
+B960_rev,greedy (harder grid),reverb+esc50,5,test.clean,2620,52576,17.9702,8.3028
+B960_rev,greedy (harder grid),reverb+esc50,5,test.other,2939,52343,33.311,17.121
+B960_rev,greedy (harder grid),reverb+esc50,0,both,5559,104919,35.6971,18.8528
+B960_rev,greedy (harder grid),reverb+esc50,0,test.clean,2620,52576,28.0946,14.261
+B960_rev,greedy (harder grid),reverb+esc50,0,test.other,2939,52343,43.3334,23.5923
+B960_rev,greedy (harder grid),white,-5,both,5559,104919,53.3011,29.253
+B960_rev,greedy (harder grid),white,-5,test.clean,2620,52576,42.2151,21.8748
+B960_rev,greedy (harder grid),white,-5,test.other,2939,52343,64.4365,36.8686
+B960_rev_s2,greedy (harder grid),esc50,-5,both,5559,104919,31.2803,16.3121
+B960_rev_s2,greedy (harder grid),esc50,-5,test.clean,2620,52576,23.7751,11.8502
+B960_rev_s2,greedy (harder grid),esc50,-5,test.other,2939,52343,38.8189,20.9174
+B960_rev_s2,greedy (harder grid),pink,-5,both,5559,104919,47.2469,25.3015
+B960_rev_s2,greedy (harder grid),pink,-5,test.clean,2620,52576,36.5091,18.3306
+B960_rev_s2,greedy (harder grid),pink,-5,test.other,2939,52343,58.0326,32.4966
+B960_rev_s2,greedy (harder grid),reverb+clean,clean,both,5559,104919,12.5735,5.0301
+B960_rev_s2,greedy (harder grid),reverb+clean,clean,test.clean,2620,52576,7.7031,2.7226
+B960_rev_s2,greedy (harder grid),reverb+clean,clean,test.other,2939,52343,17.4656,7.4117
+B960_rev_s2,greedy (harder grid),reverb+esc50,10,both,5559,104919,20.0402,9.1346
+B960_rev_s2,greedy (harder grid),reverb+esc50,10,test.clean,2620,52576,12.7168,5.3096
+B960_rev_s2,greedy (harder grid),reverb+esc50,10,test.other,2939,52343,27.3962,13.0827
+B960_rev_s2,greedy (harder grid),reverb+esc50,5,both,5559,104919,25.6512,12.6535
+B960_rev_s2,greedy (harder grid),reverb+esc50,5,test.clean,2620,52576,17.9512,8.3092
+B960_rev_s2,greedy (harder grid),reverb+esc50,5,test.other,2939,52343,33.3856,17.1375
+B960_rev_s2,greedy (harder grid),reverb+esc50,0,both,5559,104919,35.7523,18.9176
+B960_rev_s2,greedy (harder grid),reverb+esc50,0,test.clean,2620,52576,28.1174,14.3246
+B960_rev_s2,greedy (harder grid),reverb+esc50,0,test.other,2939,52343,43.4213,23.6583
+B960_rev_s2,greedy (harder grid),white,-5,both,5559,104919,53.0123,29.1946
+B960_rev_s2,greedy (harder grid),white,-5,test.clean,2620,52576,41.6331,21.6421
+B960_rev_s2,greedy (harder grid),white,-5,test.other,2939,52343,64.4422,36.9899
+B_noisy,greedy (harder grid),esc50,-5,both,5559,104919,38.2066,20.4558
+B_noisy,greedy (harder grid),esc50,-5,test.clean,2620,52576,29.3347,14.9345
+B_noisy,greedy (harder grid),esc50,-5,test.other,2939,52343,47.118,26.1547
+B_noisy,greedy (harder grid),pink,-5,both,5559,104919,55.317,30.6119
+B_noisy,greedy (harder grid),pink,-5,test.clean,2620,52576,43.7595,22.4772
+B_noisy,greedy (harder grid),pink,-5,test.other,2939,52343,66.9259,39.0082
+B_noisy,greedy (harder grid),reverb+clean,clean,both,5559,104919,20.1813,8.9867
+B_noisy,greedy (harder grid),reverb+clean,clean,test.clean,2620,52576,12.5571,4.9657
+B_noisy,greedy (harder grid),reverb+clean,clean,test.other,2939,52343,27.8394,13.1369
+B_noisy,greedy (harder grid),reverb+esc50,10,both,5559,104919,29.9269,14.9256
+B_noisy,greedy (harder grid),reverb+esc50,10,test.clean,2620,52576,19.7771,9.0122
+B_noisy,greedy (harder grid),reverb+esc50,10,test.other,2939,52343,40.1219,21.0293
+B_noisy,greedy (harder grid),reverb+esc50,5,both,5559,104919,36.3585,19.2396
+B_noisy,greedy (harder grid),reverb+esc50,5,test.clean,2620,52576,26.7955,13.3027
+B_noisy,greedy (harder grid),reverb+esc50,5,test.other,2939,52343,45.9641,25.3675
+B_noisy,greedy (harder grid),reverb+esc50,0,both,5559,104919,47.5071,27.1289
+B_noisy,greedy (harder grid),reverb+esc50,0,test.clean,2620,52576,38.8181,21.3125
+B_noisy,greedy (harder grid),reverb+esc50,0,test.other,2939,52343,56.2348,33.1323
+B_noisy,greedy (harder grid),white,-5,both,5559,104919,60.7345,34.3441
+B_noisy,greedy (harder grid),white,-5,test.clean,2620,52576,49.0357,25.8502
+B_noisy,greedy (harder grid),white,-5,test.other,2939,52343,72.4853,43.1111

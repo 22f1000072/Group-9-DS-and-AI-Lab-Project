@@ -1,0 +1,13 @@
+wrote /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/notebooks/M5_evaluation.ipynb
+[NbConvertApp] Converting notebook notebooks/M5_evaluation.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Loading the LM will be faster if you build a binary file.
+Reading /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/raw/librispeech_lm/3-gram.pruned.1e-7.arpa
+----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90---95--100
+****************************************************************************************************
+Loading the LM will be faster if you build a binary file.
+Reading /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/raw/librispeech_lm/3-gram.pruned.1e-7.arpa
+----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90---95--100
+****************************************************************************************************
+[NbConvertApp] Writing 29824230 bytes to notebooks/M5_evaluation.ipynb
+NOTEBOOK EXIT 0

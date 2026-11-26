@@ -1,0 +1,7 @@
+device,condition,rtf_mean,rtf_max,seconds_per_2_min,acoustic_share,wer_mean_pct
+"CPU, 4 threads",clean,0.0502,0.052,6.022,0.932,10.591
+"CPU, 4 threads",esc50 5 dB,0.0504,0.0519,6.044,0.932,12.4183
+"CPU, 4 threads",white 5 dB,0.0503,0.0509,6.034,0.932,16.7925
+GPU (NVIDIA L40S),clean,0.005,0.0051,0.596,0.3588,10.591
+GPU (NVIDIA L40S),esc50 5 dB,0.0053,0.006,0.64,0.3588,12.5079
+GPU (NVIDIA L40S),white 5 dB,0.0057,0.0062,0.686,0.3588,17.0869

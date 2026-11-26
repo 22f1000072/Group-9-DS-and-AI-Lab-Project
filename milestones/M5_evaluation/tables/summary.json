@@ -1,0 +1,285 @@
+{
+  "oov": {
+    "ref_words": 1783623,
+    "oov_in_lm_frac": 0.004794174553703333,
+    "oov_word_error_%": 87.94293065138581
+  },
+  "duration": [
+    {
+      "dur_bin": "< 4 s",
+      "noisy": false,
+      "H": 13149,
+      "S": 725,
+      "D": 120,
+      "I": 91,
+      "n_utts": 1794,
+      "wer_%": 6.69
+    },
+    {
+      "dur_bin": "< 4 s",
+      "noisy": true,
+      "H": 198664,
+      "S": 19415,
+      "D": 5825,
+      "I": 1854,
+      "n_utts": 28704,
+      "wer_%": 12.1
+    },
+    {
+      "dur_bin": "4-8 s",
+      "noisy": false,
+      "H": 32352,
+      "S": 1388,
+      "D": 188,
+      "I": 204,
+      "n_utts": 2122,
+      "wer_%": 5.25
+    },
+    {
+      "dur_bin": "4-8 s",
+      "noisy": true,
+      "H": 495067,
+      "S": 38632,
+      "D": 9149,
+      "I": 4035,
+      "n_utts": 33952,
+      "wer_%": 9.55
+    },
+    {
+      "dur_bin": "8-12 s",
+      "noisy": false,
+      "H": 22578,
+      "S": 886,
+      "D": 107,
+      "I": 137,
+      "n_utts": 887,
+      "wer_%": 4.79
+    },
+    {
+      "dur_bin": "8-12 s",
+      "noisy": true,
+      "H": 346970,
+      "S": 24407,
+      "D": 5759,
+      "I": 2695,
+      "n_utts": 14192,
+      "wer_%": 8.71
+    },
+    {
+      "dur_bin": "12-16 s",
+      "noisy": false,
+      "H": 15468,
+      "S": 477,
+      "D": 50,
+      "I": 74,
+      "n_utts": 422,
+      "wer_%": 3.76
+    },
+    {
+      "dur_bin": "12-16 s",
+      "noisy": true,
+      "H": 239029,
+      "S": 14045,
+      "D": 2846,
+      "I": 1462,
+      "n_utts": 6752,
+      "wer_%": 7.17
+    },
+    {
+      "dur_bin": "> 16 s",
+      "noisy": false,
+      "H": 16800,
+      "S": 553,
+      "D": 78,
+      "I": 63,
+      "n_utts": 334,
+      "wer_%": 3.98
+    },
+    {
+      "dur_bin": "> 16 s",
+      "noisy": true,
+      "H": 260275,
+      "S": 15496,
+      "D": 3125,
+      "I": 1410,
+      "n_utts": 5344,
+      "wer_%": 7.18
+    }
+  ],
+  "speakers_clean": [
+    {
+      "ls_split": "test.clean",
+      "count": 40.0,
+      "mean": 2.87,
+      "std": 1.03,
+      "min": 0.46,
+      "10%": 1.64,
+      "50%": 2.82,
+      "90%": 4.2,
+      "max": 5.5
+    },
+    {
+      "ls_split": "test.other",
+      "count": 33.0,
+      "mean": 7.2,
+      "std": 4.08,
+      "min": 2.89,
+      "10%": 3.67,
+      "50%": 6.03,
+      "90%": 10.75,
+      "max": 21.26
+    }
+  ],
+  "top_char_confusions": [
+    [
+      "A",
+      "E",
+      4518
+    ],
+    [
+      "I",
+      "E",
+      3552
+    ],
+    [
+      "E",
+      "A",
+      3048
+    ],
+    [
+      "A",
+      "O",
+      2931
+    ],
+    [
+      "O",
+      "A",
+      2857
+    ],
+    [
+      "I",
+      "A",
+      2853
+    ],
+    [
+      "O",
+      "E",
+      2675
+    ],
+    [
+      "E",
+      "I",
+      2537
+    ],
+    [
+      "A",
+      "I",
+      2436
+    ],
+    [
+      "E",
+      "O",
+      1857
+    ]
+  ],
+  "lm_effect": {
+    "ref_words": 1783623,
+    "greedy_wrong": 201353,
+    "lm_wrong": 145708,
+    "fixed_by_lm": 68802,
+    "broken_by_lm": 13157
+  },
+  "detector_confusion": [
+    {
+      "operating_point": "threshold 0.5",
+      "threshold": 0.5,
+      "TN": 1619617,
+      "FP": 18298,
+      "FN": 93454,
+      "TP": 41398,
+      "precision": 0.6934803001876173,
+      "recall": 0.3069884021000801,
+      "flagged_frac": 0.03367391202566383
+    },
+    {
+      "operating_point": "riskiest 30 % (threshold 0.034)",
+      "threshold": 0.03431397474707348,
+      "TN": 1222799,
+      "FP": 415116,
+      "FN": 18138,
+      "TP": 116714,
+      "precision": 0.21945734539232462,
+      "recall": 0.8654969892919645,
+      "flagged_frac": 0.29999994359100773
+    }
+  ],
+  "esc50_hardest": [
+    {
+      "category": "sea_waves",
+      "wer_B_noisy_lm4": 28.41,
+      "wer_rover3_final": 23.13
+    },
+    {
+      "category": "vacuum_cleaner",
+      "wer_B_noisy_lm4": 27.36,
+      "wer_rover3_final": 21.93
+    },
+    {
+      "category": "toilet_flush",
+      "wer_B_noisy_lm4": 26.34,
+      "wer_rover3_final": 21.48
+    },
+    {
+      "category": "rain",
+      "wer_B_noisy_lm4": 25.91,
+      "wer_rover3_final": 20.21
+    },
+    {
+      "category": "chainsaw",
+      "wer_B_noisy_lm4": 26.49,
+      "wer_rover3_final": 20.16
+    },
+    {
+      "category": "hand_saw",
+      "wer_B_noisy_lm4": 23.71,
+      "wer_rover3_final": 18.28
+    },
+    {
+      "category": "church_bells",
+      "wer_B_noisy_lm4": 19.69,
+      "wer_rover3_final": 15.11
+    },
+    {
+      "category": "airplane",
+      "wer_B_noisy_lm4": 18.64,
+      "wer_rover3_final": 15.03
+    }
+  ],
+  "esc50_easiest": [
+    {
+      "category": "water_drops",
+      "wer_B_noisy_lm4": 9.22,
+      "wer_rover3_final": 6.93
+    },
+    {
+      "category": "clock_alarm",
+      "wer_B_noisy_lm4": 9.34,
+      "wer_rover3_final": 6.4
+    },
+    {
+      "category": "can_opening",
+      "wer_B_noisy_lm4": 8.04,
+      "wer_rover3_final": 6.26
+    },
+    {
+      "category": "door_wood_knock",
+      "wer_B_noisy_lm4": 7.79,
+      "wer_rover3_final": 5.92
+    },
+    {
+      "category": "clock_tick",
+      "wer_B_noisy_lm4": 7.85,
+      "wer_rover3_final": 5.62
+    }
+  ]
+}

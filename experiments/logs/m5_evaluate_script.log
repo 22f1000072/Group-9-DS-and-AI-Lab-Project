@@ -1,0 +1,35 @@
+[21:31:02] core ...
+[21:31:40] core done in 38 s
+[21:31:40] g1_grid ...
+[21:31:53] g1_grid done in 12 s
+[21:31:53] g2_break ...
+[21:31:53] g2_break done in 0 s
+[21:31:53] g3_acc ...
+[21:31:54] g3_acc done in 1 s
+[21:31:54] g4_boot ...
+[21:31:55] g4_boot done in 1 s
+[21:31:55] g5_review ...
+[21:32:09] g5_review done in 14 s
+[21:32:09] g6_catch ...
+[21:32:21] g6_catch done in 12 s
+[21:32:21] g8_audio ...
+[21:32:21] g8_audio done in 0 s
+[21:32:21] g9_listen ...
+[21:32:21] g9_listen done in 0 s
+[21:32:21] g7_speed ...
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 12173.80it/s]
+Loading the LM will be faster if you build a binary file.
+Reading /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/raw/librispeech_lm/3-gram.pruned.1e-7.arpa
+----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90---95--100
+****************************************************************************************************
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 12222.77it/s]
+Loading the LM will be faster if you build a binary file.
+Reading /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/raw/librispeech_lm/3-gram.pruned.1e-7.arpa
+----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90---95--100
+****************************************************************************************************
+[21:34:29] g7_speed done in 128 s
+[21:34:29] g12_repro ...
+[21:34:35] g12_repro done in 6 s
+[21:34:35] g11_obj ...
+[21:34:35] g11_obj done in 0 s
+done -> /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/milestones/M5_evaluation

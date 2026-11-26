@@ -1,0 +1,113 @@
+attribute,group,condition,n_utts,wer_%
+primary_language,Assamese,clean,205,42.0
+primary_language,Bengali,clean,297,31.27
+primary_language,Bodo,clean,402,34.84
+primary_language,Dogri,clean,255,35.6
+primary_language,Gujarati,clean,242,30.97
+primary_language,Hindi,clean,256,25.31
+primary_language,Kannada,clean,577,32.41
+primary_language,Kashmiri,clean,310,27.22
+primary_language,Konkani,clean,302,29.94
+primary_language,Maithili,clean,462,27.83
+primary_language,Malayalam,clean,503,32.0
+primary_language,Marathi,clean,231,34.28
+primary_language,Nepali,clean,599,39.05
+primary_language,Odia,clean,456,31.95
+primary_language,Punjabi,clean,189,29.64
+primary_language,Sindhi,clean,138,32.09
+primary_language,Tamil,clean,384,24.39
+primary_language,Telugu,clean,334,30.18
+primary_language,Urdu,clean,514,30.4
+primary_language,Assamese,esc50 5 dB,205,51.9
+primary_language,Bengali,esc50 5 dB,297,42.49
+primary_language,Bodo,esc50 5 dB,402,49.55
+primary_language,Dogri,esc50 5 dB,255,46.88
+primary_language,Gujarati,esc50 5 dB,242,46.4
+primary_language,Hindi,esc50 5 dB,256,35.43
+primary_language,Kannada,esc50 5 dB,577,44.27
+primary_language,Kashmiri,esc50 5 dB,310,46.51
+primary_language,Konkani,esc50 5 dB,302,39.09
+primary_language,Maithili,esc50 5 dB,462,40.22
+primary_language,Malayalam,esc50 5 dB,503,44.97
+primary_language,Marathi,esc50 5 dB,231,51.19
+primary_language,Nepali,esc50 5 dB,599,53.59
+primary_language,Odia,esc50 5 dB,456,44.25
+primary_language,Punjabi,esc50 5 dB,189,45.33
+primary_language,Sindhi,esc50 5 dB,138,44.97
+primary_language,Tamil,esc50 5 dB,384,35.82
+primary_language,Telugu,esc50 5 dB,334,41.53
+primary_language,Urdu,esc50 5 dB,514,44.56
+state,Andhra Pradesh,clean,206,34.63
+state,Assam,clean,680,36.01
+state,Bihar,clean,518,29.17
+state,Goa,clean,417,27.67
+state,Gujarat,clean,564,27.95
+state,Jammu Kashmir,clean,565,31.36
+state,Karnataka,clean,774,32.06
+state,Kerala,clean,572,30.64
+state,Maharashtra,clean,409,33.27
+state,Meghalaya,clean,51,34.77
+state,Odisha,clean,484,31.71
+state,Punjab,clean,189,29.64
+state,Rajasthan,clean,95,32.54
+state,Tamil Nadu,clean,178,25.9
+state,Telangana,clean,125,23.56
+state,West Bengal,clean,792,37.61
+state,Andhra Pradesh,esc50 5 dB,206,44.2
+state,Assam,esc50 5 dB,680,48.58
+state,Bihar,esc50 5 dB,518,41.38
+state,Goa,esc50 5 dB,417,36.3
+state,Gujarat,esc50 5 dB,564,42.13
+state,Jammu Kashmir,esc50 5 dB,565,46.7
+state,Karnataka,esc50 5 dB,774,45.99
+state,Kerala,esc50 5 dB,572,43.02
+state,Maharashtra,esc50 5 dB,409,47.82
+state,Meghalaya,esc50 5 dB,51,45.76
+state,Odisha,esc50 5 dB,484,44.37
+state,Punjab,esc50 5 dB,189,45.33
+state,Rajasthan,esc50 5 dB,95,46.28
+state,Tamil Nadu,esc50 5 dB,178,36.42
+state,Telangana,esc50 5 dB,125,36.09
+state,West Bengal,esc50 5 dB,792,51.49
+gender,Female,clean,3579,30.26
+gender,Male,clean,3077,33.59
+gender,Female,esc50 5 dB,3579,43.94
+gender,Male,esc50 5 dB,3077,45.79
+age_group,18-30,clean,2219,33.72
+age_group,30-45,clean,2670,29.89
+age_group,45-60,clean,1305,30.26
+age_group,60+,clean,462,36.03
+age_group,18-30,esc50 5 dB,2219,47.89
+age_group,30-45,esc50 5 dB,2670,43.68
+age_group,45-60,esc50 5 dB,1305,40.62
+age_group,60+,esc50 5 dB,462,45.22
+education,Doctoral (PhD) or higher level,clean,753,27.0
+education,Graduate,clean,1375,32.2
+education,Post Graduate,clean,4212,32.48
+education,Senior Secondary Level at School (10+2),clean,112,35.24
+education,Under Graduate Student,clean,176,28.53
+education,Doctoral (PhD) or higher level,esc50 5 dB,753,41.36
+education,Graduate,esc50 5 dB,1375,43.46
+education,Post Graduate,esc50 5 dB,4212,45.94
+education,Senior Secondary Level at School (10+2),esc50 5 dB,112,48.78
+education,Under Graduate Student,esc50 5 dB,176,38.01
+occupation_domain,Education and Research,clean,3197,30.2
+occupation_domain,Entertainment,clean,216,37.78
+occupation_domain,Financial Services (Banking and Insurance),clean,273,32.59
+occupation_domain,Government,clean,315,32.16
+occupation_domain,Healthcare (Medical &amp; Pharma),clean,152,34.56
+occupation_domain,Information and Media,clean,503,29.68
+occupation_domain,Manufacturing,clean,40,43.09
+occupation_domain,Social service,clean,383,43.74
+occupation_domain,Technology and Services,clean,1477,31.29
+occupation_domain,Transportation and Logistics,clean,73,23.55
+occupation_domain,Education and Research,esc50 5 dB,3197,43.24
+occupation_domain,Entertainment,esc50 5 dB,216,53.26
+occupation_domain,Financial Services (Banking and Insurance),esc50 5 dB,273,42.76
+occupation_domain,Government,esc50 5 dB,315,43.68
+occupation_domain,Healthcare (Medical &amp; Pharma),esc50 5 dB,152,49.55
+occupation_domain,Information and Media,esc50 5 dB,503,45.37
+occupation_domain,Manufacturing,esc50 5 dB,40,62.6
+occupation_domain,Social service,esc50 5 dB,383,59.66
+occupation_domain,Technology and Services,esc50 5 dB,1477,42.39
+occupation_domain,Transportation and Logistics,esc50 5 dB,73,41.02

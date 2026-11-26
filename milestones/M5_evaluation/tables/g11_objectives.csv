@@ -1,0 +1,7 @@
+objective,name,target,result,evidence,status
+O1,Characterise ASR degradation under noise,complete WER/CER grid + WER-vs-SNR plot; breakdown SNR per model,"WER+CER for 8 systems x 17 conditions (+ -5 dB, reverb); breakdown SNR (WER = 2 x clean), Model A vs B960_rev: white 17 dB vs 7.5 dB, pink 10.8 dB vs 4.4 dB, brown not reached vs not reached, esc50 11 dB vs 3.1 dB","g1, g2, Fig. 1, report 3.7",met
+O2,Benefit of noise-aware training,>= 15 % relative WER cut at 0-5 dB (held-out noise); clean <= +2 pts,ESC-50 0-5 dB: -47.4 % (95 % CI -48.2 to -46.7); clean +0.20 pts (CI +0.07 to +0.31),"g4, report 3.5",met
+O3,Detect error-prone words,AUROC >= 0.75; >= 70 % of errors in riskiest 30 %; ECE <= 0.10,"AUROC 0.892, recall@30 % 86.5 %, ECE 0.006","g5, Figs. 2-6",met
+O4,Link flags to the right audio,>= 90 % of 50 sampled flags inside +-1 s,"99.0 % of 59,696 flags (automatic); 50-clip listening sheet in g9","g9, report 3.4",met (automatic); listening check by the team
+O5,Working MVP,"upload, chunking, transcription, flags, replay, edit, export; RTF <= 1.0 on CPU (<= 2 min)",worst CPU RTF 0.052,"g7, app",met
+O6,Reproducibility,a teammate reproduces the results from the README,weights identical local vs HF: 6/6; full-grid re-decode from HF: B960_rev 100.00 % identical,"g12, this notebook",evidence in place; teammate re-run to confirm

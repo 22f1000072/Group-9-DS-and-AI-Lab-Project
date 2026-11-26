@@ -1,0 +1,16 @@
+reference_char,recognised_char,count
+A,E,792
+I,E,503
+A,O,412
+E,I,405
+E,A,388
+A,I,347
+O,A,335
+T,D,328
+E,O,327
+I,A,311
+D,T,260
+U,O,258
+U,I,257
+U,E,249
+K,C,245

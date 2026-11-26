@@ -1,0 +1,61 @@
+{
+  "threshold": 0.5,
+  "window_s": 1.0,
+  "alignment_sanity": {
+    "n_words": 100294,
+    "median_abs_start_diff_s": 0.0,
+    "p95_abs_start_diff_s": 0.020000000000000018,
+    "median_abs_end_diff_s": 0.0,
+    "p95_abs_end_diff_s": 0.020000000000000462,
+    "share_start_within_0.1s": 0.9998304983348955
+  },
+  "by_threshold": {
+    "0.3": {
+      "n_flags": 132608,
+      "hit_rate": 0.9933261944980695,
+      "hit_rate_true_errors": 0.9879078060072755,
+      "precision": 0.5244706201737451
+    },
+    "0.5": {
+      "n_flags": 59696,
+      "hit_rate": 0.9903176092200482,
+      "hit_rate_true_errors": 0.986569399487898,
+      "precision": 0.6934803001876173
+    },
+    "0.7": {
+      "n_flags": 27701,
+      "hit_rate": 0.9878343742103173,
+      "hit_rate_true_errors": 0.9857461789455607,
+      "precision": 0.8408360708999675
+    }
+  },
+  "by_alignment_type": [
+    {
+      "align_type": "equal",
+      "size": 18298,
+      "mean": 0.9988
+    },
+    {
+      "align_type": "insert",
+      "size": 1452,
+      "mean": 0.9552
+    },
+    {
+      "align_type": "substitute",
+      "size": 39946,
+      "mean": 0.9877
+    }
+  ],
+  "misses_window_extent": {
+    "median_miss_s": 0.27999999999999997
+  },
+  "sample": {
+    "n": 50,
+    "auto_hit_rate": 1.0
+  },
+  "all_flags": {
+    "n": 59696,
+    "hit_rate": 0.9903176092200482
+  },
+  "target_O4": ">= 90 % of 50 sampled flags have the target word inside the replay window"
+}

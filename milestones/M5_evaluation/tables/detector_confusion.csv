@@ -1,0 +1,3 @@
+operating_point,threshold,TN,FP,FN,TP,precision,recall,flagged_frac
+threshold 0.5,0.5,1619617,18298,93454,41398,0.6935,0.307,0.0337
+riskiest 30 % (threshold 0.034),0.0343,1222799,415116,18138,116714,0.2195,0.8655,0.3

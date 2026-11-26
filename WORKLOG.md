@@ -27,9 +27,16 @@ Record contributions at each milestone or project week.
 | 17/11/2026 | Gulshan Kumar | Training of Model B (noise-augmented) and Model A (clean), 36k steps each on L40S GPU; test evaluation of A, B and reference model | scripts/train.py, scripts/evaluate.py, configs/train_*.yaml, experiments/runs/, experiments/results/ |
 | 17/11–18/11/2026 | Gulshan Kumar | Hyperparameter sweep (7 runs × 8k steps: learning rate, masking, batch size, clean fraction, SNR range) | scripts/pipeline/run_sweep.sh, experiments/runs/hp_*/, milestones/M4_training/tables/hparam_sweep.csv |
 | 18/11/2026 | Gulshan Kumar | Milestone 4 report, figures and presentation notebooks | milestones/M4_training/, notebooks/M4_0*.ipynb |
-| _dd/11/2026_ | Parashmani Datta | _to be filled by member_ | |
-| _dd/11/2026_ | Subhojit Saha | _to be filled by member_ | |
+| 18/11–19/11/2026 | Parashmani Datta | Milestone 4 report review and code review (training, evaluation and sweep scripts) | milestones/M4_training/Milestone4_Group9_Training_Report.md, scripts/train.py, scripts/evaluate.py |
+| 18/11–19/11/2026 | Subhojit Saha | Milestone 4 report review and code review (training, evaluation and sweep scripts) | milestones/M4_training/Milestone4_Group9_Training_Report.md, scripts/train.py, scripts/evaluate.py |
 | 19/11/2026 | All members | Review and sign-off of Milestone 4 report | milestones/M4_training/Milestone4_Group9_Training_Report.md |
+| 18/11–22/11/2026 | Gulshan Kumar | Milestone 5 test-grid evaluation: LM decoding, ROVER, word-error detector, replay-window check, error analysis and first report draft | scripts/m5_analysis.py, scripts/replay_window.py, milestones/M5_evaluation/ |
+| 22/11–25/11/2026 | Gulshan Kumar | Single evaluation entry point (shared code, script and notebook giving identical tables); WER/CER grid, bootstrap CIs, breakdown SNR, review effort, CPU/GPU speed; Hugging Face reproducibility check | src/group9_ds_ai_lab/evaluation/, scripts/m5_evaluate.py, notebooks/M5_evaluation.ipynb, milestones/M5_evaluation/tables/g*.csv |
+| 24/11–26/11/2026 | Gulshan Kumar | Indian-accent evaluation on Svarah (separate script and report), added as Section 8 of the M5 report | scripts/svarah_evaluate.py, milestones/M5_evaluation/indian_accent/ |
+| 26/11/2026 | Gulshan Kumar | Milestone 5 report: literature comparison, objectives table, contributions | milestones/M5_evaluation/Milestone5_Group9_Evaluation_Report.md |
+| 26/11/2026 | Parashmani Datta | O4 listening check of the 50 sampled replay clips (46/50 heard); Milestone 5 report review and code review | milestones/M5_evaluation/replay_check/sample_flags_PD.csv, src/group9_ds_ai_lab/evaluation/, scripts/m5_evaluate.py, scripts/svarah_evaluate.py |
+| 26/11/2026 | Subhojit Saha | Milestone 5 report review and code review | milestones/M5_evaluation/Milestone5_Group9_Evaluation_Report.md, src/group9_ds_ai_lab/evaluation/, scripts/m5_evaluate.py, scripts/svarah_evaluate.py |
+| 26/11/2026 | All members | Review and sign-off of Milestone 5 report | milestones/M5_evaluation/Milestone5_Group9_Evaluation_Report.md |
 
 ---
 **Acknowledgement:**
@@ -46,3 +53,4 @@ This work is part of the DSAI Lab course (October 2026 term).
 Milestone 1 submission was completed on October 22, 2026.
 Milestone 2 submission is completed on October 29, 2026.
 Milestone 4 submission is completed on November 19, 2026.
+Milestone 5 submission is completed on November 26, 2026.

@@ -1,0 +1,8 @@
+run,change,dev_wer_avg_pct,delta_avg_vs_base_pts
+hp_mask_light,"masking time 0.4 -> 0.05, feature 0.1 -> 0, layerdrop 0.1 -> 0.05",14.82,-2.3149
+hp_lr1e-4,learning rate 5e-5 -> 1e-4,15.39,-1.7431
+hp_pclean0.5,clean fraction 0.2 -> 0.5,17.12,-0.012
+hp_base,"reference: lr 5e-5, 640 s/batch, strong masking, p_clean 0.2, SNR 0-20 dB",17.13,0.0
+hp_snr-5,SNR range 0-20 -> -5-20 dB,17.38,0.2473
+hp_bs320,batch 640 -> 320 padded seconds,18.7,1.5623
+hp_lr2e-5,learning rate 5e-5 -> 2e-5,24.26,7.1227

@@ -1,0 +1,87 @@
+[23:34:30] rover
+[23:34:38] rover done in 7 s
+[23:34:38] analyse
+{
+ "utterances_scored": 6656,
+ "hours": 9.614443802083333,
+ "speaker_languages": 19,
+ "states": 17,
+ "utts_with_digits": 769,
+ "replay_window": {
+  "flags": 87566,
+  "hit_rate_%": 94.23634744078753,
+  "aligned_clips": 6656
+ },
+ "final_system": [
+  "rover3_final",
+  "4-gram LM + ROVER"
+ ],
+ "top_char_confusions": [
+  [
+   "A",
+   "E",
+   792
+  ],
+  [
+   "I",
+   "E",
+   503
+  ],
+  [
+   "A",
+   "O",
+   412
+  ],
+  [
+   "E",
+   "I",
+   405
+  ],
+  [
+   "E",
+   "A",
+   388
+  ],
+  [
+   "A",
+   "I",
+   347
+  ],
+  [
+   "O",
+   "A",
+   335
+  ],
+  [
+   "T",
+   "D",
+   328
+  ],
+  [
+   "E",
+   "O",
+   327
+  ],
+  [
+   "I",
+   "A",
+   311
+  ]
+ ]
+}
+condition                       clean  esc50 10 dB  esc50 5 dB  esc50 0 dB  white 5 dB
+decoding          system                                                              
+greedy            ref_base960h  39.63        61.89       72.44       81.99      104.56
+                  A_clean       48.42        71.03       81.24       90.39      101.33
+                  B_noisy       48.05        59.59       66.49       75.55       81.05
+                  B2_lr1e-4     49.49        60.99       67.50       76.01       81.86
+                  B460          45.78        55.44       61.64       70.82       76.00
+                  B960_rev      39.20        47.86       53.68       62.96       68.14
+                  B960_rev_s2   39.55        48.16       53.74       63.13       68.16
+4-gram LM         A_clean       39.27        60.62       69.87       78.44       90.93
+                  B_noisy       38.75        49.75       56.16       65.07       70.26
+                  B460          37.45        46.56       52.23       61.07       65.52
+                  B960_rev      32.25        40.28       45.72       54.55       59.27
+                  B960_rev_s2   32.62        40.62       45.93       54.84       59.64
+4-gram LM + ROVER rover3_final  31.74        39.53       44.76       53.56       58.30
+[23:38:25] analyse done in 227 s

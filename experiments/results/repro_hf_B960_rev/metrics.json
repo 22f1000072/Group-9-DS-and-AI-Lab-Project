@@ -1,0 +1,15 @@
+{
+  "model": "repro_hf_B960_rev",
+  "model_path": "kumargulshan/wav2vec2-base-ls960-noise-robust",
+  "rows": 94503,
+  "audio_hours": 182.6652417777778,
+  "inference_sec": 435.67030239105225,
+  "wer_test.clean_clean": 0.04631390748630554,
+  "wer_test.other_clean": 0.09945933553674799,
+  "wer_white_0_5dB": 0.2338851876209266,
+  "wer_pink_0_5dB": 0.1817592619068043,
+  "wer_brown_0_5dB": 0.07489587205367951,
+  "wer_esc50_0_5dB": 0.1538901438252366,
+  "word_auroc_conf_min": 0.865126301988391,
+  "word_auroc_conf_mean": 0.8956147460098862
+}

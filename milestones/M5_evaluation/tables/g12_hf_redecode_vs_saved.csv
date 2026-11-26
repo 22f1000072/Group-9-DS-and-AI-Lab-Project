@@ -1,0 +1,2 @@
+model,hf_id,utterances,identical_hypotheses,identical_%,max_abs_wer_diff_per_condition
+B960_rev,kumargulshan/wav2vec2-base-ls960-noise-robust,94503,94503,100.0,0.0

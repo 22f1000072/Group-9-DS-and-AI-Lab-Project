@@ -1,0 +1,108 @@
+[22:48:17] prepare
+prepared 6656 clips, 9.61 h, 769 with digits, 0 empty after normalisation
+[22:48:24] prepare done in 6 s
+[22:48:24] infer
+Loading weights:   0%|          | 0/212 [00:00<?, ?it/s]Loading weights:  25%|██▌       | 53/212 [00:00<00:00, 524.89it/s]Loading weights:  62%|██████▏   | 132/212 [00:00<00:00, 669.72it/s]Loading weights: 100%|██████████| 212/212 [00:00<00:00, 820.49it/s]
+[transformers] [1mWav2Vec2ForCTC LOAD REPORT[0m from: facebook/wav2vec2-base-960h
+Key                        | Status  | 
+---------------------------+---------+-
+wav2vec2.masked_spec_embed | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[W1124 22:49:17.127868040 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5240782848 bytes (free: 624558080, total: 47667740672).
+ref_base960h clean: 72 s
+ref_base960h esc50 10 dB: 70 s
+ref_base960h esc50 5 dB: 71 s
+ref_base960h esc50 0 dB: 70 s
+ref_base960h white 5 dB: 70 s
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 12711.10it/s]
+[W1124 22:55:10.120962142 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5240782848 bytes (free: 597295104, total: 47667740672).
+A_clean clean: 71 s
+A_clean esc50 10 dB: 71 s
+A_clean esc50 5 dB: 71 s
+A_clean esc50 0 dB: 70 s
+A_clean white 5 dB: 70 s
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 12490.38it/s]
+[W1124 23:01:04.682407385 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5240782848 bytes (free: 578420736, total: 47667740672).
+B_noisy clean: 71 s
+B_noisy esc50 10 dB: 70 s
+B_noisy esc50 5 dB: 71 s
+B_noisy esc50 0 dB: 71 s
+B_noisy white 5 dB: 71 s
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 9972.17it/s]
+[W1124 23:06:58.967155617 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5240782848 bytes (free: 578420736, total: 47667740672).
+B2_lr1e-4 clean: 71 s
+B2_lr1e-4 esc50 10 dB: 71 s
+B2_lr1e-4 esc50 5 dB: 72 s
+B2_lr1e-4 esc50 0 dB: 71 s
+B2_lr1e-4 white 5 dB: 71 s
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 12349.49it/s]
+[W1124 23:12:55.635492900 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5240782848 bytes (free: 578420736, total: 47667740672).
+B460 clean: 71 s
+B460 esc50 10 dB: 71 s
+B460 esc50 5 dB: 71 s
+B460 esc50 0 dB: 71 s
+B460 white 5 dB: 71 s
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 13278.64it/s]
+[W1124 23:18:51.191476926 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5240782848 bytes (free: 578420736, total: 47667740672).
+B960_rev clean: 71 s
+B960_rev esc50 10 dB: 71 s
+B960_rev esc50 5 dB: 72 s
+B960_rev esc50 0 dB: 71 s
+B960_rev white 5 dB: 71 s
+Loading weights:   0%|          | 0/213 [00:00<?, ?it/s]Loading weights: 100%|██████████| 213/213 [00:00<00:00, 12691.41it/s]
+[W1124 23:24:49.469785025 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 5240782848 bytes (free: 578420736, total: 47667740672).
+B960_rev_s2 clean: 72 s
+B960_rev_s2 esc50 10 dB: 71 s
+B960_rev_s2 esc50 5 dB: 72 s
+B960_rev_s2 esc50 0 dB: 71 s
+B960_rev_s2 white 5 dB: 72 s
+[23:29:57] infer done in 2493 s
+[23:29:57] lm
+Loading the LM will be faster if you build a binary file.
+Reading /home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/data/raw/librispeech_lm/4-gram.arpa
+----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80---85---90---95--100
+****************************************************************************************************
+4-gram LM loaded in 42 s
+A_clean LM clean: 5 s
+A_clean LM esc50 10 dB: 7 s
+A_clean LM esc50 5 dB: 8 s
+A_clean LM esc50 0 dB: 9 s
+A_clean LM white 5 dB: 10 s
+B_noisy LM clean: 5 s
+B_noisy LM esc50 10 dB: 6 s
+B_noisy LM esc50 5 dB: 7 s
+B_noisy LM esc50 0 dB: 8 s
+B_noisy LM white 5 dB: 9 s
+B460 LM clean: 6 s
+B460 LM esc50 10 dB: 6 s
+B460 LM esc50 5 dB: 7 s
+B460 LM esc50 0 dB: 8 s
+B460 LM white 5 dB: 8 s
+B960_rev LM clean: 5 s
+B960_rev LM esc50 10 dB: 6 s
+B960_rev LM esc50 5 dB: 6 s
+B960_rev LM esc50 0 dB: 7 s
+B960_rev LM white 5 dB: 8 s
+B960_rev_s2 LM clean: 5 s
+B960_rev_s2 LM esc50 10 dB: 6 s
+B960_rev_s2 LM esc50 5 dB: 6 s
+B960_rev_s2 LM esc50 0 dB: 7 s
+B960_rev_s2 LM white 5 dB: 8 s
+[23:34:01] lm done in 244 s
+[23:34:01] rover
+Traceback (most recent call last):
+  File "/home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/scripts/svarah_evaluate.py", line 663, in <module>
+    main()
+    ~~~~^^
+  File "/home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/scripts/svarah_evaluate.py", line 656, in main
+    rover()
+    ~~~~~^^
+  File "/home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/scripts/svarah_evaluate.py", line 257, in rover
+    hyp = [combine([s[0].hyp.iat[i] or "" for s in sys_], [s[1][i] for s in sys_], 0.5) for i in range(len(base))]
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user1/DSAI/Group-9-DS-and-AI-Lab-Project/scripts/rover.py", line 53, in combine
+    got[ch.ref_start_idx + k] = (hw[ch.hyp_start_idx + k], conf[ch.hyp_start_idx + k])
+                                                           ~~~~^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range

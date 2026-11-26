@@ -1,0 +1,11 @@
+freq_bin,noisy,size,word_error_%
+rare (< -6),False,1071,66.67
+rare (< -6),True,17136,73.51
+-6 to -5,False,3688,24.67
+-6 to -5,True,59008,32.68
+-5 to -4,False,21211,6.15
+-5 to -4,True,339376,11.72
+-4 to -3,False,34623,2.43
+-4 to -3,True,553968,5.99
+frequent (> -3),False,44326,1.81
+frequent (> -3),True,709216,4.78

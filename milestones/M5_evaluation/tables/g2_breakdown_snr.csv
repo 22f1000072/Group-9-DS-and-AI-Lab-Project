@@ -1,0 +1,57 @@
+decoding,system,noise_type,clean_wer_%,lowest_snr_tested,wer_at_lowest_%,breakdown_snr_2x_clean,snr_wer_reaches_20%
+4-gram LM,A_clean,white,6.36,0,83.02,17.9,13.0
+4-gram LM,A_clean,pink,6.36,0,69.32,12.4,8.3
+4-gram LM,A_clean,brown,6.36,0,7.18,,
+4-gram LM,A_clean,esc50,6.36,0,40.77,13.0,7.3
+4-gram LM,B2_lr1e-4,white,6.42,0,28.66,8.3,3.6
+4-gram LM,B2_lr1e-4,pink,6.42,0,22.31,4.9,1.2
+4-gram LM,B2_lr1e-4,brown,6.42,0,6.8,,
+4-gram LM,B2_lr1e-4,esc50,6.42,0,18.06,4.0,
+4-gram LM,B460,white,5.27,0,25.24,8.6,2.3
+4-gram LM,B460,pink,5.27,0,19.5,5.0,
+4-gram LM,B460,brown,5.27,0,5.64,,
+4-gram LM,B460,esc50,5.27,0,15.69,4.3,
+4-gram LM,B960_rev,white,4.99,0,24.04,8.3,1.8
+4-gram LM,B960_rev,pink,4.99,0,18.17,4.8,
+4-gram LM,B960_rev,brown,4.99,0,5.18,,
+4-gram LM,B960_rev,esc50,4.99,0,14.57,4.1,
+4-gram LM,B960_rev_s2,white,5.01,0,24.17,8.3,1.9
+4-gram LM,B960_rev_s2,pink,5.01,0,18.31,4.9,
+4-gram LM,B960_rev_s2,brown,5.01,0,5.19,,
+4-gram LM,B960_rev_s2,esc50,5.01,0,14.64,4.1,
+4-gram LM,B_noisy,white,6.27,0,29.1,8.6,3.6
+4-gram LM,B_noisy,pink,6.27,0,22.7,5.0,1.3
+4-gram LM,B_noisy,brown,6.27,0,6.67,,
+4-gram LM,B_noisy,esc50,6.27,0,18.6,4.3,
+4-gram LM + ROVER,rover3_final,white,4.9,0,23.31,8.2,1.5
+4-gram LM + ROVER,rover3_final,pink,4.9,0,17.8,4.8,
+4-gram LM + ROVER,rover3_final,brown,4.9,0,5.08,,
+4-gram LM + ROVER,rover3_final,esc50,4.9,0,14.14,4.0,
+greedy,A_clean,white,9.43,-5,99.26,17.0,16.3
+greedy,A_clean,pink,9.43,-5,98.11,10.8,9.9
+greedy,A_clean,brown,9.43,0,10.51,,
+greedy,A_clean,esc50,9.43,-5,61.65,11.0,9.8
+greedy,B2_lr1e-4,white,9.49,-5,59.25,7.3,6.5
+greedy,B2_lr1e-4,pink,9.49,-5,53.86,4.2,3.8
+greedy,B2_lr1e-4,brown,9.49,0,10.13,,
+greedy,B2_lr1e-4,esc50,9.49,-5,36.85,2.9,2.2
+greedy,B460,white,7.89,-5,55.24,7.4,4.4
+greedy,B460,pink,7.89,-5,49.57,4.3,2.2
+greedy,B460,brown,7.89,0,8.35,,
+greedy,B460,esc50,7.89,-5,32.91,3.1,0.0
+greedy,B960_rev,white,7.28,-5,53.3,7.5,3.9
+greedy,B960_rev,pink,7.28,-5,47.28,4.4,1.6
+greedy,B960_rev,brown,7.28,0,7.58,,
+greedy,B960_rev,esc50,7.28,-5,31.01,3.1,-0.6
+greedy,B960_rev_s2,white,7.35,-5,53.01,7.4,3.9
+greedy,B960_rev_s2,pink,7.35,-5,47.25,4.3,1.6
+greedy,B960_rev_s2,brown,7.35,0,7.65,,
+greedy,B960_rev_s2,esc50,7.35,-5,31.28,3.1,-0.5
+greedy,B_noisy,white,9.62,-5,60.73,7.3,6.7
+greedy,B_noisy,pink,9.62,-5,55.32,4.2,3.9
+greedy,B_noisy,brown,9.62,0,10.19,,
+greedy,B_noisy,esc50,9.62,-5,38.21,3.1,2.6
+greedy,ref_base960h,white,6.0,0,93.19,19.1,15.8
+greedy,ref_base960h,pink,6.0,0,83.93,16.0,9.8
+greedy,ref_base960h,brown,6.0,0,6.72,,
+greedy,ref_base960h,esc50,6.0,0,42.91,14.2,7.9

@@ -1,0 +1,317 @@
+[
+ {
+  "section": "1. Original",
+  "file": "audio/00_clean.wav",
+  "label": "Clean LibriSpeech utterance",
+  "explanation": "374-180298-0065 (6.21 s). Text: \"WE LEFT THE HOUSE AND STARTED ON OUR RETURN TO PARIS TALKING OVER THE NEW PLAN\"",
+  "scaled": false
+ },
+ {
+  "section": "2. The noise sources on their own",
+  "file": "audio/noise_white.wav",
+  "label": "Noise only: white",
+  "explanation": "Synthetic white noise: equal energy at every frequency (hiss). Used in training.",
+  "scaled": false
+ },
+ {
+  "section": "2. The noise sources on their own",
+  "file": "audio/noise_pink.wav",
+  "label": "Noise only: pink",
+  "explanation": "Synthetic pink (1/f) noise: more energy at low frequencies (rain or fan). Used in training.",
+  "scaled": false
+ },
+ {
+  "section": "2. The noise sources on their own",
+  "file": "audio/noise_musan_noise.wav",
+  "label": "Noise only: musan_noise",
+  "explanation": "MUSAN 'noise': real recorded sounds (traffic, machines, beeps). Training uses 90 % of the files; 10 % are kept for dev. File: data/raw/musan/musan/noise/free-sound/noise-free-sound-0390.wav",
+  "scaled": true
+ },
+ {
+  "section": "2. The noise sources on their own",
+  "file": "audio/noise_musan_music.wav",
+  "label": "Noise only: musan_music",
+  "explanation": "MUSAN 'music': real music tracks. Same 90/10 file split. File: data/raw/musan/musan/music/jamendo/music-jamendo-0145.wav",
+  "scaled": false
+ },
+ {
+  "section": "2. The noise sources on their own",
+  "file": "audio/noise_brown.wav",
+  "label": "Noise only: brown",
+  "explanation": "Synthetic brown (1/f^2) noise: a deep rumble. TEST ONLY, never used in training.",
+  "scaled": false
+ },
+ {
+  "section": "2. The noise sources on their own",
+  "file": "audio/noise_esc50.wav",
+  "label": "Noise only: esc50",
+  "explanation": "ESC-50: 2,000 environmental clips (dogs, rain, sirens, door knocks). TEST ONLY, never used in training. File: data/raw/esc50/ESC-50-master/audio/5-253085-A-3.wav",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_white_20dB.wav",
+  "label": "white at 20 dB SNR",
+  "explanation": "mix_at_snr(clean, white, 20). Measured SNR 20.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_white_10dB.wav",
+  "label": "white at 10 dB SNR",
+  "explanation": "mix_at_snr(clean, white, 10). Measured SNR 10.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_white_05dB.wav",
+  "label": "white at 5 dB SNR",
+  "explanation": "mix_at_snr(clean, white, 5). Measured SNR 5.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_white_00dB.wav",
+  "label": "white at 0 dB SNR",
+  "explanation": "mix_at_snr(clean, white, 0). Measured SNR 0.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_pink_20dB.wav",
+  "label": "pink at 20 dB SNR",
+  "explanation": "mix_at_snr(clean, pink, 20). Measured SNR 20.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_pink_10dB.wav",
+  "label": "pink at 10 dB SNR",
+  "explanation": "mix_at_snr(clean, pink, 10). Measured SNR 10.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_pink_05dB.wav",
+  "label": "pink at 5 dB SNR",
+  "explanation": "mix_at_snr(clean, pink, 5). Measured SNR 5.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_pink_00dB.wav",
+  "label": "pink at 0 dB SNR",
+  "explanation": "mix_at_snr(clean, pink, 0). Measured SNR -0.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_musan_noise_20dB.wav",
+  "label": "musan_noise at 20 dB SNR",
+  "explanation": "mix_at_snr(clean, musan_noise, 20). Measured SNR 20.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_musan_noise_10dB.wav",
+  "label": "musan_noise at 10 dB SNR",
+  "explanation": "mix_at_snr(clean, musan_noise, 10). Measured SNR 10.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_musan_noise_05dB.wav",
+  "label": "musan_noise at 5 dB SNR",
+  "explanation": "mix_at_snr(clean, musan_noise, 5). Measured SNR 5.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_musan_noise_00dB.wav",
+  "label": "musan_noise at 0 dB SNR",
+  "explanation": "mix_at_snr(clean, musan_noise, 0). Measured SNR -0.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_musan_music_20dB.wav",
+  "label": "musan_music at 20 dB SNR",
+  "explanation": "mix_at_snr(clean, musan_music, 20). Measured SNR 20.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_musan_music_10dB.wav",
+  "label": "musan_music at 10 dB SNR",
+  "explanation": "mix_at_snr(clean, musan_music, 10). Measured SNR 10.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_musan_music_05dB.wav",
+  "label": "musan_music at 5 dB SNR",
+  "explanation": "mix_at_snr(clean, musan_music, 5). Measured SNR 5.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "3. Training noise mixed at different SNRs (what models B, B2, B460, B960_rev hear)",
+  "file": "audio/train_musan_music_00dB.wav",
+  "label": "musan_music at 0 dB SNR",
+  "explanation": "mix_at_snr(clean, musan_music, 0). Measured SNR -0.00 dB. In training the SNR is drawn from U[0, 20] dB, so every value in between also occurs.",
+  "scaled": false
+ },
+ {
+  "section": "4. Held-out test noise (never seen in training)",
+  "file": "audio/test_brown_20dB.wav",
+  "label": "brown at 20 dB SNR (test only)",
+  "explanation": "apply_condition() with a fixed CRC32 seed, exactly as the test sets are built. Synthetic brown (1/f^2) noise: a deep rumble. TEST ONLY, never used in training.",
+  "scaled": false
+ },
+ {
+  "section": "4. Held-out test noise (never seen in training)",
+  "file": "audio/test_brown_10dB.wav",
+  "label": "brown at 10 dB SNR (test only)",
+  "explanation": "apply_condition() with a fixed CRC32 seed, exactly as the test sets are built. Synthetic brown (1/f^2) noise: a deep rumble. TEST ONLY, never used in training.",
+  "scaled": false
+ },
+ {
+  "section": "4. Held-out test noise (never seen in training)",
+  "file": "audio/test_brown_05dB.wav",
+  "label": "brown at 5 dB SNR (test only)",
+  "explanation": "apply_condition() with a fixed CRC32 seed, exactly as the test sets are built. Synthetic brown (1/f^2) noise: a deep rumble. TEST ONLY, never used in training.",
+  "scaled": false
+ },
+ {
+  "section": "4. Held-out test noise (never seen in training)",
+  "file": "audio/test_brown_00dB.wav",
+  "label": "brown at 0 dB SNR (test only)",
+  "explanation": "apply_condition() with a fixed CRC32 seed, exactly as the test sets are built. Synthetic brown (1/f^2) noise: a deep rumble. TEST ONLY, never used in training.",
+  "scaled": false
+ },
+ {
+  "section": "4. Held-out test noise (never seen in training)",
+  "file": "audio/test_esc50_20dB.wav",
+  "label": "esc50 at 20 dB SNR (test only)",
+  "explanation": "apply_condition() with a fixed CRC32 seed, exactly as the test sets are built. ESC-50: 2,000 environmental clips (dogs, rain, sirens, door knocks). TEST ONLY, never used in training.",
+  "scaled": false
+ },
+ {
+  "section": "4. Held-out test noise (never seen in training)",
+  "file": "audio/test_esc50_10dB.wav",
+  "label": "esc50 at 10 dB SNR (test only)",
+  "explanation": "apply_condition() with a fixed CRC32 seed, exactly as the test sets are built. ESC-50: 2,000 environmental clips (dogs, rain, sirens, door knocks). TEST ONLY, never used in training.",
+  "scaled": false
+ },
+ {
+  "section": "4. Held-out test noise (never seen in training)",
+  "file": "audio/test_esc50_05dB.wav",
+  "label": "esc50 at 5 dB SNR (test only)",
+  "explanation": "apply_condition() with a fixed CRC32 seed, exactly as the test sets are built. ESC-50: 2,000 environmental clips (dogs, rain, sirens, door knocks). TEST ONLY, never used in training.",
+  "scaled": true
+ },
+ {
+  "section": "4. Held-out test noise (never seen in training)",
+  "file": "audio/test_esc50_00dB.wav",
+  "label": "esc50 at 0 dB SNR (test only)",
+  "explanation": "apply_condition() with a fixed CRC32 seed, exactly as the test sets are built. ESC-50: 2,000 environmental clips (dogs, rain, sirens, door knocks). TEST ONLY, never used in training.",
+  "scaled": true
+ },
+ {
+  "section": "5. Extra augmentations used by B960_rev / B960_rev_s2",
+  "file": "audio/speed_0.9.wav",
+  "label": "Speed perturbation x0.9",
+  "explanation": "Resample 10/9: 6.91 s instead of 6.21 s; pitch moves down. Applied with p = 0.3 in B960_rev.",
+  "scaled": false
+ },
+ {
+  "section": "5. Extra augmentations used by B960_rev / B960_rev_s2",
+  "file": "audio/speed_1.1.wav",
+  "label": "Speed perturbation x1.1",
+  "explanation": "Resample 10/11: 5.65 s instead of 6.21 s; pitch moves up. Applied with p = 0.3 in B960_rev.",
+  "scaled": false
+ },
+ {
+  "section": "5. Extra augmentations used by B960_rev / B960_rev_s2",
+  "file": "audio/reverb_simulated_train.wav",
+  "label": "Reverb, simulated room (training RIR)",
+  "explanation": "Convolution with a simulated room impulse response (OpenSLR 28). Applied with p = 0.3 in B960_rev.",
+  "scaled": false
+ },
+ {
+  "section": "5. Extra augmentations used by B960_rev / B960_rev_s2",
+  "file": "audio/reverb_real_test.wav",
+  "label": "Reverb, real measured room (test only)",
+  "explanation": "Convolution with a REAL measured RIR. Used only in the reverb test condition.",
+  "scaled": false
+ },
+ {
+  "section": "5. Extra augmentations used by B960_rev / B960_rev_s2",
+  "file": "audio/telephone_bandlimit.wav",
+  "label": "Telephone band-limit",
+  "explanation": "16 kHz -> 8 kHz -> 16 kHz: removes everything above ~4 kHz (sounds muffled, like a phone). Applied with p = 0.1 in B960_rev.",
+  "scaled": false
+ },
+ {
+  "section": "6. Everything combined: the full B960_rev chain (speed -> reverb -> noise -> telephone)",
+  "file": "audio/chain_full.wav",
+  "label": "Speed x1.1 + simulated reverb + MUSAN noise 5 dB + telephone",
+  "explanation": "Worst-case training example: every augmentation applied at once, in the TrainAugmenter order.",
+  "scaled": false
+ },
+ {
+  "section": "6. Everything combined: the full B960_rev chain (speed -> reverb -> noise -> telephone)",
+  "file": "audio/random_draw_1.wav",
+  "label": "Random training draw #1: reverb + white at 1.5 dB",
+  "explanation": "One random roll of the B960_rev augmenter (p_speed 0.3, p_reverb 0.3, p_clean 0.2, SNR ~ U[0, 20], p_telephone 0.1). The same utterance gets a different version every time it is loaded.",
+  "scaled": false
+ },
+ {
+  "section": "6. Everything combined: the full B960_rev chain (speed -> reverb -> noise -> telephone)",
+  "file": "audio/random_draw_2.wav",
+  "label": "Random training draw #2: musan_noise at 6.7 dB",
+  "explanation": "One random roll of the B960_rev augmenter (p_speed 0.3, p_reverb 0.3, p_clean 0.2, SNR ~ U[0, 20], p_telephone 0.1). The same utterance gets a different version every time it is loaded.",
+  "scaled": false
+ },
+ {
+  "section": "6. Everything combined: the full B960_rev chain (speed -> reverb -> noise -> telephone)",
+  "file": "audio/random_draw_3.wav",
+  "label": "Random training draw #3: speed x1.1 + pink at 15.0 dB + telephone",
+  "explanation": "One random roll of the B960_rev augmenter (p_speed 0.3, p_reverb 0.3, p_clean 0.2, SNR ~ U[0, 20], p_telephone 0.1). The same utterance gets a different version every time it is loaded.",
+  "scaled": false
+ },
+ {
+  "section": "6. Everything combined: the full B960_rev chain (speed -> reverb -> noise -> telephone)",
+  "file": "audio/random_draw_4.wav",
+  "label": "Random training draw #4: speed x0.9 + reverb + pink at 16.7 dB",
+  "explanation": "One random roll of the B960_rev augmenter (p_speed 0.3, p_reverb 0.3, p_clean 0.2, SNR ~ U[0, 20], p_telephone 0.1). The same utterance gets a different version every time it is loaded.",
+  "scaled": false
+ },
+ {
+  "section": "6. Everything combined: the full B960_rev chain (speed -> reverb -> noise -> telephone)",
+  "file": "audio/random_draw_5.wav",
+  "label": "Random training draw #5: speed x1.1 + reverb + musan_music at 19.5 dB",
+  "explanation": "One random roll of the B960_rev augmenter (p_speed 0.3, p_reverb 0.3, p_clean 0.2, SNR ~ U[0, 20], p_telephone 0.1). The same utterance gets a different version every time it is loaded.",
+  "scaled": false
+ },
+ {
+  "section": "6. Everything combined: the full B960_rev chain (speed -> reverb -> noise -> telephone)",
+  "file": "audio/random_draw_6.wav",
+  "label": "Random training draw #6: pink at 16.0 dB",
+  "explanation": "One random roll of the B960_rev augmenter (p_speed 0.3, p_reverb 0.3, p_clean 0.2, SNR ~ U[0, 20], p_telephone 0.1). The same utterance gets a different version every time it is loaded.",
+  "scaled": false
+ },
+ {
+  "section": "6. Everything combined: the full B960_rev chain (speed -> reverb -> noise -> telephone)",
+  "file": "audio/random_draw_7.wav",
+  "label": "Random training draw #7: speed x1.1 + no noise (the 20 % clean case)",
+  "explanation": "One random roll of the B960_rev augmenter (p_speed 0.3, p_reverb 0.3, p_clean 0.2, SNR ~ U[0, 20], p_telephone 0.1). The same utterance gets a different version every time it is loaded.",
+  "scaled": false
+ },
+ {
+  "section": "6. Everything combined: the full B960_rev chain (speed -> reverb -> noise -> telephone)",
+  "file": "audio/random_draw_8.wav",
+  "label": "Random training draw #8: speed x0.9 + reverb + pink at 16.9 dB",
+  "explanation": "One random roll of the B960_rev augmenter (p_speed 0.3, p_reverb 0.3, p_clean 0.2, SNR ~ U[0, 20], p_telephone 0.1). The same utterance gets a different version every time it is loaded.",
+  "scaled": false
+ }
+]

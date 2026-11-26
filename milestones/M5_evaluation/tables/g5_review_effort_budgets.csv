@@ -1,0 +1,13 @@
+subset,method,error_rate_%,errors_caught_reviewing_5%_%,errors_caught_reviewing_10%_%,errors_caught_reviewing_20%_%,errors_caught_reviewing_30%_%,errors_caught_reviewing_50%_%
+all conditions,trained detector (GBM),7.61,40.12,60.26,78.96,86.55,93.98
+all conditions,raw CTC confidence,7.61,36.36,56.61,72.35,80.84,91.93
+all conditions,random flagging,7.61,4.99,10.06,19.92,29.91,49.93
+all conditions,oracle (perfect ranking),7.61,65.73,100.0,100.0,100.0,100.0
+clean,trained detector (GBM),4.53,43.61,60.57,75.6,82.85,91.82
+clean,raw CTC confidence,4.53,37.12,50.71,65.28,74.95,89.53
+clean,random flagging,4.53,5.21,10.19,20.03,30.58,50.13
+clean,oracle (perfect ranking),4.53,100.0,100.0,100.0,100.0,100.0
+noisy,trained detector (GBM),7.8,39.72,59.96,78.94,86.62,94.05
+noisy,raw CTC confidence,7.8,35.94,56.53,72.48,80.96,92.01
+noisy,random flagging,7.8,4.99,10.05,19.91,29.88,49.92
+noisy,oracle (perfect ranking),7.8,64.1,100.0,100.0,100.0,100.0
