@@ -17,6 +17,9 @@ def _session():
     """The app's session API: core/session.py plus the glossary additions in glossary_ext/session.py."""
     from types import SimpleNamespace
 
+    if not (ROOT / "app2" / "glossary_ext").is_dir():  # the app folders are committed separately
+        import pytest
+        pytest.skip("app2/ (the glossary app) is not in this checkout")
     from core import session as core_ss
     from glossary_ext import session as gloss_ss
     names = {**{k: getattr(core_ss, k) for k in dir(core_ss) if not k.startswith("__")},

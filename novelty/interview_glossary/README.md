@@ -1,6 +1,6 @@
 # Novelty: live transcription assistant with an interview glossary (Group 9)
 
-The glossary **method** lives in this folder; the **app** that uses it is `app2/app_glossary.py` (built on this folder and the repository code) or `app1/app_glossary.py` (a self-contained copy). The project code (`src/group9_ds_ai_lab/`, the upload app in `deployment/app/`, the training and evaluation scripts) is used as is and not changed. **No retraining:** the app uses the trained model from Hugging Face (`kumargulshan/wav2vec2-base-ls960-noise-robust`), the project's 3-gram LM and word-error detector.
+The glossary **method** lives in this folder; the **app** that uses it is `app2/app_glossary.py` (built on this folder and the repository code) or `app1/app_glossary.py` (a self-contained copy). The app folders (`app1/`, `app2/`) are added to the repository separately; until then, the method and its evaluation in this folder can be used on their own. The project code (`src/group9_ds_ai_lab/`, the upload app in `deployment/app/`, the training and evaluation scripts) is used as is and not changed. **No retraining:** the app uses the trained model from Hugging Face (`kumargulshan/wav2vec2-base-ls960-noise-robust`), the project's 3-gram LM and word-error detector.
 
 | Feature | How it works |
 |---|---|
